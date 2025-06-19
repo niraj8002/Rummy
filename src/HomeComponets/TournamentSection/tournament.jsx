@@ -1,6 +1,8 @@
 import React from "react";
 import { FaGift } from "react-icons/fa6";
 import { RiCoupon3Fill } from "react-icons/ri";
+import bounas from "../../assets/home/bounas.png";
+import coupan from "../../assets/home/coupan.png";
 
 export default function TournamentsSection() {
   return (
@@ -16,16 +18,21 @@ export default function TournamentsSection() {
           {/* Middle: Bonuses */}
           <div className="flex gap-4 justify-center flex-wrap md:col-span-1 ">
             <div className="border border-gray-600 rounded-lg p-4 w-40 text-center hover:shadow-lg transition">
-              <FaGift className="w-12 h-12 mx-auto mb-2 text-yellow-400" />
+              <div>
+                <img src={bounas} alt="bonus" />
+              </div>
               <h3 className="font-medium">
                 Welcome
                 <br />
                 Bonus
               </h3>
             </div>
-
             <div className="border border-gray-600 rounded-lg p-4 w-40 text-center hover:shadow-lg transition">
-              <RiCoupon3Fill className="w-12 h-12 mx-auto mb-2 text-red-400" />
+              <div>
+                <img src={coupan} alt="coupan"
+                
+                />
+              </div>
               <h3 className="font-medium">
                 Referral
                 <br />

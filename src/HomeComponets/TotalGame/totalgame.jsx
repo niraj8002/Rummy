@@ -1,25 +1,39 @@
 import React from "react";
-import cardImg from "../../assets/image/card.png";
+import card1 from "../../assets/GameCard/card1.png";
+import card2 from "../../assets/GameCard/card2.png";
+import card3 from "../../assets/GameCard/card3.png";
+import card4 from "../../assets/GameCard/card4.png";
+import { Link } from "react-router-dom";
 
 export default function TotalGame() {
   const Card = [
     {
-      img: cardImg,
+      img: card1,
       title: "Rummy",
+      src: "/game_rummy",
     },
     {
-      img: cardImg,
+      img: card2,
       title: "Pool",
+      src: "/game_pool",
     },
     {
-      img: cardImg,
+      img: card3,
       title: "Poker",
+      src: "/game_poker",
     },
     {
-      img: cardImg,
+      img: card4,
       title: "More Games",
+      src: "/game_rummy",
     },
   ];
+  const goToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <div
@@ -31,9 +45,11 @@ export default function TotalGame() {
       <div className="max-w-5xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4  gap-4 md:gap-6">
           {Card.map((item, index) => (
-            <div
+            <Link
+              to={item.src}
               key={index}
-              className="group p-5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col items-center"
+              onClick={goToTop}
+              className="group p-5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col items-center hover:-translate-y-2"
               style={{
                 background: "linear-gradient(to bottom, #0B050C, #340408)",
                 boxShadow: "0 0 10px #221624",
@@ -69,7 +85,7 @@ export default function TotalGame() {
                   START GAME
                 </button>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
