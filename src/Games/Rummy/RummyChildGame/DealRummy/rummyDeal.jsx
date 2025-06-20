@@ -1,7 +1,6 @@
 import React from "react";
 import Banner from "../../../../Reuseable Com/Banner";
-import pointrummy from "../../../../assets/points-rummy/point1.png"
-import PointRummyRulesSection from "../Rummypoint/rummypointrule";
+import pointrummy from "../../../../assets/deals-rummy/deal.png"
 import DealRummyRulesSection from "./rummyDealRule";
 
 
