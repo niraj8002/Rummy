@@ -18,9 +18,9 @@ const Footer = () => {
             <div className="flex items-start mb-3">
               <FaLocationDot className="text-red-900 text-xl mt-1 mr-2" />
               <address className="not-italic text-sm space-y-1">
-                <p>Plot No 97, Dotshinpurī – L</p>
-                <p>Shrikishan, Sanganeh,</p>
-                <p>Jagarpura, Japur, Rajasthan,</p>
+                <p>Plot No 97, Dakshinpuri - I </p>
+                <p>Shrikishan, Sanganer,</p>
+                <p> Shri Kishanpura, Rajasthan,</p>
                 <p>India, 302017</p>
               </address>
             </div>
@@ -106,7 +106,8 @@ const Footer = () => {
             <div className="flex space-x-4 ">
               {/* Facebook */}
               <a
-                href="#" className="hover:text-red-400 hover:underline transition"
+                href="#"
+                className="hover:text-red-400 hover:underline transition"
               >
                 <img src={fb} alt="fb" className="h-5 w-5" />
               </a>
