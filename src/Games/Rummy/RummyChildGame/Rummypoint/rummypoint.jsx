@@ -1,29 +1,16 @@
 import React from "react";
-import Banner from "../../Reuseable Com/Banner";
-import rummyyy from "../../assets/rummy/rummyyy.png";
-import rummyCard from "../../assets/rummy/rummyCard.png";
-import RummyRulesSection from "./rummyRule";
+import Banner from "../../../../Reuseable Com/Banner";
+import pointrummy from "../../../../assets/points-rummy/point1.png"
+import PointRummyRulesSection from "./rummypointrule";
 
-export const RummyGame = () => {
-  const Card = [
-    {
-      img: rummyCard,
-      title: "Points Rummy",
-    },
-    {
-      img: rummyCard,
-      title: "Pool Rummy",
-    },
-    {
-      img: rummyCard,
-      title: "Deals Rummyoker",
-    },
-  ];
+
+
+export const RummyPointGame = () => {
   return (
     <>
       <Banner
-        img={rummyyy}
-        heading="Rummy"
+        img={pointrummy}
+        heading="points Rummy"
         button="play now"
         subheading="18+ Only | Play Responsibly"
       />
@@ -73,7 +60,7 @@ export const RummyGame = () => {
         </div>
 
         {/* Game Types */}
-        <div className="max-w-4xl mx-auto text-center mb-10">
+        {/* <div className="max-w-4xl mx-auto text-center mb-10">
           <h2 className="text-2xl md:text-3xl font-semibold mb-6">
             Different Types of Rummy Games
           </h2>
@@ -117,9 +104,9 @@ export const RummyGame = () => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
-      <RummyRulesSection />
+      <PointRummyRulesSection />
     </>
   );
 };

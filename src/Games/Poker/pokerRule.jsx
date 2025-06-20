@@ -7,9 +7,11 @@ import {
   FaListAlt,
   FaPlayCircle,
 } from "react-icons/fa";
+import TotalGame from "../../HomeComponets/TotalGame/totalgame";
 
 const PokerRuleSection = () => {
   return (
+    <>
     <section className="bg-gradient-to-b from-[#0B050C] to-[#1a0a1a] text-white px-4 sm:px-6 py-12 md:py-20 overflow-hidden relative">
       {/* Decorative elements */}
       <div className="absolute top-20 left-10 opacity-10">
@@ -135,6 +137,8 @@ const PokerRuleSection = () => {
         </div>
       </div>
     </section>
+    <TotalGame/>
+    </>
   );
 };
 

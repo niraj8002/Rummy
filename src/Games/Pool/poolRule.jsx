@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa";
 import poolCardsImg from "../../assets/pool/poolcard.png";
 import { FaArrowRight } from "react-icons/fa6";
+import TotalGame from "../../HomeComponets/TotalGame/totalgame";
 
 const rules = [
   {
@@ -38,10 +39,11 @@ const rules = [
 
 const PoolRulesSection = () => {
   return (
+    <>
     <section className="relative bg-[#0B050C] text-white px-4 md:px-10 py-16 overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-12 text-red-400">
-          Rummy Game Rules
+          Pool Game Rules
         </h2>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -92,6 +94,8 @@ const PoolRulesSection = () => {
         </div>
       </div>
     </section>
+    <TotalGame/>
+    </>
   );
 };
 

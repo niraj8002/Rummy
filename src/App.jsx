@@ -9,9 +9,13 @@ import ContactUs from "./NavLinkCom/Contactus/contactus";
 import PrivacyPolicy from "./PrivacyPolicy/privacyPolicy";
 import TermsAndConditions from "./TermsConditions/termsAndConditions";
 import ReturnAndCancelation from "./ReturnAndCancelation/returnandcanelation";
-import { RummyGame } from "./Games/Rummy/rummy";
 import { PoolGame } from "./Games/Pool/pool";
 import { PokerGame } from "./Games/Poker/poker";
+import TrafficLight from "./li";
+import { RummyGame } from "./Games/Rummy/MainRummy/rummy";
+import { RummyPointGame } from "./Games/Rummy/RummyChildGame/Rummypoint/rummypoint";
+import { RummyPoolGame } from "./Games/Rummy/RummyChildGame/RummyPool/rummypool";
+import { RummyDealGame } from "./Games/Rummy/RummyChildGame/DealRummy/rummyDeal";
 function App() {
   return (
     <>
@@ -26,6 +30,10 @@ function App() {
         <Route path="/game_rummy" element={<RummyGame />} />
         <Route path="/game_pool" element={<PoolGame />} />
         <Route path="/game_poker" element={<PokerGame />} />
+        <Route path="/point_rummy_game" element={<RummyPointGame />} />
+        <Route path="/pool_rummy_game" element={<RummyPoolGame />} />
+        <Route path="/deal_rummy_game" element={<RummyDealGame />} />
+        <Route path="/li" element={<TrafficLight />} />
       </Routes>
       <Footer />
     </>
