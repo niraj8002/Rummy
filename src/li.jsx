@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from "react";
 
 const TrafficLight = () => {
-  const [count, setcount] = useState(5);
+  const [count, setcount] = useState(10);
 
-//   function* countUpto(n) {
-//     for (let i = 5; i >= n; i--) {
-//       yield i;
-//     }
-//   }
+  function* countUpto(n) {
+    for (let i = 10; i >= n; i--) {
+      yield i;
+    }
+  }
 
   
-//   const gen = countUpto(0);
+  const gen = countUpto(0);
 
-//   useEffect(() => {
-//     const interval = setInterval(() => {
-//       const next = gen.next();
-//       if (!next.done) {
-//         setcount(next.value);
-//         console.log(next);
-//       } else {
-//         clearInterval(interval);
-//       }
-//     }, 1000);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const next = gen.next();
+      if (!next.done) {
+        setcount(next.value);
+        console.log(next);
+      } else {
+        clearInterval(interval);
+      }
+    }, 1000);
 
-//     return () => clearInterval(interval);
-//   }, []);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
@@ -36,7 +36,7 @@ const TrafficLight = () => {
             count == 0 && "hidden"
           }`}
         >
-          {/* {count} */}
+          {count}
         </h2>
       </div>
     </>
