@@ -3,25 +3,36 @@ import card1 from "../../assets/GameCard/card1.png";
 import card2 from "../../assets/GameCard/card2.png";
 import card3 from "../../assets/GameCard/card3.png";
 import card4 from "../../assets/GameCard/card4.png";
+import { Link } from "react-router-dom";
 const WhatWeOffer = () => {
   const Card = [
     {
       img: card1,
       title: "Rummy",
+      herf: "/game_rummy",
     },
     {
       img: card2,
       title: "Pool",
+      herf: "/game_pool",
     },
     {
       img: card3,
       title: "Poker",
+      herf: "/game_poker",
     },
     {
       img: card4,
       title: "More Games",
+      herf: "/game_rummy",
     },
   ];
+  const goToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <section className="bg-[#0b050c] text-white py-16 px-4">
@@ -62,17 +73,18 @@ const WhatWeOffer = () => {
                     </span>
                   </div>
                 </div>
-                <div className="w-full mt-4">
+                <Link to={item.herf} className="w-full mt-4">
                   <button
                     className="w-full bg-red-500 px-4 py-2 rounded-sm text-gray-200 tracking-wide hover:bg-red-600 transition-all duration-300
                   focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-50"
                     style={{
                       boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
                     }}
+                    onClick={goToTop}
                   >
                     START GAME
                   </button>
-                </div>
+                </Link>
               </div>
             ))}
           </div>
