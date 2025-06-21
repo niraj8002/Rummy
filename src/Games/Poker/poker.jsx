@@ -3,6 +3,7 @@ import Banner from "../../Reuseable Com/Banner";
 import bannerimg from "../../assets/poker/pokerbanner.png";
 import pokerCard from "../../assets/poker/pokerCard.png";
 import PokerRuleSection from "./pokerRule";
+import { Link } from "react-router-dom";
 
 export const PokerGame = () => {
   const Card = [
@@ -103,7 +104,7 @@ export const PokerGame = () => {
                     </h3>
                   </div>
                 </div>
-                <div className="w-full mb-2 my-4">
+                <Link to={"/point_rummy_game"} className="w-full mb-2 my-4">
                   <button
                     className="w-full bg-red-500 px-4 py-2 rounded-sm text-gray-200 tracking-wide hover:bg-red-600 transition-all duration-300
                   focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-50"
@@ -113,7 +114,7 @@ export const PokerGame = () => {
                   >
                     START GAME
                   </button>
-                </div>
+                </Link>
               </div>
             ))}
           </div>

@@ -3,20 +3,21 @@ import Banner from "../../Reuseable Com/Banner";
 import bannerimg from "../../assets/pool/p1.png";
 import poolCard from "../../assets/pool/poolcard.png";
 import PoolRulesSection from "./poolRule";
+import { Link } from "react-router-dom";
 
 export const PoolGame = () => {
   const Card = [
     {
       img: poolCard,
-      title: "Points Rummy",
+      title: "8-Ball Pool ",
     },
     {
       img: poolCard,
-      title: "Pool Rummy",
+      title: "9-Ball Pool",
     },
     {
       img: poolCard,
-      title: "Deals Rummyoker",
+      title: "Straight Pool",
     },
   ];
   return (
@@ -103,7 +104,7 @@ export const PoolGame = () => {
                     </h3>
                   </div>
                 </div>
-                <div className="w-full mb-2 my-3">
+                <Link to={"/point_rummy_game"} className="w-full mb-2 my-3">
                   <button
                     className="w-full bg-red-500 px-4 py-2 rounded-sm text-gray-200 tracking-wide hover:bg-red-600 transition-all duration-300
                   focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-50"
@@ -113,7 +114,7 @@ export const PoolGame = () => {
                   >
                     START GAME
                   </button>
-                </div>
+                </Link >
               </div>
             ))}
           </div>
