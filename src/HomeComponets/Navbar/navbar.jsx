@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { SignModal } from "../../PopUpModal/signModal";
 import { SignUpModal } from "../../PopUpModal/signupModal";
+import { CiLogin } from "react-icons/ci";
+import { LuDownload } from "react-icons/lu";
+import { CgProfile } from "react-icons/cg";
 
 export default function Navbar() {
   const drawerRef = useRef(null);
@@ -33,8 +36,8 @@ export default function Navbar() {
     { label: "Home", href: "/", onclick: null },
     { label: "About", href: "/aboutus", onclick: null },
     { label: "Contact us", href: "/contactus", onclick: null },
-    { label: "Sign In", href: "#contact", onclick: openModal },
-    { label: "Sign Up", href: "#contact", onclick: openSignUPModal },
+    // { label: "Sign In", href: "#contact", onclick: openModal },
+    // { label: "Sign Up", href: "#contact", onclick: openSignUPModal },
   ];
   return (
     <>
@@ -49,7 +52,7 @@ export default function Navbar() {
       >
         <div className="container mx-auto flex justify-between items-center">
           <a
-          href="/"
+            href="/"
             className="text-white text-xl md:text-2xl font-bold tracking-wider transition duration-300 cursor-pointer"
             style={{ fontFamily: "'Lobster', cursive" }}
           >
@@ -58,7 +61,7 @@ export default function Navbar() {
           </a>
 
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex space-x-6 lg:space-x-8">
+          <ul className="hidden md:flex space-x-6 lg:space-x-6 flex  justify-center items-center text-center">
             {navLinks.map(({ label, href }, index) => (
               <li key={index}>
                 <a
@@ -70,6 +73,39 @@ export default function Navbar() {
                 </a>
               </li>
             ))}
+            <li>
+              <a
+                href="/download_apk"
+                className={` transition duration-300 tracking-wider font-[400] py-2 px-2  rounded-md flex  justify-center items-center text-center gap-1 bg-blue-500 hover:bg-red-500`}
+                style={{
+                  color: "#00f7ff",
+                  textShadow: "0 0 5px #00f7ff, 0 0 10px #00f7ff",
+                }}
+                onClick={""}
+              >
+                <LuDownload size={18} /> Download
+              </a>
+            </li>
+            <li>
+              <a
+                href="/login"
+                className={`text-white hover:text-red-500 transition duration-300 tracking-wider font-[400]  flex  justify-center items-center text-center gap-1`}
+                onClick={""}
+              >
+                <CiLogin size={22} />
+                Login
+              </a>
+            </li>
+            <li>
+              <a
+                href="/profile"
+                className={` transition duration-300 tracking-wider font-[400] py-2 px-2  rounded-md flex  justify-center items-center text-center  gap-1 bg-red-800    hover:text-red-500 text-gray-100`}
+                onClick={""}
+              >
+                <CgProfile size={18} />
+                Profile
+              </a>
+            </li>
           </ul>
 
           {/* Mobile Menu Toggle Button */}

@@ -16,6 +16,10 @@ import { RummyGame } from "./Games/Rummy/MainRummy/rummy";
 import { RummyPointGame } from "./Games/Rummy/RummyChildGame/Rummypoint/rummypoint";
 import { RummyPoolGame } from "./Games/Rummy/RummyChildGame/RummyPool/rummypool";
 import { RummyDealGame } from "./Games/Rummy/RummyChildGame/DealRummy/rummyDeal";
+import LoginPage from "./Login/login";
+import RegisterPage from "./Register/regiter";
+import DownloadPage from "./DownloadAPK/download";
+import Profilepage from "./Profile/profile";
 function App() {
   return (
     <>
@@ -34,6 +38,10 @@ function App() {
         <Route path="/pool_rummy_game" element={<RummyPoolGame />} />
         <Route path="/deal_rummy_game" element={<RummyDealGame />} />
         <Route path="/li" element={<TrafficLight />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/download_apk" element={<DownloadPage />} />
+        <Route path="/profile" element={<Profilepage />} />
       </Routes>
       <Footer />
     </>
