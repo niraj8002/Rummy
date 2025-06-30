@@ -10,10 +10,12 @@ const IntroductionSection = () => {
           Introduction
         </h2>
         <p className="text-gray-300 mb-12">
-          Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
-          accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae
-          ab illo inventore veritatis et quasi architecto beatae vitae dicta
-          sunt explicabo.
+          At Finunique Small Private Limited, we’re redefining the online
+          skill-gaming experience. Whether you're a seasoned player or just
+          getting started, our platform offers secure, fair, and thrilling
+          gameplay across a variety of games like Rummy, Poker, and Pool. With
+          24/7 accessibility and an engaging user interface, we give every
+          player a chance to level up.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -23,10 +25,9 @@ const IntroductionSection = () => {
               Our Vision <FaBullseye className="text-pink-500" />
             </h3>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Perspiciatis distinctio aliquid nam ea ullam laboriosam deleniti
-              autem excepturi fuga! Repellendus expedita aperiam numquam
-              aspernatur rerum quod, eligendi hic minima voluptates.
+              To become India’s most trusted and dynamic platform for
+              skill-based real-money gaming, where every player experiences fair
+              play, community, and constant evolution.
             </p>
           </div>
 
@@ -36,10 +37,11 @@ const IntroductionSection = () => {
               Our Mission <FaFlagCheckered className="text-blue-500" />
             </h3>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Perspiciatis distinctio aliquid nam ea ullam laboriosam deleniti
-              autem excepturi fuga! Repellendus expedita aperiam numquam
-              aspernatur rerum quod, eligendi hic minima voluptates.
+              We aim to provide a responsible and rewarding gaming ecosystem
+              powered by cutting-edge technology, top-tier security, and a deep
+              respect for user experience. Our mission is to nurture a gaming
+              culture that promotes skill-building, entertainment, and
+              transparency.
             </p>
           </div>
         </div>

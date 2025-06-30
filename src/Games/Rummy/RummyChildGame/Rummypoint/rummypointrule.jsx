@@ -45,9 +45,10 @@ const PointRummyRulesSection = () => {
                       Card Distribution
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                      Each player is dealt 13 cards. The remaining cards form
-                      the closed deck, with one card placed face-up to start the
-                      open deck. The dealer is chosen randomly at the beginning.
+                      Each player is dealt 13 cards from a standard deck. One
+                      card is placed face-up to start the open deck, and the
+                      rest form the closed deck. The dealer is chosen randomly
+                      at the start.
                     </p>
                   </div>
                 </div>
@@ -63,12 +64,13 @@ const PointRummyRulesSection = () => {
                       <span className="text-[#5e0d0d] group-hover:text-[#ff6b6b] transition-colors">
                         Step 2.
                       </span>
-                      Objective of the Game
+                       Game Objective
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                      Arrange all 13 cards in valid sequences and/or sets. A
-                      valid declaration must include at least two sequences, one
-                      of which must be a pure sequence (without a joker).
+                      The aim is to arrange all 13 cards into valid combinations
+                      — sequences or sets. A valid declaration must include at
+                      least two sequences, and one of them must be a pure
+                      sequence (formed without using a joker).
                     </p>
                   </div>
                 </div>
@@ -84,13 +86,11 @@ const PointRummyRulesSection = () => {
                       <span className="text-[#5e0d0d] group-hover:text-[#ff6b6b] transition-colors">
                         Step 3.
                       </span>
-                      Gameplay Rules
+                     Gameplay Mechanics
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                      On your turn, draw a card from either deck and discard one
-                      to the open pile. Form valid sequences/sets with your
-                      cards. Jokers can substitute any card. You can use
-                      opponents' discards if needed.
+                    Players take turns drawing a card from either the open or closed deck and discarding one card to the open pile. Jokers can be used as substitutes to form sets and impure sequences. Strategic use of opponents’ discarded cards can give you a winning edge.
+
                     </p>
                   </div>
                 </div>
@@ -106,14 +106,12 @@ const PointRummyRulesSection = () => {
                       <span className="text-[#5e0d0d] group-hover:text-[#ff6b6b] transition-colors">
                         Step 4.
                       </span>
-                      Winning the Game
+                      Declaring and Winning
+
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                      Declare your hand by placing all cards in valid
-                      sequences/sets with one discard. First valid declaration
-                      wins. Points are calculated based on opponents' ungrouped
-                      cards. The game continues until a player reaches the
-                      target score.
+                     When a player forms valid combinations, they discard one card and declare. If the declaration is valid, they win the round. Points are calculated based on the unmatched cards of the losing players. The fewer the points, the better your chances of long-term success.
+
                     </p>
                   </div>
                 </div>

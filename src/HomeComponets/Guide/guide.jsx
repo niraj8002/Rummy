@@ -3,19 +3,19 @@ import { CiUser } from "react-icons/ci";
 export default function GuideSection() {
   const features = [
     {
-      title: "Niraj",
+      title: "Niraj Kumar",
       description:
-        "exercitation ultamos laboris nisi ut aliquip ex ea commodo consequat. marnerits",
+        " UI is simple, game speed needs improvement. Rummy matchmaking is slow sometimes. Payment works well but withdrawal notifications are delayed.",
     },
     {
-      title: "Niraj",
+      title: "Sneha Raut",
       description:
-        "exercitation ultamos laboris nisi ut aliquip ex ea commodo consequat. marnerits",
+        " Design is good, Pool UI stands out. Mobile scrolling glitches a bit. Transparency can improve by showing game fairness audit publicly.",
     },
     {
-      title: "Niraj",
+      title: "Arjun Mehta",
       description:
-        "exercitation ultamos laboris nisi ut aliquip ex ea commodo consequat. marnerits",
+        " Poker has good avatars and chat. Tutorials help beginners. App crashes on some low-end phones; needs performance fixes.",
     },
   ];
 

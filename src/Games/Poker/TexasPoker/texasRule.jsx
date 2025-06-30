@@ -1,6 +1,7 @@
 import React from "react";
 import rummySideImg from "../../../assets/rummy/rummy.png";
-import "./rummy.css";
+
+// import "../../MainRummy/rummy.css";
 import {
   FaArrowRight,
   FaChess,
@@ -10,7 +11,7 @@ import {
 } from "react-icons/fa";
 import TotalGame from "../../../HomeComponets/TotalGame/totalgame";
 
-const RummyRulesSection = () => {
+const TexasRule = () => {
   return (
     <>
       <section className="bg-gradient-to-b from-[#0B050C] to-[#1a0a1a] text-white px-4 sm:px-6 py-12 md:py-20 overflow-hidden relative">
@@ -25,7 +26,7 @@ const RummyRulesSection = () => {
         <div className="max-w-6xl mx-auto relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff6b6b] to-[#5e0d0d]">
-              Rummy Game Rules
+              How to Play 8-Ball Pool ?
             </span>
           </h2>
 
@@ -42,12 +43,10 @@ const RummyRulesSection = () => {
                       <span className="text-[#5e0d0d] group-hover:text-[#ff6b6b] transition-colors">
                         Step 1.
                       </span>
-                      Card Distribution
+                      The Deal
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                      Each player is dealt 13 cards. One card is placed face-up
-                      to begin the open deck, and the rest form the closed pile.
-                      The dealer is chosen randomly.
+                      Each player gets two face-down cards (hole cards).
                     </p>
                   </div>
                 </div>
@@ -63,12 +62,11 @@ const RummyRulesSection = () => {
                       <span className="text-[#5e0d0d] group-hover:text-[#ff6b6b] transition-colors">
                         Step 2.
                       </span>
-                      Objective of the Game
+                      Community Cards
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                      Create valid sequences and/or sets. A winning hand must
-                      contain at least two sequences, with one being a pure
-                      sequence (no jokers used).
+                      Five community cards are dealt in stages: Flop (3), Turn
+                      (1), River (1).
                     </p>
                   </div>
                 </div>
@@ -84,13 +82,11 @@ const RummyRulesSection = () => {
                       <span className="text-[#5e0d0d] group-hover:text-[#ff6b6b] transition-colors">
                         Step 3.
                       </span>
-                      Gameplay Rules
+                      Betting Rounds
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                      Pick a card from the open or closed deck and discard one
-                      to the open pile. Use jokers to complete sets and
-                      sequences. You may also use opponents' discards if it
-                      benefits your hand.
+                      There are four betting rounds: Pre-flop, Flop, Turn, and
+                      River. Players can fold, check, call, raise, or go all-in.
                     </p>
                   </div>
                 </div>
@@ -106,13 +102,12 @@ const RummyRulesSection = () => {
                       <span className="text-[#5e0d0d] group-hover:text-[#ff6b6b] transition-colors">
                         Step 4.
                       </span>
-                      Winning the Game
+                      Showdown
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                      Once your hand is complete, discard the final card and
-                      declare. The first valid declaration wins. Points are
-                      calculated based on ungrouped cards held by the other
-                      players.
+                      If more than one player remains after the final betting
+                      round, cards are revealed. The player with the best
+                      five-card hand wins the pot.
                     </p>
                   </div>
                 </div>
@@ -142,4 +137,4 @@ const RummyRulesSection = () => {
   );
 };
 
-export default RummyRulesSection;
+export default TexasRule;

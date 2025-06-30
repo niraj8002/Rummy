@@ -21,14 +21,8 @@ export const RummyPoolGame = () => {
             Introduction
           </h2>
           <p className="text-gray-300 leading-relaxed">
-            Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
-            quae ab illo inventore veritatis et quasi architecto beatae vitae
-            dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas
-            sit, aspernatur aut odit aut fugit, sed quia consequuntur magni
-            dolores eos, qui ratione voluptatem sequi nesciunt, neque porro
-            quisquam est, qui dolorem ipsum, quia dolor sit amet consectetur
-            adipisci[ng] velit...
+          Pool Rummy is a popular variation of the classic 13-card Indian Rummy, designed for players who enjoy longer, strategic gameplay. Unlike Points Rummy, Pool Rummy is played over multiple rounds until a player reaches the maximum point limit and gets eliminated. The last player remaining in the pool wins the game.
+
           </p>
         </div>
 
@@ -39,11 +33,8 @@ export const RummyPoolGame = () => {
               The History and Evolution of Rummy
             </h3>
             <p className="text-gray-400 text-sm">
-              Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
-              quae ab illo inventore veritatis et quasi architecto beatae vitae
-              dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas
-              sit...
+            Rummy has been played for generations in various forms. Its origin can be traced to traditional card-matching games that emphasize skill and strategy. Over the years, Rummy has evolved into different formats — with Pool Rummy emerging as a favorite due to its longer duration and competitive nature.
+
             </p>
           </div>
           <div className="border border-gray-700 bg-[#151015] p-6 rounded-lg shadow">
@@ -51,10 +42,8 @@ export const RummyPoolGame = () => {
               Why Rummy is a Game of Skill?
             </h3>
             <p className="text-gray-400 text-sm">
-              Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
-              quae ab illo inventore veritatis et quasi architecto beatae vitae
-              dicta sunt, explicabo. Nemo enim ipsam voluptatem...
+            Rummy is legally classified as a game of skill in many countries. Players must make thoughtful decisions, track discarded cards, use jokers wisely, and adapt strategies in real-time. The outcome is determined by mental sharpness and planning — not chance.
+
             </p>
           </div>
         </div>

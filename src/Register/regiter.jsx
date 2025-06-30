@@ -1,24 +1,106 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { UserPlus, Gift, Shield, Eye, EyeOff, Check } from "lucide-react";
+import { UserPlus, Shield, Eye, EyeOff, Check } from "lucide-react";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import { toast, Toaster } from "react-hot-toast";
 
 const RegisterPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [step, setStep] = useState(1); // 1: Details, 2: OTP Verification
+  const [step, setStep] = useState(1);
+  const [loading, setLoading] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+    trigger,
+    reset,
+    setError,
+  } = useForm({ mode: "onChange" });
+
+  const {
+    register: registerOTP,
+    handleSubmit: handleOtpSubmit,
+    formState: { errors: otpErrors },
+    trigger: triggerOtp,
+  } = useForm({ mode: "onChange" });
+
+  const password = watch("password");
+
+  const onSubmit = async (data) => {
+    const valid = await trigger();
+    if (!valid) return;
+
+    setLoading(true);
+
+    try {
+      const payload = {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        mobile: data.mobile,
+        email: data.email,
+        password: data.password,
+        referralCode: data.referralCode || "",
+      };
+      // await axios.post("/user/sign", payload);
+      toast.success("OTP sent to your mobile!");
+      setTimeout(() => {
+        setStep(2);
+      }, 4000);
+    } catch (err) {
+      console.error("API Error", err);
+      if (err?.response?.data?.errors) {
+        const fieldErrors = err.response.data.errors;
+        Object.keys(fieldErrors).forEach((key) => {
+          setError(key, { type: "manual", message: fieldErrors[key] });
+        });
+        toast.error("Please fix the highlighted fields.");
+      } else {
+        toast.error("Something went wrong. Please try again.");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onVerifyOtp = async (otpData) => {
+    const valid = await triggerOtp();
+    if (!valid) return;
+
+    setLoading(true);
+    const toastId = toast.loading("Verifying OTP...", {
+      position: "top-right",
+    });
+    try {
+      // await axios.post("/user/verify-otp", { otp: otpData.otp });
+      toast.success("OTP verified successfully", { id: toastId });
+      reset();
+      setStep(1);
+    } catch (err) {
+      console.error("OTP Verification Error", err);
+      if (err?.response?.data?.message) {
+        setError("otp", { type: "manual", message: err.response.data.message });
+        toast.error(err.response.data.message, { id: toastId });
+      } else {
+        toast.error("OTP verification failed", { id: toastId });
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div className="min-h-screen py-8 bg-[#17040A]">
-      <div className="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+    <div className="min-h-screen py-3 bg-[#17040A]">
+      <Toaster />
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
-          <div className="bg-gradient-to-r from-primary-500 to-gold-500 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-4">
-            <UserPlus className="h-10 w-10 text-white" />
-          </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
-            Join{" "}
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 flex justify-center gap-2">
+            Join <UserPlus className="h-10 w-10 text-white" />
             <span
-              className="text-glow text-primary-500"
+              className="text-glow text-primary-500 flex justify-center gap-2 text-3xl md:text-4xl font-bold text-white mb-2"
               style={{
                 color: "#ff1028",
                 textShadow:
@@ -26,7 +108,7 @@ const RegisterPage = () => {
                 letterSpacing: "3px",
               }}
             >
-              GameZone
+              7Unique
             </span>
           </h1>
           <p className="text-gray-400">
@@ -35,10 +117,8 @@ const RegisterPage = () => {
         </div>
 
         {step === 1 ? (
-          /* Registration Form */
-          <div className="card-gaming p-8 bg-[#240612] rounded-md outline-1 outline-red-300" >
-            <form className="space-y-6">
-              {/* Name Fields */}
+          <div className="card-gaming p-5 bg-[#240612] rounded-md outline-1 outline-red-300 ">
+            <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">
@@ -46,10 +126,28 @@ const RegisterPage = () => {
                   </label>
                   <input
                     type="text"
-                    className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white placeholder-gray-400 focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors duration-300"
+                    {...register("firstName", {
+                      required: "First name is required",
+                      pattern: {
+                        value: /^[A-Za-z\s]+$/,
+                        message: "Only letters and spaces allowed",
+                      },
+                    })}
+                    onKeyUp={() => trigger("firstName")}
+                    onInput={(e) => {
+                      e.target.value = e.target.value.replace(
+                        /[^A-Za-z\s]/g,
+                        ""
+                      );
+                    }}
+                    className="w-full px-2 py-2 bg-dark-700 border border-dark-600 rounded-lg text-white placeholder-gray-400"
                     placeholder="First name"
-                    required
                   />
+                  {errors.firstName && (
+                    <p className="text-red-500 text-xs mt-1">
+                      {errors.firstName.message}
+                    </p>
+                  )}
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">
@@ -57,174 +155,252 @@ const RegisterPage = () => {
                   </label>
                   <input
                     type="text"
-                    className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white placeholder-gray-400 focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors duration-300"
+                    {...register("lastName", {
+                      required: "Last name is required",
+                      pattern: {
+                        value: /^[A-Za-z\s]+$/,
+                        message: "Only letters and spaces allowed",
+                      },
+                    })}
+                    onKeyUp={() => trigger("lastName")}
+                    onInput={(e) => {
+                      e.target.value = e.target.value.replace(
+                        /[^A-Za-z\s]/g,
+                        ""
+                      );
+                    }}
+                    className="w-full px-2 py-2 bg-dark-700 border border-dark-600 rounded-lg text-white placeholder-gray-400"
                     placeholder="Last name"
-                    required
                   />
+                  {errors.lastName && (
+                    <p className="text-red-500 text-xs mt-1">
+                      {errors.lastName.message}
+                    </p>
+                  )}
                 </div>
               </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    Mobile Number *
+                  </label>
+                  <div className="flex">
+                    <span className="inline-flex items-center px-1 rounded-l-lg border border-r-0 border-dark-600 bg-dark-700 text-gray-400 text-sm">
+                      +91
+                    </span>
+                    <input
+                      type="text"
+                      maxLength={10}
+                      inputMode="numeric"
+                      {...register("mobile", {
+                        required:
+                          "Mobile number is required and start within 6-9",
+                        pattern: {
+                          value: /^[6-9]\d{9}$/,
+                          message:
+                            "Must start with 6-9 and be exactly 10 digits",
+                        },
+                      })}
+                      onKeyUp={() => trigger("mobile")}
+                      onInput={(e) => {
+                        let val = e.target.value.replace(/\D/g, "");
 
-              {/* Mobile Number */}
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Mobile Number *
-                </label>
-                <div className="flex">
-                  <span className="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-dark-600 bg-dark-700 text-gray-400 text-sm">
-                    +91
-                  </span>
+                        if (val.length === 1 && !/^[6-9]$/.test(val)) {
+                          val = "";
+                        }
+
+                        if (val.length > 10) {
+                          val = val.slice(0, 10);
+                        }
+
+                        e.target.value = val;
+                      }}
+                      className="w-full px-2 py-2 bg-dark-700 border border-dark-600 rounded-br-lg rounded-tr-lg text-white placeholder-gray-400"
+                      placeholder="Mobile number"
+                    />
+                  </div>
+                  {errors.mobile && (
+                    <p className="text-red-500 text-xs mt-1">
+                      {errors.mobile.message}
+                    </p>
+                  )}
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    Email
+                  </label>
                   <input
-                    type="tel"
-                    className="flex-1 px-4 py-3 bg-dark-700 border border-dark-600 rounded-r-lg text-white placeholder-gray-400 focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors duration-300"
-                    placeholder="Enter mobile number"
-                    required
+                    type="text"
+                    {...register("email", {
+                      required: "Email is required",
+                      pattern: {
+                        value: /^\S+@\S+$/i,
+                        message: "Invalid email",
+                      },
+                    })}
+                    onKeyUp={() => trigger("email")}
+                    className="w-full px-2 py-2 bg-dark-700 border border-dark-600 rounded-lg text-white placeholder-gray-400"
+                    placeholder="email"
                   />
+                  {errors.email && (
+                    <p className="text-red-500 text-xs mt-1">
+                      {errors.email.message}
+                    </p>
+                  )}
                 </div>
               </div>
-
-              {/* Email */}
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Email Address *
-                </label>
-                <input
-                  type="email"
-                  className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white placeholder-gray-400 focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors duration-300"
-                  placeholder="Enter your email"
-                  required
-                />
-              </div>
-
-              {/* Password */}
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Password *
-                </label>
-                <div className="relative">
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white placeholder-gray-400 focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors duration-300 pr-12"
-                    placeholder="Create password"
-                    required
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors duration-300"
-                  >
-                    {showPassword ? (
-                      <EyeOff className="h-5 w-5" />
-                    ) : (
-                      <Eye className="h-5 w-5" />
-                    )}
-                  </button>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    Password *
+                  </label>
+                  <div className="relative">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      {...register("password", {
+                        required: "Password is required",
+                        minLength: {
+                          value: 6,
+                          message: "Minimum 6 characters",
+                        },
+                      })}
+                      onKeyUp={() => trigger("password")}
+                      className="w-full px-2 py-2 bg-dark-700 border border-dark-600 rounded-lg text-white placeholder-gray-400 pr-12"
+                      placeholder="Create password"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
+                    >
+                      {showPassword ? (
+                        <EyeOff className="h-5 w-5" />
+                      ) : (
+                        <Eye className="h-5 w-5" />
+                      )}
+                    </button>
+                  </div>
+                  {errors.password && (
+                    <p className="text-red-500 text-xs mt-1">
+                      {errors.password.message}
+                    </p>
+                  )}
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    Confirm Password *
+                  </label>
+                  <div className="relative">
+                    <input
+                      type={showConfirmPassword ? "text" : "password"}
+                      {...register("confirmPassword", {
+                        required: "Confirm your password",
+                        validate: (val) =>
+                          val === password || "Passwords do not match",
+                      })}
+                      onKeyUp={() => trigger("confirmPassword")}
+                      className="w-full px-2 py-2 bg-dark-700 border border-dark-600 rounded-lg text-white placeholder-gray-400 pr-12"
+                      placeholder="Confirm password"
+                    />
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setShowConfirmPassword(!showConfirmPassword)
+                      }
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
+                    >
+                      {showConfirmPassword ? (
+                        <EyeOff className="h-5 w-5" />
+                      ) : (
+                        <Eye className="h-5 w-5" />
+                      )}
+                    </button>
+                  </div>
+                  {errors.confirmPassword && (
+                    <p className="text-red-500 text-xs mt-1">
+                      {errors.confirmPassword.message}
+                    </p>
+                  )}
                 </div>
               </div>
-
-              {/* Confirm Password */}
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Confirm Password *
-                </label>
-                <div className="relative">
-                  <input
-                    type={showConfirmPassword ? "text" : "password"}
-                    className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white placeholder-gray-400 focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors duration-300 pr-12"
-                    placeholder="Confirm password"
-                    required
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors duration-300"
-                  >
-                    {showConfirmPassword ? (
-                      <EyeOff className="h-5 w-5" />
-                    ) : (
-                      <Eye className="h-5 w-5" />
-                    )}
-                  </button>
-                </div>
-              </div>
-
-              {/* Referral Code */}
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
                   Referral Code (Optional)
                 </label>
                 <input
                   type="text"
-                  className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white placeholder-gray-400 focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors duration-300"
+                  {...register("referralCode")}
+                  className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white placeholder-gray-400"
                   placeholder="Enter referral code"
                 />
               </div>
-
-              {/* Terms & Conditions */}
               <div className="space-y-4">
                 <label className="flex items-start space-x-3">
                   <input
                     type="checkbox"
-                    className="w-4 h-4 text-primary-500 bg-dark-700 border-dark-600 rounded focus:ring-primary-500 focus:ring-2 mt-1"
-                    required
+                    {...register("terms", { required: true })}
+                    className="w-4 h-4 text-primary-500 bg-dark-700 border-dark-600 rounded mt-1 cursor-pointer"
                   />
                   <span className="text-sm text-gray-300">
                     I agree to the{" "}
                     <Link
                       to="/terms"
-                      className="text-primary-400 hover:text-primary-300 transition-colors duration-300"
+                      className="text-primary-400 hover:text-primary-300"
                     >
                       Terms & Conditions
                     </Link>{" "}
                     and{" "}
                     <Link
                       to="/privacy"
-                      className="text-primary-400 hover:text-primary-300 transition-colors duration-300"
+                      className="text-primary-400 hover:text-primary-300"
                     >
                       Privacy Policy
                     </Link>
                   </span>
                 </label>
-
+                {errors.terms && (
+                  <p className="text-red-500 text-xs">Required</p>
+                )}
                 <label className="flex items-start space-x-3">
                   <input
                     type="checkbox"
-                    className="w-4 h-4 text-primary-500 bg-dark-700 border-dark-600 rounded focus:ring-primary-500 focus:ring-2 mt-1"
-                    required
+                    {...register("age", { required: true })}
+                    className="w-4 h-4 text-primary-500 bg-dark-700 border-dark-600 rounded mt-1 cursor-pointer"
                   />
                   <span className="text-sm text-gray-300">
                     I confirm that I am 18 years or older and understand the{" "}
                     <Link
                       to="/responsible-gaming"
-                      className="text-primary-400 hover:text-primary-300 transition-colors duration-300"
+                      className="text-primary-400 hover:text-primary-300"
                     >
                       Responsible Gaming
                     </Link>{" "}
                     guidelines
                   </span>
                 </label>
+                {errors.age && <p className="text-red-500 text-xs">Required</p>}
               </div>
-
-              {/* Register Button */}
               <button
                 type="submit"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setStep(2);
-                }}
-                className="w-full btn-primary flex items-center justify-center space-x-2 bg-[#ff1028] flex-1 py-2 px-4 rounded-md font-medium transition-all duration-300 text-sm sm:text-base hover:outline-1 outline-gray-200 hover:text-gray-200 tracking-wider"
+                disabled={loading}
+                className="w-full btn-primary flex items-center justify-center space-x-2 bg-[#ff1028] flex-1 py-2 px-4 rounded-md font-medium transition-all duration-300 text-sm sm:text-base hover:outline-1 outline-gray-200 hover:text-gray-200 tracking-wider cursor-pointer"
               >
-                <UserPlus className="h-5 w-5" />
-                <span>Create Account</span>
+                {loading ? (
+                  <span className="loader w-5 h-5 border-2 border-t-white border-b-white border-l-transparent border-r-transparent rounded-full animate-spin"></span>
+                ) : (
+                  <>
+                    <UserPlus className="h-5 w-5" />
+                    <span>Create Account</span>
+                  </>
+                )}
               </button>
             </form>
-
-            {/* Login Link */}
             <div className="mt-6 text-center">
               <p className="text-gray-400">
                 Already have an account?{" "}
                 <Link
                   to="/login"
-                  className="text-primary-400 hover:text-primary-300 font-semibold transition-colors duration-300"
+                  className="text-primary-400 hover:text-primary-300 font-semibold cursor-pointer"
                 >
                   Login here
                 </Link>
@@ -232,7 +408,6 @@ const RegisterPage = () => {
             </div>
           </div>
         ) : (
-          /* OTP Verification */
           <div className="card-gaming p-8">
             <div className="text-center mb-6">
               <div className="bg-gradient-to-r from-neon-500 to-neon-600 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
@@ -244,96 +419,59 @@ const RegisterPage = () => {
               <p className="text-gray-400">
                 We've sent a 6-digit OTP to your mobile number
               </p>
-              <p className="text-primary-400 font-semibold">+91 98765-43210</p>
+              <p className="text-primary-400 font-semibold">+91 ******</p>
             </div>
-
-            <form className="space-y-6">
-              {/* OTP Input */}
+            <form className="space-y-6" onSubmit={handleOtpSubmit(onVerifyOtp)}>
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2 text-center">
                   Enter 6-Digit OTP
                 </label>
-                <div className="flex justify-center space-x-2">
-                  {[1, 2, 3, 4, 5, 6].map((digit) => (
-                    <input
-                      key={digit}
-                      type="text"
-                      maxLength={1}
-                      className="w-12 h-12 text-center bg-dark-700 border border-dark-600 rounded-lg text-white text-xl font-bold focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors duration-300"
-                    />
-                  ))}
-                </div>
+                <input
+                  type="text"
+                  maxLength={6}
+                  {...registerOTP("otp", {
+                    required: "OTP is required",
+                    pattern: {
+                      value: /^\d{6}$/,
+                      message: "Enter valid 6-digit OTP",
+                    },
+                  })}
+                  onKeyUp={() => triggerOtp("otp")}
+                  className="w-full text-center text-xl font-bold bg-dark-700 border border-dark-600 rounded-lg text-white px-4 py-2"
+                  placeholder="Enter OTP"
+                />
+                {otpErrors.otp && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {otpErrors.otp.message}
+                  </p>
+                )}
               </div>
-
-              {/* Resend OTP */}
-              <div className="text-center">
-                <p className="text-gray-400 text-sm mb-2">
-                  Didn't receive the code?
-                </p>
-                <button
-                  type="button"
-                  className="text-primary-400 hover:text-primary-300 font-semibold transition-colors duration-300"
-                >
-                  Resend OTP
-                </button>
-              </div>
-
-              {/* Verify Button */}
               <button
                 type="submit"
-                className="w-full btn-primary flex items-center justify-center space-x-2"
+                disabled={loading}
+                className="w-full btn-primary flex items-center justify-center space-x-2 bg-[#ff1028] flex-1 py-2 px-4 rounded-md font-medium text-white cursor-pointer"
               >
-                <Check className="h-5 w-5" />
-                <span>Verify & Complete Registration</span>
+                {loading ? (
+                  <span className="loader w-5 h-5 border-2 border-t-white border-b-white border-l-transparent border-r-transparent rounded-full animate-spin"></span>
+                ) : (
+                  <>
+                    <Check className="h-5 w-5" />
+                    <span>Verify OTP</span>
+                  </>
+                )}
               </button>
+              <div className="mt-4 text-center">
+                <button
+                  type="button"
+                  onClick={() => setStep(1)}
+                  className="text-sm text-gray-400 hover:text-white cursor-pointer"
+                >
+                  ← Back to Registration
+                </button>
+              </div>
             </form>
-
-            {/* Back Button */}
-            <div className="mt-6 text-center">
-              <button
-                onClick={() => setStep(1)}
-                className="text-gray-400 hover:text-white transition-colors duration-300"
-              >
-                ← Back to registration
-              </button>
-            </div>
           </div>
         )}
-
-        {/* Security Notice */}
-        <div className="mt-8 card-gaming p-6 outline-1  outline-blue-300 rounded-md"
-        >
-          <div className="flex items-start space-x-3">
-            <Shield className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-            <div>
-              <h4 className="text-sm font-semibold text-white">
-                Secure Registration
-              </h4>
-              <p className="text-xs text-gray-400 mt-1">
-                Your personal information is protected with bank-level security
-                and will never be shared with third parties.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Quick Links */}
-        {/* <div className="mt-6 text-center space-y-2">
-          <div className="flex justify-center space-x-6 text-sm">
-            <Link
-              to="/contact"
-              className="text-gray-400 hover:text-primary-400 transition-colors duration-300"
-            >
-              Need Help?
-            </Link>
-            <Link
-              to="/faq"
-              className="text-gray-400 hover:text-primary-400 transition-colors duration-300"
-            >
-              FAQ
-            </Link>
-          </div>
-        </div> */}
       </div>
     </div>
   );

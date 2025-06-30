@@ -45,9 +45,7 @@ const DealRummyRulesSection = () => {
                       Card Distribution
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                      Each player is dealt 13 cards. The remaining cards form
-                      the closed deck, with one card placed face-up to start the
-                      open deck. The dealer is chosen randomly at the beginning.
+                     Each player is dealt 13 cards from a standard deck. One card is placed face-up to start the discard pile (open deck), and the rest form the closed deck. The number of deals is fixed beforehand, and players begin with equal chips.
                     </p>
                   </div>
                 </div>
@@ -63,12 +61,12 @@ const DealRummyRulesSection = () => {
                       <span className="text-[#5e0d0d] group-hover:text-[#ff6b6b] transition-colors">
                         Step 2.
                       </span>
-                      Objective of the Game
+                      Game Objective
+
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                      Arrange all 13 cards in valid sequences and/or sets. A
-                      valid declaration must include at least two sequences, one
-                      of which must be a pure sequence (without a joker).
+                    The goal is to arrange all 13 cards into valid combinations — sequences and/or sets. Each player must create at least two sequences, with one being a pure sequence (no joker involved), to make a valid declaration.
+
                     </p>
                   </div>
                 </div>
@@ -84,13 +82,12 @@ const DealRummyRulesSection = () => {
                       <span className="text-[#5e0d0d] group-hover:text-[#ff6b6b] transition-colors">
                         Step 3.
                       </span>
-                      Gameplay Rules
+                      Gameplay Mechanics
+
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                      On your turn, draw a card from either deck and discard one
-                      to the open pile. Form valid sequences/sets with your
-                      cards. Jokers can substitute any card. You can use
-                      opponents' discards if needed.
+                    Players take turns drawing and discarding cards. Jokers can be used to complete sets and impure sequences. The objective during each deal is to finish before your opponents while minimizing points in your hand.
+
                     </p>
                   </div>
                 </div>
@@ -106,14 +103,12 @@ const DealRummyRulesSection = () => {
                       <span className="text-[#5e0d0d] group-hover:text-[#ff6b6b] transition-colors">
                         Step 4.
                       </span>
-                      Winning the Game
+                     Declaring and Scoring
+
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                      Declare your hand by placing all cards in valid
-                      sequences/sets with one discard. First valid declaration
-                      wins. Points are calculated based on opponents' ungrouped
-                      cards. The game continues until a player reaches the
-                      target score.
+                    Once a player arranges their hand into valid sequences and sets, they discard one card and declare. Points are then calculated based on ungrouped cards of the losing players. After all deals are played, the player with the most chips wins the game.
+
                     </p>
                   </div>
                 </div>

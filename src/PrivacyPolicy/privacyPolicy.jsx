@@ -34,7 +34,7 @@ const PrivacyPolicy = () => {
                   Privacy Policy
                 </h1>
                 <p className="mt-1 text-[#ffb4b4]">
-                  Last updated: {new Date().toLocaleDateString()}
+                  Last updated: January 15, 2024
                 </p>
               </div>
               <div className="hidden sm:block bg-[#ffffff10] p-2 rounded-lg">
@@ -44,261 +44,116 @@ const PrivacyPolicy = () => {
           </div>
 
           {/* Content */}
-          <div className="p-6 sm:p-8 bg-[#141414]">
+          <div className="p-6 sm:p-8 bg-[#141414] text-gray-300">
             <div className="prose max-w-none">
-              <section className="mb-10 group">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="bg-[#5e0d0d] p-2 rounded-lg group-hover:bg-[#7e0d0d] transition-colors">
-                    <FiInfo className="text-white text-xl" />
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-white">
-                    1. Introduction
-                  </h2>
-                </div>
-                <div className="ml-14">
-                  <p className="text-gray-300 mb-4">
-                    Welcome to Rummy Pool Games. We are committed to protecting your
-                    personal information and your right to privacy. If you have
-                    any questions about how we handle your data in our gaming platform,
-                    please contact us.
-                  </p>
-                  <p className="text-gray-300">
-                    This privacy notice explains how we collect, use, and protect
-                    your information when you play our rummy games, make transactions,
-                    or interact with our platform.
-                  </p>
-                </div>
-              </section>
+              <h2 className="text-xl font-bold text-white mb-2">Privacy at a Glance</h2>
+              <ul className="list-disc pl-5 mb-6 marker:text-[#5e0d0d]">
+                <li>Secure Encryption: 256-bit SSL protection</li>
+                <li>No Data Selling: We never sell your data</li>
+                <li>Your Control: Manage your privacy</li>
+              </ul>
 
-              <section className="mb-10 group">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="bg-[#5e0d0d] p-2 rounded-lg group-hover:bg-[#7e0d0d] transition-colors">
-                    <FiDatabase className="text-white text-xl" />
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-white">
-                    2. Information We Collect
-                  </h2>
-                </div>
-                <div className="ml-14">
-                  <p className="text-gray-300 mb-4">
-                    To provide you with the best gaming experience and ensure fair play,
-                    we collect certain information when you use our platform:
-                  </p>
-                  <ul className="list-disc pl-6 text-gray-300 space-y-2 marker:text-[#5e0d0d]">
-                    <li>
-                      <span className="font-medium">Account Information:</span> Username, email, phone number, profile picture
-                    </li>
-                    <li>
-                      <span className="font-medium">Payment Details:</span> Transaction history, withdrawal information
-                    </li>
-                    <li>
-                      <span className="font-medium">Game Data:</span> Game history, winnings, player statistics
-                    </li>
-                    <li>
-                      <span className="font-medium">Device Information:</span> IP address, device ID, browser type
-                    </li>
-                    <li>
-                      <span className="font-medium">Verification Data:</span> KYC documents for account verification
-                    </li>
-                  </ul>
-                </div>
-              </section>
+              <h2 className="text-xl font-bold text-white mb-2">1. Information We Collect</h2>
+              <h3 className="font-semibold text-white">Personal Information</h3>
+              <ul className="list-disc pl-5 mb-4 marker:text-[#5e0d0d]">
+                <li>Name, email address, and mobile number</li>
+                <li>Date of birth and government-issued ID for age verification</li>
+                <li>Bank account details and payment information</li>
+                <li>Address and location data for compliance purposes</li>
+                <li>Profile photos and other optional information</li>
+              </ul>
+              <h3 className="font-semibold text-white">Automatically Collected Information</h3>
+              <ul className="list-disc pl-5 mb-6 marker:text-[#5e0d0d]">
+                <li>Device information (model, operating system, unique identifiers)</li>
+                <li>IP address and location data</li>
+                <li>Game play data and statistics</li>
+                <li>App usage patterns and preferences</li>
+                <li>Technical logs and error reports</li>
+              </ul>
 
-              <section className="mb-10 group">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="bg-[#5e0d0d] p-2 rounded-lg group-hover:bg-[#7e0d0d] transition-colors">
-                    <FiKey className="text-white text-xl" />
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-white">
-                    3. How We Use Your Information
-                  </h2>
-                </div>
-                <div className="ml-14">
-                  <p className="text-gray-300 mb-4">
-                    Your information helps us provide and improve our gaming services:
-                  </p>
-                  <ul className="list-disc pl-6 text-gray-300 space-y-2 marker:text-[#5e0d0d]">
-                    <li>To create and manage your gaming account</li>
-                    <li>To process deposits, withdrawals, and rewards</li>
-                    <li>To detect and prevent fraud or cheating</li>
-                    <li>To provide customer support and resolve disputes</li>
-                    <li>To personalize your gaming experience</li>
-                    <li>To ensure compliance with gaming regulations</li>
-                    <li>To send important notifications about your account</li>
-                  </ul>
-                </div>
-              </section>
+              <h2 className="text-xl font-bold text-white mb-2">2. How We Use Your Information</h2>
+              <ul className="list-disc pl-5 mb-4 marker:text-[#5e0d0d]">
+                <li>Provide and maintain our gaming services</li>
+                <li>Process payments and withdrawals securely</li>
+                <li>Verify your identity and prevent fraud</li>
+                <li>Comply with legal and regulatory requirements</li>
+                <li>Improve our games and user experience</li>
+                <li>Send important updates and promotional offers</li>
+                <li>Provide customer support and resolve issues</li>
+                <li>Analyze usage patterns to enhance our platform</li>
+              </ul>
+              <p className="mb-6">We process your data based on legitimate business interests, legal compliance, and your consent where required.</p>
 
-              <section className="mb-10 group">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="bg-[#5e0d0d] p-2 rounded-lg group-hover:bg-[#7e0d0d] transition-colors">
-                    <FaCookie className="text-white text-xl" />
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-white">
-                    4. Cookies and Game Tracking
-                  </h2>
-                </div>
-                <div className="ml-14">
-                  <p className="text-gray-300 mb-4">
-                    We use cookies and similar technologies to enhance your gaming experience:
-                  </p>
-                  <ul className="list-disc pl-6 text-gray-300 space-y-2 marker:text-[#5e0d0d]">
-                    <li>Session cookies to keep you logged in during gameplay</li>
-                    <li>Analytics cookies to improve game performance</li>
-                    <li>Security cookies to detect suspicious activity</li>
-                    <li>Preference cookies to remember your game settings</li>
-                  </ul>
-                  <p className="text-gray-300 mt-4">
-                    You can manage cookies through your browser settings, but this may affect
-                    certain game features.
-                  </p>
-                </div>
-              </section>
+              <h2 className="text-xl font-bold text-white mb-2">3. Data Security & Protection</h2>
+              <h3 className="font-semibold text-white">Security Measures</h3>
+              <ul className="list-disc pl-5 mb-4 marker:text-[#5e0d0d]">
+                <li>256-bit SSL encryption for all data transmission</li>
+                <li>Secure servers with regular security audits</li>
+                <li>Multi-factor authentication for account access</li>
+                <li>Regular security updates and patches</li>
+                <li>Restricted access to personal data on a need-to-know basis</li>
+                <li>Secure payment processing through certified gateways</li>
+              </ul>
+              <h3 className="font-semibold text-white">Data Storage</h3>
+              <ul className="list-disc pl-5 mb-6 marker:text-[#5e0d0d]">
+                <li>Data stored on secure servers in India</li>
+                <li>Regular backups with encryption</li>
+                <li>Compliance with Indian data protection laws</li>
+                <li>Automatic data purging for inactive accounts</li>
+              </ul>
 
-              <section className="mb-10 group">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="bg-[#5e0d0d] p-2 rounded-lg group-hover:bg-[#7e0d0d] transition-colors">
-                    <FiShield className="text-white text-xl" />
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-white">
-                    5. Security Measures
-                  </h2>
-                </div>
-                <div className="ml-14">
-                  <p className="text-gray-300 mb-4">
-                    We implement robust security measures to protect your gaming account:
-                  </p>
-                  <ul className="list-disc pl-6 text-gray-300 space-y-2 marker:text-[#5e0d0d]">
-                    <li>End-to-end encryption for all transactions</li>
-                    <li>Regular security audits and penetration testing</li>
-                    <li>Two-factor authentication options</li>
-                    <li>Secure server infrastructure with firewalls</li>
-                    <li>Regular staff training on data protection</li>
-                  </ul>
-                  <p className="text-gray-300 mt-4">
-                    While we take all reasonable precautions, no online platform can be 100% secure.
-                    We recommend using strong passwords and keeping your login details private.
-                  </p>
-                </div>
-              </section>
+              <h2 className="text-xl font-bold text-white mb-2">4. Information Sharing</h2>
+              <p className="mb-2">We may share your information with:</p>
+              <ul className="list-disc pl-5 mb-4 marker:text-[#5e0d0d]">
+                <li>Payment processors</li>
+                <li>KYC verification services</li>
+                <li>Cloud storage providers</li>
+                <li>Analytics services</li>
+              </ul>
+              <p className="mb-4">We also may share data with legal authorities where required by law.</p>
+              <p className="mb-6 font-semibold text-white">We Never Sell Your Data</p>
 
-              <section className="mb-10 group">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="bg-[#5e0d0d] p-2 rounded-lg group-hover:bg-[#7e0d0d] transition-colors">
-                    <FiUserCheck className="text-white text-xl" />
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-white">
-                    6. Your Rights
-                  </h2>
-                </div>
-                <div className="ml-14">
-                  <p className="text-gray-300 mb-4">
-                    As a player on our platform, you have certain rights regarding your data:
-                  </p>
-                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <li className="flex items-start gap-2">
-                      <span className="bg-[#5e0d0d] text-white p-1 rounded-md mt-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                      </span>
-                      <span className="text-gray-300">Request a copy of your data</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="bg-[#5e0d0d] text-white p-1 rounded-md mt-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                      </span>
-                      <span className="text-gray-300">Update incorrect information</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="bg-[#5e0d0d] text-white p-1 rounded-md mt-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                      </span>
-                      <span className="text-gray-300">Request account deletion</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="bg-[#5e0d0d] text-white p-1 rounded-md mt-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                      </span>
-                      <span className="text-gray-300">Opt-out of marketing</span>
-                    </li>
-                  </ul>
-                  <p className="text-gray-300 mt-4">
-                    To exercise any of these rights, please contact our support team.
-                    Some requests may require identity verification for security.
-                  </p>
-                </div>
-              </section>
+              <h2 className="text-xl font-bold text-white mb-2">5. Your Privacy Rights</h2>
+              <ul className="list-disc pl-5 mb-4 marker:text-[#5e0d0d]">
+                <li>Access your data</li>
+                <li>Correct inaccurate data</li>
+                <li>Delete your personal information</li>
+                <li>Request data portability</li>
+                <li>Restrict processing</li>
+                <li>Object to certain uses</li>
+                <li>Withdraw consent</li>
+              </ul>
+              <p className="mb-6">Contact our privacy team at 123@unique.in. We respond within 30 days.</p>
 
-              <section className="mb-10 group">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="bg-[#5e0d0d] p-2 rounded-lg group-hover:bg-[#7e0d0d] transition-colors">
-                    <FiRefreshCw className="text-white text-xl" />
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-white">
-                    7. Policy Updates
-                  </h2>
-                </div>
-                <div className="ml-14">
-                  <p className="text-gray-300">
-                    We may update this policy as our games evolve or regulations change.
-                    Significant changes will be notified through our platform or via email.
-                    Your continued use of our services constitutes acceptance of the updated policy.
-                  </p>
-                </div>
-              </section>
+              <h2 className="text-xl font-bold text-white mb-2">6. Cookies & Tracking</h2>
+              <ul className="list-disc pl-5 mb-4 marker:text-[#5e0d0d]">
+                <li>Essential Cookies</li>
+                <li>Performance Cookies</li>
+                <li>Functional Cookies</li>
+                <li>Analytics Cookies</li>
+              </ul>
+              <p className="mb-6">You can manage cookies in your browser settings.</p>
 
-              <section className="group">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="bg-[#5e0d0d] p-2 rounded-lg group-hover:bg-[#7e0d0d] transition-colors">
-                    <FiMail className="text-white text-xl" />
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-white">
-                    8. Contact Us
-                  </h2>
-                </div>
-                <div className="ml-14">
-                  <p className="text-gray-300 mb-4">
-                    For privacy-related inquiries or to exercise your rights:
-                  </p>
-                  <div className="bg-[#1e1e1e] border border-[#5e0d0d]/30 rounded-lg p-4">
-                    <div className="flex items-start gap-4 mb-3">
-                      <div className="bg-[#5e0d0d] p-2 rounded-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
-                          <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                          <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 className="font-medium text-white">Email</h3>
-                        <p className="text-[#5e0d0d]">privacy@rummypool.com</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <div className="bg-[#5e0d0d] p-2 rounded-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 className="font-medium text-white">Registered Office</h3>
-                        <address className="text-gray-300 not-italic">
-                          Rummy Pool Games Inc.<br />
-                          123 Game Street<br />
-                          Gaming City, GC 12345<br />
-                          India
-                        </address>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
+              <h2 className="text-xl font-bold text-white mb-2">7. Data Retention</h2>
+              <p className="mb-2">We keep your data for the time needed to:</p>
+              <ul className="list-disc pl-5 mb-6 marker:text-[#5e0d0d]">
+                <li>Provide services</li>
+                <li>Meet legal requirements</li>
+                <li>Resolve disputes</li>
+                <li>Prevent fraud</li>
+              </ul>
+              <p className="mb-6">Account Data: 7 years, Transaction Data: 10 years, Marketing Data: deleted upon request</p>
+
+              <h2 className="text-xl font-bold text-white mb-2">8. Children's Privacy</h2>
+              <p className="mb-6">Our services are not for users under 18. We delete such data immediately if collected inadvertently.</p>
+
+              <h2 className="text-xl font-bold text-white mb-2">9. Contact Our Privacy Team</h2>
+              <p className="mb-1">Phone: [Add Number]</p>
+              <p className="mb-1">Email: 123@unique.in</p>
+              <p className="mb-6">Address: Plot No 97, Dakshinpuri - I, Shri Kishanpura, Sanganer, Rajasthan, India – 302017</p>
+
+              <h2 className="text-xl font-bold text-white mb-2">10. Policy Updates</h2>
+              <p>We will notify you about major updates via email or platform messages. Continued use means acceptance.</p>
             </div>
           </div>
 

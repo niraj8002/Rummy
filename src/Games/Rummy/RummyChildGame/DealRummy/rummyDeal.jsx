@@ -21,14 +21,8 @@ export const RummyDealGame = () => {
             Introduction
           </h2>
           <p className="text-gray-300 leading-relaxed">
-            Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
-            quae ab illo inventore veritatis et quasi architecto beatae vitae
-            dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas
-            sit, aspernatur aut odit aut fugit, sed quia consequuntur magni
-            dolores eos, qui ratione voluptatem sequi nesciunt, neque porro
-            quisquam est, qui dolorem ipsum, quia dolor sit amet consectetur
-            adipisci[ng] velit...
+           Deal Rummy is a thrilling variation of the classic Rummy game, where a fixed number of deals are played, and each player is given a pre-decided number of chips at the beginning. At the end of all the deals, the player with the highest number of chips wins. It’s a fast-paced, chip-based version that adds a competitive edge to the traditional gameplay.
+
           </p>
         </div>
 
@@ -39,11 +33,8 @@ export const RummyDealGame = () => {
               The History and Evolution of Rummy
             </h3>
             <p className="text-gray-400 text-sm">
-              Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
-              quae ab illo inventore veritatis et quasi architecto beatae vitae
-              dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas
-              sit...
+             Rummy is a game rooted in history, originating from traditional matching games played across continents. With time, Rummy has evolved into multiple formats — from casual play to competitive formats like Deal Rummy. Its consistent popularity is a testament to its engaging mix of skill and strategy.
+
             </p>
           </div>
           <div className="border border-gray-700 bg-[#151015] p-6 rounded-lg shadow">
@@ -51,10 +42,8 @@ export const RummyDealGame = () => {
               Why Rummy is a Game of Skill?
             </h3>
             <p className="text-gray-400 text-sm">
-              Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
-              quae ab illo inventore veritatis et quasi architecto beatae vitae
-              dicta sunt, explicabo. Nemo enim ipsam voluptatem...
+            Deal Rummy, like all Rummy variants, requires players to use logical thinking, memory, and strategy. Each move can impact the outcome of the game. Choosing when to pick, drop, declare, or even bluff plays a crucial role. It’s not about luck — it’s about making the smartest choices.
+
             </p>
           </div>
         </div>

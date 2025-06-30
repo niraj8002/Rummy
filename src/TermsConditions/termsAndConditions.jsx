@@ -3,21 +3,19 @@ import Banner from "../Reuseable Com/Banner";
 import img from "../assets/privacy,terms,refund-banner/prc-01.png";
 import {
   FiInfo,
-  FiDatabase,
+  FiUserCheck,
   FiKey,
   FiShield,
-  FiUserCheck,
   FiRefreshCw,
   FiMail,
 } from "react-icons/fi";
-import { FaCookie, FaDice, FaCoins } from "react-icons/fa";
+import { FaDice, FaCoins } from "react-icons/fa";
 
 const TermsAndConditions = () => {
   return (
     <>
       <Banner img={img} heading="Terms & Conditions" />
       <div className="min-h-screen bg-gradient-to-b from-[#0B050C] to-[#1a0a1a] py-8 px-4 sm:px-6 lg:px-8">
-        {/* Decorative elements */}
         <div className="absolute top-20 left-10 opacity-20">
           <FaDice className="text-[#5e0d0d] text-4xl rotate-12" />
         </div>
@@ -26,12 +24,11 @@ const TermsAndConditions = () => {
         </div>
 
         <div className="max-w-4xl mx-auto bg-[#1e1e1e] rounded-xl shadow-lg overflow-hidden border border-[#5e0d0d]/30 relative z-10">
-          {/* Header with gradient */}
           <div className="bg-gradient-to-r from-[#5e0d0d] to-[#3a0a3a] px-6 py-5">
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-2xl sm:text-3xl font-bold text-white">
-                  Terms & Conditions
+                  Read carefully Terms & Conditions
                 </h1>
                 <p className="mt-1 text-[#ffb4b4]">
                   Last updated: {new Date().toLocaleDateString()}
@@ -43,349 +40,158 @@ const TermsAndConditions = () => {
             </div>
           </div>
 
-          {/* Content */}
           <div className="p-6 sm:p-8 bg-[#141414]">
-            <div className="prose max-w-none">
-              <section className="mb-10 group">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="bg-[#5e0d0d] p-2 rounded-lg group-hover:bg-[#7e0d0d] transition-colors">
-                    <FiInfo className="text-white text-xl" />
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-white">
-                    1. Introduction
-                  </h2>
-                </div>
-                <div className="ml-14">
-                  <p className="text-gray-300 mb-4">
-                    Welcome to Rummy Pool Games. We are committed to protecting
-                    your personal information and your right to privacy. If you
-                    have any questions about how we handle your data in our
-                    gaming platform, please contact us.
-                  </p>
-                  <p className="text-gray-300">
-                    This privacy notice explains how we collect, use, and
-                    protect your information when you play our rummy games, make
-                    transactions, or interact with our platform.
-                  </p>
-                </div>
+            <div className="prose max-w-none text-gray-300 space-y-10">
+              <section>
+                <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 flex items-center gap-3">
+                  <FiInfo className="text-white text-xl" /> 1. Acceptance of Terms
+                </h2>
+                <p>By accessing and using Finunique Small Private Limited's platform, mobile application, and services, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions ("Terms").</p>
+                <p>These Terms constitute a legally binding agreement between you ("User," "Player," or "You") and Finunique Small Private Limited ("Company," "We," "Us," or "Our"). If you do not agree to these Terms, you must not use our services.</p>
+                <p>We reserve the right to modify these Terms at any time. Changes will be effective immediately upon posting on our platform. Your continued use of our services after such changes constitutes acceptance of the new Terms.</p>
               </section>
 
-              <section className="mb-10 group">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="bg-[#5e0d0d] p-2 rounded-lg group-hover:bg-[#7e0d0d] transition-colors">
-                    <FiDatabase className="text-white text-xl" />
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-white">
-                    2. Information We Collect
-                  </h2>
-                </div>
-                <div className="ml-14">
-                  <p className="text-gray-300 mb-4">
-                    To provide you with the best gaming experience and ensure
-                    fair play, we collect certain information when you use our
-                    platform:
-                  </p>
-                  <ul className="list-disc pl-6 text-gray-300 space-y-2 marker:text-[#5e0d0d]">
-                    <li>
-                      <span className="font-medium">Account Information:</span>{" "}
-                      Username, email, phone number, profile picture
-                    </li>
-                    <li>
-                      <span className="font-medium">Payment Details:</span>{" "}
-                      Transaction history, withdrawal information
-                    </li>
-                    <li>
-                      <span className="font-medium">Game Data:</span> Game
-                      history, winnings, player statistics
-                    </li>
-                    <li>
-                      <span className="font-medium">Device Information:</span>{" "}
-                      IP address, device ID, browser type
-                    </li>
-                    <li>
-                      <span className="font-medium">Verification Data:</span>{" "}
-                      KYC documents for account verification
-                    </li>
-                  </ul>
-                </div>
+              <section>
+                <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 flex items-center gap-3">
+                  <FiUserCheck className="text-white text-xl" /> 2. Eligibility Requirements
+                </h2>
+                <ul className="list-disc pl-5">
+                  <li>Be at least 18 years of age</li>
+                  <li>Be a legal resident of India</li>
+                  <li>Reside in a state where skill-based gaming is legal</li>
+                  <li>Have the legal capacity to enter into binding agreements</li>
+                  <li>Provide accurate and complete registration information</li>
+                  <li>Complete KYC (Know Your Customer) verification when required</li>
+                </ul>
+                <p className="mt-2 font-semibold">Important Notice:</p>
+                <p>Our services are not available in states where real-money gaming is prohibited by law. It is your responsibility to ensure compliance with local laws.</p>
               </section>
 
-              <section className="mb-10 group">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="bg-[#5e0d0d] p-2 rounded-lg group-hover:bg-[#7e0d0d] transition-colors">
-                    <FiKey className="text-white text-xl" />
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-white">
-                    3. How We Use Your Information
-                  </h2>
-                </div>
-                <div className="ml-14">
-                  <p className="text-gray-300 mb-4">
-                    Your information helps us provide and improve our gaming
-                    services:
-                  </p>
-                  <ul className="list-disc pl-6 text-gray-300 space-y-2 marker:text-[#5e0d0d]">
-                    <li>To create and manage your gaming account</li>
-                    <li>To process deposits, withdrawals, and rewards</li>
-                    <li>To detect and prevent fraud or cheating</li>
-                    <li>To provide customer support and resolve disputes</li>
-                    <li>To personalize your gaming experience</li>
-                    <li>To ensure compliance with gaming regulations</li>
-                    <li>To send important notifications about your account</li>
-                  </ul>
-                </div>
+              <section>
+                <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 flex items-center gap-3">
+                  <FiKey className="text-white text-xl" /> 3. Account Registration & Security
+                </h2>
+                <p className="font-semibold">Account Creation</p>
+                <ul className="list-disc pl-5">
+                  <li>You may create only one account per person</li>
+                  <li>All information provided must be accurate and current</li>
+                  <li>You must verify your mobile number and email address</li>
+                  <li>KYC verification is mandatory for withdrawals</li>
+                </ul>
+                <p className="font-semibold mt-4">Account Security</p>
+                <ul className="list-disc pl-5">
+                  <li>You are responsible for maintaining account confidentiality</li>
+                  <li>Notify us immediately of any unauthorized access</li>
+                  <li>Use strong passwords and enable two-factor authentication</li>
+                  <li>Do not share your account credentials with others</li>
+                </ul>
               </section>
 
-              <section className="mb-10 group">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="bg-[#5e0d0d] p-2 rounded-lg group-hover:bg-[#7e0d0d] transition-colors">
-                    <FaCookie className="text-white text-xl" />
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-white">
-                    4. Cookies and Game Tracking
-                  </h2>
-                </div>
-                <div className="ml-14">
-                  <p className="text-gray-300 mb-4">
-                    We use cookies and similar technologies to enhance your
-                    gaming experience:
-                  </p>
-                  <ul className="list-disc pl-6 text-gray-300 space-y-2 marker:text-[#5e0d0d]">
-                    <li>
-                      Session cookies to keep you logged in during gameplay
-                    </li>
-                    <li>Analytics cookies to improve game performance</li>
-                    <li>Security cookies to detect suspicious activity</li>
-                    <li>Preference cookies to remember your game settings</li>
-                  </ul>
-                  <p className="text-gray-300 mt-4">
-                    You can manage cookies through your browser settings, but
-                    this may affect certain game features.
-                  </p>
-                </div>
+              <section>
+                <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 flex items-center gap-3">
+                  <FaDice className="text-white text-xl" /> 4. Gaming Rules & Fair Play
+                </h2>
+                <p className="font-semibold">Game Integrity</p>
+                <ul className="list-disc pl-5">
+                  <li>All games use certified Random Number Generators (RNG)</li>
+                  <li>Game outcomes are determined by skill and chance</li>
+                  <li>We employ anti-fraud measures to ensure fair play</li>
+                  <li>Collusion, cheating, or exploitation is strictly prohibited</li>
+                </ul>
+                <p className="font-semibold mt-4">Player Conduct</p>
+                <ul className="list-disc pl-5">
+                  <li>Play responsibly and within your means</li>
+                  <li>Respect other players and maintain proper conduct</li>
+                  <li>Do not use automated software or bots</li>
+                  <li>Report suspicious activities to our support team</li>
+                </ul>
               </section>
 
-              <section className="mb-10 group">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="bg-[#5e0d0d] p-2 rounded-lg group-hover:bg-[#7e0d0d] transition-colors">
-                    <FiShield className="text-white text-xl" />
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-white">
-                    5. Security Measures
-                  </h2>
-                </div>
-                <div className="ml-14">
-                  <p className="text-gray-300 mb-4">
-                    We implement robust security measures to protect your gaming
-                    account:
-                  </p>
-                  <ul className="list-disc pl-6 text-gray-300 space-y-2 marker:text-[#5e0d0d]">
-                    <li>End-to-end encryption for all transactions</li>
-                    <li>Regular security audits and penetration testing</li>
-                    <li>Two-factor authentication options</li>
-                    <li>Secure server infrastructure with firewalls</li>
-                    <li>Regular staff training on data protection</li>
-                  </ul>
-                  <p className="text-gray-300 mt-4">
-                    While we take all reasonable precautions, no online platform
-                    can be 100% secure. We recommend using strong passwords and
-                    keeping your login details private.
-                  </p>
-                </div>
+              <section>
+                <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 flex items-center gap-3">
+                  <FaCoins className="text-white text-xl" /> 5. Payments & Transactions
+                </h2>
+                <p className="font-semibold">Deposits</p>
+                <ul className="list-disc pl-5">
+                  <li>Minimum deposit amount is ₹10</li>
+                  <li>All deposits are processed through secure payment gateways</li>
+                  <li>Deposits are typically credited instantly</li>
+                  <li>We reserve the right to verify the source of funds</li>
+                </ul>
+                <p className="font-semibold mt-4">Withdrawals</p>
+                <ul className="list-disc pl-5">
+                  <li>Minimum withdrawal amount is ₹100</li>
+                  <li>KYC verification is mandatory for withdrawals</li>
+                  <li>Processing time: Instant to 24 hours</li>
+                  <li>We may request additional verification for large withdrawals</li>
+                </ul>
               </section>
 
-              <section className="mb-10 group">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="bg-[#5e0d0d] p-2 rounded-lg group-hover:bg-[#7e0d0d] transition-colors">
-                    <FiUserCheck className="text-white text-xl" />
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-white">
-                    6. Your Rights
-                  </h2>
-                </div>
-                <div className="ml-14">
-                  <p className="text-gray-300 mb-4">
-                    As a player on our platform, you have certain rights
-                    regarding your data:
-                  </p>
-                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <li className="flex items-start gap-2">
-                      <span className="bg-[#5e0d0d] text-white p-1 rounded-md mt-1">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-4 w-4"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </span>
-                      <span className="text-gray-300">
-                        Request a copy of your data
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="bg-[#5e0d0d] text-white p-1 rounded-md mt-1">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-4 w-4"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </span>
-                      <span className="text-gray-300">
-                        Update incorrect information
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="bg-[#5e0d0d] text-white p-1 rounded-md mt-1">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-4 w-4"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </span>
-                      <span className="text-gray-300">
-                        Request account deletion
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="bg-[#5e0d0d] text-white p-1 rounded-md mt-1">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-4 w-4"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </span>
-                      <span className="text-gray-300">
-                        Opt-out of marketing
-                      </span>
-                    </li>
-                  </ul>
-                  <p className="text-gray-300 mt-4">
-                    To exercise any of these rights, please contact our support
-                    team. Some requests may require identity verification for
-                    security.
-                  </p>
-                </div>
+              <section>
+                <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 flex items-center gap-3">
+                  <FiShield className="text-white text-xl" /> 6. Prohibited Activities
+                </h2>
+                <ul className="list-disc pl-5">
+                  <li>Creating multiple accounts</li>
+                  <li>Using automated software, bots, or scripts</li>
+                  <li>Colluding with other players</li>
+                  <li>Exploiting software bugs or glitches</li>
+                  <li>Money laundering or fraudulent transactions</li>
+                  <li>Sharing account credentials</li>
+                  <li>Underage gambling</li>
+                  <li>Playing from restricted jurisdictions</li>
+                  <li>Abusive or inappropriate behavior</li>
+                  <li>Attempting to manipulate game outcomes</li>
+                </ul>
+                <p className="font-semibold mt-2">Violation Consequences</p>
+                <p>Violation of these terms may result in account suspension, forfeiture of funds, and permanent ban from our platform.</p>
               </section>
 
-              <section className="mb-10 group">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="bg-[#5e0d0d] p-2 rounded-lg group-hover:bg-[#7e0d0d] transition-colors">
-                    <FiRefreshCw className="text-white text-xl" />
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-white">
-                    7. Policy Updates
-                  </h2>
-                </div>
-                <div className="ml-14">
-                  <p className="text-gray-300">
-                    We may update this policy as our games evolve or regulations
-                    change. Significant changes will be notified through our
-                    platform or via email. Your continued use of our services
-                    constitutes acceptance of the updated policy.
-                  </p>
-                </div>
+              <section>
+                <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 flex items-center gap-3">
+                  <FiInfo className="text-white text-xl" /> 7. Limitation of Liability
+                </h2>
+                <p>Finunique Small Private Limited provides its services "as is" and makes no warranties, express or implied, regarding the platform's availability, accuracy, or reliability.</p>
+                <p>We shall not be liable for any direct, indirect, incidental, special, or consequential damages arising from your use of our services, including but not limited to:</p>
+                <ul className="list-disc pl-5">
+                  <li>Loss of funds due to technical issues</li>
+                  <li>Service interruptions or downtime</li>
+                  <li>Third-party payment gateway failures</li>
+                  <li>Internet connectivity issues</li>
+                  <li>Force majeure event</li>
+                </ul>
               </section>
 
-              <section className="group">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="bg-[#5e0d0d] p-2 rounded-lg group-hover:bg-[#7e0d0d] transition-colors">
-                    <FiMail className="text-white text-xl" />
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-white">
-                    8. Contact Us
-                  </h2>
-                </div>
-                <div className="ml-14">
-                  <p className="text-gray-300 mb-4">
-                    For privacy-related inquiries or to exercise your rights:
-                  </p>
-                  <div className="bg-[#1e1e1e] border border-[#5e0d0d]/30 rounded-lg p-4">
-                    <div className="flex items-start gap-4 mb-3">
-                      <div className="bg-[#5e0d0d] p-2 rounded-lg">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-5 w-5 text-white"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                          <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 className="font-medium text-white">Email</h3>
-                        <p className="text-[#5e0d0d]">privacy@rummypool.com</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <div className="bg-[#5e0d0d] p-2 rounded-lg">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-5 w-5 text-white"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 className="font-medium text-white">
-                          Registered Office
-                        </h3>
-                        <address className="text-gray-300 not-italic">
-                          Rummy Pool Games Inc.
-                          <br />
-                          123 Game Street
-                          <br />
-                          Gaming City, GC 12345
-                          <br />
-                          India
-                        </address>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <section>
+                <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 flex items-center gap-3">
+                  <FiRefreshCw className="text-white text-xl" /> 8. Account Termination
+                </h2>
+                <p className="font-semibold">Voluntary Termination</p>
+                <p>You may close your account at any time by contacting our customer support. Upon closure, you may withdraw any remaining balance subject to our verification procedures.</p>
+                <p className="font-semibold mt-4">Involuntary Termination</p>
+                <p>We reserve the right to suspend or terminate your account if:</p>
+                <ul className="list-disc pl-5">
+                  <li>You violate these Terms and Conditions</li>
+                  <li>You engage in fraudulent or illegal activities</li>
+                  <li>You fail to complete required verification procedures</li>
+                  <li>Your account remains inactive for an extended period</li>
+                </ul>
+                <p className="mt-4 font-semibold">Contact Information</p>
+                <p>Email: [Add Email]</p>
+                <p>Phone: [Add Phone]</p>
+                <p>Address: Plot No 97, Dakshinpuri - I, Shri Kishanpura, Sanganer, Rajasthan, India – 302017</p>
+                <p className="mt-4 font-semibold">Agreement Acknowledgment</p>
+                <p>By using Finunique Small Private Limited's services, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions.</p>
+                <p>I Accept – Create Account</p>
+                <p>Have Questions? Contact Us</p>
               </section>
             </div>
           </div>
 
-          {/* Footer */}
           <div className="bg-gradient-to-r from-[#5e0d0d] to-[#3a0a3a] px-6 py-4">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <p className="text-sm text-[#ffb4b4]">
-                &copy; {new Date().getFullYear()} Rummy Pool Games. All rights
-                reserved.
+                &copy; {new Date().getFullYear()} Finunique Small Private Limited. All rights reserved.
               </p>
               <div className="flex gap-4 mt-2 md:mt-0">
                 <FaDice className="text-white" />

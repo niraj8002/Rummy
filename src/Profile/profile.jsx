@@ -1,16 +1,29 @@
-import React, { useState } from 'react';
-import { User, Wallet, Trophy, History, Settings, Gift, TrendingUp, Download, LogOut } from 'lucide-react';
+import React, { useState } from "react";
+import {
+  User,
+  Wallet,
+  Trophy,
+  History,
+  Settings,
+  Gift,
+  TrendingUp,
+  Download,
+  LogOut,
+} from "lucide-react";
 
 const Profilepage = () => {
-  const [activeTab, setActiveTab] = useState('overview');
+  const [activeTab, setActiveTab] = useState("overview");
 
   const tabs = [
-    { id: 'overview', label: 'Overview', icon: User },
-    { id: 'wallet', label: 'Wallet', icon: Wallet },
-    { id: 'games', label: 'My Games', icon: Trophy },
-    { id: 'history', label: 'History', icon: History },
-    { id: 'settings', label: 'Settings', icon: Settings },
+    { id: "overview", label: "Overview", icon: User },
+    { id: "wallet", label: "Wallet", icon: Wallet },
+    { id: "games", label: "My Games", icon: Trophy },
+    { id: "history", label: "History", icon: History },
+    { id: "settings", label: "Settings", icon: Settings },
   ];
+  const logout = () => {
+    window.location.href = "/login";
+  };
 
   return (
     <div className="min-h-screen py-8 bg-[#17040A]">
@@ -20,12 +33,17 @@ const Profilepage = () => {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between">
             <div>
               <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
-                Welcome back, <span className="text-primary-500">Vivek!</span>
+                Welcome back, <span className="text-primary-500">Niraj!</span>
               </h1>
-              <p className="text-gray-400">Ready to continue your winning streak?</p>
+              <p className="text-gray-400">
+                Ready to continue your winning streak?
+              </p>
             </div>
             <div className="mt-4 md:mt-0 flex space-x-4">
-              <button className="border border-gray-600 text-gray-300 hover:text-white hover:border-primary-500 px-4 py-2 rounded-lg font-semibold transition-all duration-300">
+              <button
+                className="border border-gray-600 text-gray-300 hover:text-white hover:border-primary-500 px-4 py-2 rounded-lg font-semibold transition-all duration-300"
+                onClick={logout}
+              >
                 <LogOut className="h-4 w-4 mr-2" />
                 Logout
               </button>
@@ -67,8 +85,8 @@ const Profilepage = () => {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center space-x-2 px-4 py-3 rounded-lg font-medium transition-all duration-300 ${
                   activeTab === tab.id
-                    ? 'bg-primary-500 text-white'
-                    : 'text-gray-400 hover:text-white hover:bg-dark-700'
+                    ? "bg-primary-500 text-white"
+                    : "text-gray-400 hover:text-white hover:bg-dark-700"
                 }`}
               >
                 <Icon className="h-4 w-4" />
@@ -80,25 +98,56 @@ const Profilepage = () => {
 
         {/* Tab Content */}
         <div className="space-y-8">
-          {activeTab === 'overview' && (
+          {activeTab === "overview" && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Recent Activity */}
               <div className="card-gaming p-6">
-                <h3 className="text-xl font-bold text-white mb-4">Recent Activity</h3>
+                <h3 className="text-xl font-bold text-white mb-4">
+                  Recent Activity
+                </h3>
                 <div className="space-y-4">
                   {[
-                    { game: 'Rummy', result: 'Won', amount: '+₹450', time: '2 hours ago', color: 'text-green-500' },
-                    { game: 'Poker', result: 'Lost', amount: '-₹200', time: '5 hours ago', color: 'text-red-500' },
-                    { game: 'Pool', result: 'Won', amount: '+₹320', time: '1 day ago', color: 'text-green-500' },
+                    {
+                      game: "Rummy",
+                      result: "Won",
+                      amount: "+₹450",
+                      time: "2 hours ago",
+                      color: "text-green-500",
+                    },
+                    {
+                      game: "Poker",
+                      result: "Lost",
+                      amount: "-₹200",
+                      time: "5 hours ago",
+                      color: "text-red-500",
+                    },
+                    {
+                      game: "Pool",
+                      result: "Won",
+                      amount: "+₹320",
+                      time: "1 day ago",
+                      color: "text-green-500",
+                    },
                   ].map((activity, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 bg-dark-700 rounded-lg">
+                    <div
+                      key={index}
+                      className="flex items-center justify-between p-3 bg-dark-700 rounded-lg"
+                    >
                       <div>
-                        <div className="text-white font-medium">{activity.game}</div>
-                        <div className="text-gray-400 text-sm">{activity.time}</div>
+                        <div className="text-white font-medium">
+                          {activity.game}
+                        </div>
+                        <div className="text-gray-400 text-sm">
+                          {activity.time}
+                        </div>
                       </div>
                       <div className="text-right">
-                        <div className={`font-bold ${activity.color}`}>{activity.amount}</div>
-                        <div className="text-gray-400 text-sm">{activity.result}</div>
+                        <div className={`font-bold ${activity.color}`}>
+                          {activity.amount}
+                        </div>
+                        <div className="text-gray-400 text-sm">
+                          {activity.result}
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -107,20 +156,52 @@ const Profilepage = () => {
 
               {/* Achievements */}
               <div className="card-gaming p-6">
-                <h3 className="text-xl font-bold text-white mb-4">Achievements</h3>
+                <h3 className="text-xl font-bold text-white mb-4">
+                  Achievements
+                </h3>
                 <div className="space-y-4">
                   {[
-                    { title: 'First Win', description: 'Won your first game', icon: '🏆', completed: true },
-                    { title: 'High Roller', description: 'Win ₹10,000 in total', icon: '💰', completed: true },
-                    { title: 'Streak Master', description: 'Win 5 games in a row', icon: '🔥', completed: false },
+                    {
+                      title: "First Win",
+                      description: "Won your first game",
+                      icon: "🏆",
+                      completed: true,
+                    },
+                    {
+                      title: "High Roller",
+                      description: "Win ₹10,000 in total",
+                      icon: "💰",
+                      completed: true,
+                    },
+                    {
+                      title: "Streak Master",
+                      description: "Win 5 games in a row",
+                      icon: "🔥",
+                      completed: false,
+                    },
                   ].map((achievement, index) => (
-                    <div key={index} className={`flex items-center space-x-3 p-3 rounded-lg ${achievement.completed ? 'bg-[#36121d] border border-gray-500/30' : 'bg-red-500 border border-gray-500/30'}`}>
+                    <div
+                      key={index}
+                      className={`flex items-center space-x-3 p-3 rounded-lg ${
+                        achievement.completed
+                          ? "bg-[#36121d] border border-gray-500/30"
+                          : "bg-red-500 border border-gray-500/30"
+                      }`}
+                    >
                       <div className="text-2xl">{achievement.icon}</div>
                       <div className="flex-1">
-                        <div className={`font-medium ${achievement.completed ? 'text-gray-200' : 'text-white'}`}>
+                        <div
+                          className={`font-medium ${
+                            achievement.completed
+                              ? "text-gray-200"
+                              : "text-white"
+                          }`}
+                        >
                           {achievement.title}
                         </div>
-                        <div className="text-gray-400 text-sm">{achievement.description}</div>
+                        <div className="text-gray-400 text-sm">
+                          {achievement.description}
+                        </div>
                       </div>
                       {achievement.completed && (
                         <div className="text-gold-500">✓</div>
@@ -132,44 +213,76 @@ const Profilepage = () => {
             </div>
           )}
 
-          {activeTab === 'wallet' && (
+          {activeTab === "wallet" && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Wallet Balance */}
               <div className="card-gaming p-6">
-                <h3 className="text-xl font-bold text-white mb-4">Wallet Balance</h3>
+                <h3 className="text-xl font-bold text-white mb-4">
+                  Wallet Balance
+                </h3>
                 <div className="text-center mb-6">
-                  <div className="text-4xl font-bold text-primary-500 mb-2">₹2,450.00</div>
+                  <div className="text-4xl font-bold text-primary-500 mb-2">
+                    ₹2,450.00
+                  </div>
                   <div className="text-gray-400">Available Balance</div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                  <button className="btn-primary">
-                    Add Money
-                  </button>
-                  <button className="btn-secondary">
-                    Withdraw
-                  </button>
+                  <button className="btn-primary">Add Money</button>
+                  <button className="btn-secondary">Withdraw</button>
                 </div>
               </div>
 
               {/* Transaction History */}
               <div className="card-gaming p-6">
-                <h3 className="text-xl font-bold text-white mb-4">Recent Transactions</h3>
+                <h3 className="text-xl font-bold text-white mb-4">
+                  Recent Transactions
+                </h3>
                 <div className="space-y-3">
                   {[
-                    { type: 'Deposit', amount: '+₹1,000', date: 'Today', status: 'Completed' },
-                    { type: 'Game Win', amount: '+₹450', date: 'Yesterday', status: 'Completed' },
-                    { type: 'Withdrawal', amount: '-₹500', date: '2 days ago', status: 'Processing' },
+                    {
+                      type: "Deposit",
+                      amount: "+₹1,000",
+                      date: "Today",
+                      status: "Completed",
+                    },
+                    {
+                      type: "Game Win",
+                      amount: "+₹450",
+                      date: "Yesterday",
+                      status: "Completed",
+                    },
+                    {
+                      type: "Withdrawal",
+                      amount: "-₹500",
+                      date: "2 days ago",
+                      status: "Processing",
+                    },
                   ].map((transaction, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 bg-dark-700 rounded-lg">
+                    <div
+                      key={index}
+                      className="flex items-center justify-between p-3 bg-dark-700 rounded-lg"
+                    >
                       <div>
-                        <div className="text-white font-medium">{transaction.type}</div>
-                        <div className="text-gray-400 text-sm">{transaction.date}</div>
+                        <div className="text-white font-medium">
+                          {transaction.type}
+                        </div>
+                        <div className="text-gray-400 text-sm">
+                          {transaction.date}
+                        </div>
                       </div>
                       <div className="text-right">
-                        <div className={`font-bold ${transaction.amount.startsWith('+') ? 'text-green-500' : 'text-red-500'}`}>
+                        <div
+                          className={`font-bold ${
+                            transaction.amount.startsWith("+")
+                              ? "text-green-500"
+                              : "text-red-500"
+                          }`}
+                        >
                           {transaction.amount}
                         </div>
-                        <div className="text-gray-400 text-sm">{transaction.status}</div>
+                        <div className="text-gray-400 text-sm">
+                          {transaction.status}
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -178,17 +291,37 @@ const Profilepage = () => {
             </div>
           )}
 
-          {activeTab === 'games' && (
+          {activeTab === "games" && (
             <div className="card-gaming p-6">
               <h3 className="text-xl font-bold text-white mb-4">My Games</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {[
-                  { name: 'Rummy', played: 45, won: 28, winRate: '62%', earnings: '₹8,450' },
-                  { name: 'Poker', played: 32, won: 18, winRate: '56%', earnings: '₹5,230' },
-                  { name: 'Pool', played: 50, won: 35, winRate: '70%', earnings: '₹2,000' },
+                  {
+                    name: "Rummy",
+                    played: 45,
+                    won: 28,
+                    winRate: "62%",
+                    earnings: "₹8,450",
+                  },
+                  {
+                    name: "Poker",
+                    played: 32,
+                    won: 18,
+                    winRate: "56%",
+                    earnings: "₹5,230",
+                  },
+                  {
+                    name: "Pool",
+                    played: 50,
+                    won: 35,
+                    winRate: "70%",
+                    earnings: "₹2,000",
+                  },
                 ].map((game, index) => (
                   <div key={index} className="bg-dark-700 p-6 rounded-lg">
-                    <h4 className="text-lg font-bold text-white mb-4">{game.name}</h4>
+                    <h4 className="text-lg font-bold text-white mb-4">
+                      {game.name}
+                    </h4>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
                         <span className="text-gray-400">Games Played:</span>
@@ -213,9 +346,11 @@ const Profilepage = () => {
             </div>
           )}
 
-          {activeTab === 'history' && (
+          {activeTab === "history" && (
             <div className="card-gaming p-6">
-              <h3 className="text-xl font-bold text-white mb-4">Game History</h3>
+              <h3 className="text-xl font-bold text-white mb-4">
+                Game History
+              </h3>
               <div className="overflow-x-auto">
                 <table className="w-full text-left">
                   <thead>
@@ -229,20 +364,56 @@ const Profilepage = () => {
                   </thead>
                   <tbody className="space-y-2">
                     {[
-                      { date: '2024-01-15', game: 'Rummy', result: 'Won', amount: '+₹450', status: 'Completed' },
-                      { date: '2024-01-15', game: 'Poker', result: 'Lost', amount: '-₹200', status: 'Completed' },
-                      { date: '2024-01-14', game: 'Pool', result: 'Won', amount: '+₹320', status: 'Completed' },
-                      { date: '2024-01-14', game: 'Rummy', result: 'Won', amount: '+₹180', status: 'Completed' },
+                      {
+                        date: "2024-01-15",
+                        game: "Rummy",
+                        result: "Won",
+                        amount: "+₹450",
+                        status: "Completed",
+                      },
+                      {
+                        date: "2024-01-15",
+                        game: "Poker",
+                        result: "Lost",
+                        amount: "-₹200",
+                        status: "Completed",
+                      },
+                      {
+                        date: "2024-01-14",
+                        game: "Pool",
+                        result: "Won",
+                        amount: "+₹320",
+                        status: "Completed",
+                      },
+                      {
+                        date: "2024-01-14",
+                        game: "Rummy",
+                        result: "Won",
+                        amount: "+₹180",
+                        status: "Completed",
+                      },
                     ].map((game, index) => (
                       <tr key={index} className="border-b border-dark-700">
                         <td className="py-3 text-gray-300">{game.date}</td>
                         <td className="py-3 text-white">{game.game}</td>
                         <td className="py-3">
-                          <span className={`px-2 py-1 rounded text-xs ${game.result === 'Won' ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>
+                          <span
+                            className={`px-2 py-1 rounded text-xs ${
+                              game.result === "Won"
+                                ? "bg-green-500/20 text-green-400"
+                                : "bg-red-500/20 text-red-400"
+                            }`}
+                          >
                             {game.result}
                           </span>
                         </td>
-                        <td className={`py-3 font-bold ${game.amount.startsWith('+') ? 'text-green-500' : 'text-red-500'}`}>
+                        <td
+                          className={`py-3 font-bold ${
+                            game.amount.startsWith("+")
+                              ? "text-green-500"
+                              : "text-red-500"
+                          }`}
+                        >
                           {game.amount}
                         </td>
                         <td className="py-3 text-gray-400">{game.status}</td>
@@ -254,33 +425,41 @@ const Profilepage = () => {
             </div>
           )}
 
-          {activeTab === 'settings' && (
+          {activeTab === "settings" && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Profile Settings */}
               <div className="card-gaming p-6">
-                <h3 className="text-xl font-bold text-white mb-4">Profile Settings</h3>
+                <h3 className="text-xl font-bold text-white mb-4">
+                  Profile Settings
+                </h3>
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      Full Name
+                    </label>
                     <input
                       type="text"
-                      value="vivek Kumar"
+                      value="Niraj"
                       className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      Email
+                    </label>
                     <input
                       type="email"
-                      value="vivek@example.com"
+                      value="Niraj@gamil.com"
                       className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Mobile</label>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      Mobile
+                    </label>
                     <input
                       type="tel"
-                      value="+91 9341436937"
+                      value="+91 8003767732"
                       className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white"
                     />
                   </div>
@@ -290,28 +469,42 @@ const Profilepage = () => {
 
               {/* Account Settings */}
               <div className="card-gaming p-6">
-                <h3 className="text-xl font-bold text-white mb-4">Account Settings</h3>
+                <h3 className="text-xl font-bold text-white mb-4">
+                  Account Settings
+                </h3>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between p-3 bg-dark-700 rounded-lg">
                     <div>
-                      <div className="text-white font-medium">KYC Verification</div>
+                      <div className="text-white font-medium">
+                        KYC Verification
+                      </div>
                       <div className="text-green-400 text-sm">Verified ✓</div>
                     </div>
-                    <button className="text-primary-400 hover:text-primary-300">View</button>
+                    <button className="text-primary-400 hover:text-primary-300">
+                      View
+                    </button>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-dark-700 rounded-lg">
                     <div>
-                      <div className="text-white font-medium">Two-Factor Authentication</div>
+                      <div className="text-white font-medium">
+                        Two-Factor Authentication
+                      </div>
                       <div className="text-gray-400 text-sm">Not enabled</div>
                     </div>
-                    <button className="text-primary-400 hover:text-primary-300">Enable</button>
+                    <button className="text-primary-400 hover:text-primary-300">
+                      Enable
+                    </button>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-dark-700 rounded-lg">
                     <div>
-                      <div className="text-white font-medium">Responsible Gaming</div>
+                      <div className="text-white font-medium">
+                        Responsible Gaming
+                      </div>
                       <div className="text-gray-400 text-sm">Set limits</div>
                     </div>
-                    <button className="text-primary-400 hover:text-primary-300">Manage</button>
+                    <button className="text-primary-400 hover:text-primary-300">
+                      Manage
+                    </button>
                   </div>
                 </div>
               </div>

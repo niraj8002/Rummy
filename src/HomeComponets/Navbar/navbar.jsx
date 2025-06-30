@@ -81,7 +81,7 @@ export default function Navbar() {
                   color: "#00f7ff",
                   textShadow: "0 0 5px #00f7ff, 0 0 10px #00f7ff",
                 }}
-                onClick={""}
+                // onClick={""}
               >
                 <LuDownload size={18} /> Download
               </a>
@@ -90,7 +90,7 @@ export default function Navbar() {
               <a
                 href="/login"
                 className={`text-white hover:text-red-500 transition duration-300 tracking-wider font-[400]  flex  justify-center items-center text-center gap-1`}
-                onClick={""}
+                // onClick={""}
               >
                 <CiLogin size={22} />
                 Login
@@ -100,7 +100,7 @@ export default function Navbar() {
               <a
                 href="/profile"
                 className={` transition duration-300 tracking-wider font-[400] py-2 px-2  rounded-md flex  justify-center items-center text-center  gap-1 bg-red-800    hover:text-red-500 text-gray-100`}
-                onClick={""}
+                // onClick={""}
               >
                 <CgProfile size={18} />
                 Profile

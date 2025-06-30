@@ -10,14 +10,17 @@ export const PokerGame = () => {
     {
       img: pokerCard,
       title: "Texas Hold'em ",
+      herf: "/pokar_texas_game",
     },
     {
       img: pokerCard,
       title: "Pot-limmt",
+      herf: "/pokar_pot_game",
     },
     {
       img: pokerCard,
       title: "Pot-liimt (PLO)",
+      herf: "/pokar_plo_game",
     },
   ];
   return (
@@ -35,14 +38,12 @@ export const PokerGame = () => {
             What is Poker?
           </h2>
           <p className="text-gray-300 leading-relaxed">
-            Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
-            quae ab illo inventore veritatis et quasi architecto beatae vitae
-            dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas
-            sit, aspernatur aut odit aut fugit, sed quia consequuntur magni
-            dolores eos, qui ratione voluptatem sequi nesciunt, neque porro
-            quisquam est, qui dolorem ipsum, quia dolor sit amet consectetur
-            adipisci[ng] velit...
+            Poker is a globally popular card game that blends psychology,
+            probability, and strategy. Players place bets based on the strength
+            of their hand, aiming to either have the best five-card combination
+            or bluff their way to victory. With various betting rounds, dynamic
+            gameplay, and endless strategy, poker offers a high-stakes thrill
+            whether you’re a beginner or a seasoned pro.
           </p>
         </div>
 
@@ -53,22 +54,39 @@ export const PokerGame = () => {
               How to play poker?
             </h3>
             <p className="text-gray-400 text-sm">
-              Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
-              quae ab illo inventore veritatis et quasi architecto beatae vitae
-              dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas
-              sit...
+              Poker games follow a general flow, especially in popular formats
+              like Texas Hold’em or Pot-Limit Omaha (PLO): <br /> 1. The Deal
+              Each player receives a set of hole cards (private cards).
+              Community cards are dealt face-up in the center of the table
+              across several betting rounds.
+              <br /> 2. The Betting Rounds Players place bets in four rounds:
+              pre-flop, flop, turn, and river. You can fold, call, raise, or
+              check depending on your hand and strategy.
+              <br /> 3. The Showdown After the final betting round, if more than
+              one player remains, all active players reveal their hands. The
+              player with the best hand (based on poker hand rankings) wins the
+              pot.
             </p>
           </div>
           <div className="border border-gray-700 bg-[#151015] p-6 rounded-lg shadow">
             <h3 className="font-semibold text-white mb-3">
-              Why poker is game of skill?
+              Why Poker is a Game of Skill ?
             </h3>
             <p className="text-gray-400 text-sm">
-              Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
-              quae ab illo inventore veritatis et quasi architecto beatae vitae
-              dicta sunt, explicabo. Nemo enim ipsam voluptatem...
+              Contrary to popular belief, poker is not purely about luck.
+              Successful players rely on a combination of-
+              <br />
+              Mathematical calculations (pot odds, hand probabilities)
+              <br />
+              Game theory strategy
+              <br />
+              Reading opponents’ behavior
+              <br />
+              Emotional control and discipline
+              <br />
+              In the long run, consistent winners are those who study, adapt,
+              and execute advanced strategies — making poker a recognized game
+              of skill.
             </p>
           </div>
         </div>
@@ -76,7 +94,7 @@ export const PokerGame = () => {
         {/* Game Types */}
         <div className="max-w-4xl mx-auto text-center mb-10">
           <h2 className="text-2xl md:text-3xl font-semibold mb-6">
-            Defferent variations of Poker
+            Popular variations of Poker
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 px-4 md:px-0">
             {Card.map((item, index) => (
@@ -104,7 +122,7 @@ export const PokerGame = () => {
                     </h3>
                   </div>
                 </div>
-                <Link to={"/point_rummy_game"} className="w-full mb-2 my-4">
+                <Link to={item.herf} className="w-full mb-2 my-4">
                   <button
                     className="w-full bg-red-500 px-4 py-2 rounded-sm text-gray-200 tracking-wide hover:bg-red-600 transition-all duration-300
                   focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-50"

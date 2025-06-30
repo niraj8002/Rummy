@@ -1,6 +1,7 @@
 import React from "react";
-import rummySideImg from "../../../assets/rummy/rummy.png";
-import "./rummy.css";
+import rummySideImg from "../../../.././assets/rummy/rummy.png";
+
+// import "../../MainRummy/rummy.css";
 import {
   FaArrowRight,
   FaChess,
@@ -8,9 +9,9 @@ import {
   FaListAlt,
   FaPlayCircle,
 } from "react-icons/fa";
-import TotalGame from "../../../HomeComponets/TotalGame/totalgame";
+import TotalGame from "../../../../HomeComponets/TotalGame/totalgame";
 
-const RummyRulesSection = () => {
+const EightBallRuleRulesSection = () => {
   return (
     <>
       <section className="bg-gradient-to-b from-[#0B050C] to-[#1a0a1a] text-white px-4 sm:px-6 py-12 md:py-20 overflow-hidden relative">
@@ -25,7 +26,7 @@ const RummyRulesSection = () => {
         <div className="max-w-6xl mx-auto relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff6b6b] to-[#5e0d0d]">
-              Rummy Game Rules
+              How to Play 8-Ball Pool ?
             </span>
           </h2>
 
@@ -42,12 +43,13 @@ const RummyRulesSection = () => {
                       <span className="text-[#5e0d0d] group-hover:text-[#ff6b6b] transition-colors">
                         Step 1.
                       </span>
-                      Card Distribution
+                      Game Setup
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                      Each player is dealt 13 cards. One card is placed face-up
-                      to begin the open deck, and the rest form the closed pile.
-                      The dealer is chosen randomly.
+                      The game begins with 15 object balls racked in a triangle.
+                      One player breaks the rack using the cue ball. After the
+                      break, players are assigned stripes or solids depending on
+                      the first legally pocketed ball.
                     </p>
                   </div>
                 </div>
@@ -66,9 +68,10 @@ const RummyRulesSection = () => {
                       Objective of the Game
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                      Create valid sequences and/or sets. A winning hand must
-                      contain at least two sequences, with one being a pure
-                      sequence (no jokers used).
+                      Pocket all your assigned balls (either stripes or solids).
+                      Once all your group balls are cleared, legally pocket the
+                      8-ball to win the match. Be careful — pocketing the 8-ball
+                      prematurely or illegally results in a loss.
                     </p>
                   </div>
                 </div>
@@ -87,10 +90,11 @@ const RummyRulesSection = () => {
                       Gameplay Rules
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                      Pick a card from the open or closed deck and discard one
-                      to the open pile. Use jokers to complete sets and
-                      sequences. You may also use opponents' discards if it
-                      benefits your hand.
+                      Players take turns making shots using the cue ball. Call
+                      your shots to indicate the target ball and pocket. Fouls
+                      (e.g., failing to hit your group, potting the cue ball)
+                      give the opponent a ball-in-hand. Strategic safeties and
+                      cue control are essential to maintain an advantage.
                     </p>
                   </div>
                 </div>
@@ -109,10 +113,10 @@ const RummyRulesSection = () => {
                       Winning the Game
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                      Once your hand is complete, discard the final card and
-                      declare. The first valid declaration wins. Points are
-                      calculated based on ungrouped cards held by the other
-                      players.
+                      The first player to pot all their group balls and then the
+                      8-ball (legally) wins. Matches are played in a single
+                      round, making every shot count. Winnings are based on
+                      entry stakes and player rankings.
                     </p>
                   </div>
                 </div>
@@ -142,4 +146,4 @@ const RummyRulesSection = () => {
   );
 };
 
-export default RummyRulesSection;
+export default EightBallRuleRulesSection;

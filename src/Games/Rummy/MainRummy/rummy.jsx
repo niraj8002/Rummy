@@ -33,7 +33,7 @@ export const RummyGame = () => {
     <>
       <Banner
         img={rummyyy}
-        heading="Rummy"
+        heading="Welcome to the Ultimate Rummy! "
         button="play now"
         subheading="18+ Only | Play Responsibly"
       />
@@ -44,14 +44,7 @@ export const RummyGame = () => {
             Introduction
           </h2>
           <p className="text-gray-300 leading-relaxed">
-            Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
-            quae ab illo inventore veritatis et quasi architecto beatae vitae
-            dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas
-            sit, aspernatur aut odit aut fugit, sed quia consequuntur magni
-            dolores eos, qui ratione voluptatem sequi nesciunt, neque porro
-            quisquam est, qui dolorem ipsum, quia dolor sit amet consectetur
-            adipisci[ng] velit...
+           Dive into the thrilling world of competitive card gaming, where skill and excitement go hand in hand. Whether you are starting now or you are an experienced supporter, there is something for all on our platform.
           </p>
         </div>
 
@@ -62,11 +55,7 @@ export const RummyGame = () => {
               The History and Evolution of Rummy
             </h3>
             <p className="text-gray-400 text-sm">
-              Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
-              quae ab illo inventore veritatis et quasi architecto beatae vitae
-              dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas
-              sit...
+             Rummy has deep historical roots and has evolved through centuries into one of the most widely played card games. From traditional versions to modern formats, its appeal has only grown...
             </p>
           </div>
           <div className="border border-gray-700 bg-[#151015] p-6 rounded-lg shadow">
@@ -74,10 +63,8 @@ export const RummyGame = () => {
               Why Rummy is a Game of Skill?
             </h3>
             <p className="text-gray-400 text-sm">
-              Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
-              quae ab illo inventore veritatis et quasi architecto beatae vitae
-              dicta sunt, explicabo. Nemo enim ipsam voluptatem...
+             Success in Rummy requires focus, memory, and strategy. It’s not about luck—it’s about how well you play your hand. Sharpen your decision-making and outplay your opponents...
+
             </p>
           </div>
         </div>

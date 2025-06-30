@@ -23,7 +23,7 @@ const DownloadPage = () => {
             }}
           >
             Download{" "}
-            <span className="text-glow text-primary-500">GameZone</span>
+            <span className="text-glow text-primary-500">App</span>
           </h1>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             Get the ultimate gaming experience on your mobile device. Play

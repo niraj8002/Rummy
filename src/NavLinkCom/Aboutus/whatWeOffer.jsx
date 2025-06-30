@@ -97,32 +97,18 @@ const WhatWeOffer = () => {
             <ul className="list-disc list-inside space-y-1 tracking-wide">
               <li className="mb-4 text-[15px] text-gray-300 leading-6 ">
                 <strong className="text-gray-50 mr-1">Points Rummy:</strong>{" "}
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Nostrum, fugiat, explicabo voluptate soluta voluptas tenetur
-                deleniti quia modi omnis quis iure laudantium rem consectetur
-                ducimus quidem iste, in autem deserunt tempore. Cupiditate ipsa
-                aperiam ab est delectus vel, veritatis aliquid dolorem animi
-                voluptatum laborum explicabo accusantium natus temporibus facere
-                obcaecati.
+                Fast-paced format where players compete for points with
+                real-cash value. Great for quick matches
               </li>
               <li className="mb-4 text-[15px] text-gray-300 leading-6  ">
-                <strong className="text-gray-50 mr-1">Pool Rummy:</strong> Lorem
-                ipsum dolor sit amet consectetur adipisicing elit. Nostrum,
-                fugiat, explicabo voluptate soluta voluptas tenetur deleniti
-                quia modi omnis quis iure laudantium rem consectetur ducimus
-                quidem iste, in autem deserunt tempore. Cupiditate ipsa aperiam
-                ab est delectus vel, veritatis aliquid dolorem animi voluptatum
-                laborum explicabo accusantium natus temporibus facere obcaecati.
+                <strong className="text-gray-50 mr-1">Pool Rummy:</strong>{" "}
+                Elimination-style play. Stay in the game by keeping your score
+                low—perfect for strategy lovers.
               </li>
               <li className="mb-4 text-[15px] text-gray-300 leading-6 ">
                 <strong className="text-gray-50 mr-1">Deals Rummy:</strong>{" "}
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Nostrum, fugiat, explicabo voluptate soluta voluptas tenetur
-                deleniti quia modi omnis quis iure laudantium rem consectetur
-                ducimus quidem iste, in autem deserunt tempore. Cupiditate ipsa
-                aperiam ab est delectus vel, veritatis aliquid dolorem animi
-                voluptatum laborum explicabo accusantium natus temporibus facere
-                obcaecati.
+                Fixed number of deals with preset chips. The player with the
+                highest chips at the end wins.
               </li>
             </ul>
           </div>
@@ -130,16 +116,16 @@ const WhatWeOffer = () => {
           <div className="bg-[#110707] border border-gray-700 rounded-md p-6">
             <h3 className="text-lg font-bold mb-2">Pool Games:</h3>
             <p className="text-gray-300">
-              Classic 8-ball pool games with predefined stakes. Play and win
-              coins, improve skill, and enjoy casual competition.
+              Play classic 8-ball pool with predefined stakes. Test your precision and tactics in real-time against real opponents. Perfect for casual players and competitive spirits alike.
+
             </p>
           </div>
 
           <div className="bg-[#110707] border border-gray-700 rounded-md p-6">
             <h3 className="text-lg font-bold mb-2">Poker Games:</h3>
             <p className="text-gray-300">
-              Choose from Texas Hold’em and Omaha. Compete in high-stakes
-              tournaments or casual tables.
+             Join thrilling Poker tables—choose Texas Hold’em or Omaha (PLO). Whether you're bluffing your way through or calling calculated bets, it’s all about skill, timing, and mental grit.
+
             </p>
           </div>
         </div>

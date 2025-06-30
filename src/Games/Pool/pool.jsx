@@ -10,14 +10,17 @@ export const PoolGame = () => {
     {
       img: poolCard,
       title: "8-Ball Pool ",
+      herf:"/pool_eight_game"
     },
     {
       img: poolCard,
       title: "9-Ball Pool",
+      herf:"/pool_nine_game"
     },
     {
       img: poolCard,
       title: "Straight Pool",
+      herf:"/pool_straight_game"
     },
   ];
   return (
@@ -35,14 +38,12 @@ export const PoolGame = () => {
             What is Pool?
           </h2>
           <p className="text-gray-300 leading-relaxed">
-            Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
-            quae ab illo inventore veritatis et quasi architecto beatae vitae
-            dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas
-            sit, aspernatur aut odit aut fugit, sed quia consequuntur magni
-            dolores eos, qui ratione voluptatem sequi nesciunt, neque porro
-            quisquam est, qui dolorem ipsum, quia dolor sit amet consectetur
-            adipisci[ng] velit...
+            Pool is a classic cue sport played on a rectangular table with six
+            pockets, cue sticks, and colored balls. Popular worldwide, Pool
+            combines precision, patience, and tactical play. Whether it's casual
+            8-ball with friends or a competitive 9-ball tournament, the
+            objective is to legally pocket specific balls before your opponent
+            does.
           </p>
         </div>
 
@@ -53,11 +54,15 @@ export const PoolGame = () => {
               Skill Required to master Pool
             </h3>
             <p className="text-gray-400 text-sm">
-              Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
-              quae ab illo inventore veritatis et quasi architecto beatae vitae
-              dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas
-              sit...
+              Mastering Pool requires more than just aiming at the right ball.
+              Players must develop.
+              <br /> Strategic shot selection Cue ball control Table awareness
+              Positional play and safety shots Mental focus under pressure
+              Experienced players use physics, angles, and spin to control
+              outcomes and plan several shots in advance. Winning Strategies for
+              Pool <br />
+              Experienced players use physics, angles, and spin to control
+              outcomes and plan several shots in advance.
             </p>
           </div>
           <div className="border border-gray-700 bg-[#151015] p-6 rounded-lg shadow">
@@ -65,10 +70,14 @@ export const PoolGame = () => {
               Winning Strategies for Pool
             </h3>
             <p className="text-gray-400 text-sm">
-              Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
-              quae ab illo inventore veritatis et quasi architecto beatae vitae
-              dicta sunt, explicabo. Nemo enim ipsam voluptatem...
+              To consistently win at Pool, consider the following strategies{" "}
+              <br />
+              Break smartly: A strong, well-controlled break can determine the
+              flow of the game. Plan your runs: Map out your next few shots,
+              ensuring cue ball position for each. Master safety: If you can’t
+              make a shot, leave your opponent in a tough spot. Know the rules:
+              Different formats have different fouls and win conditions —
+              precision and awareness matter.
             </p>
           </div>
         </div>
@@ -80,7 +89,7 @@ export const PoolGame = () => {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 px-4 md:px-0">
             {Card.map((item, index) => (
-              <div
+              <Link to={item.herf}
                 key={index}
                 className="group p-5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col items-center hover:-translate-y-2"
                 style={{
@@ -104,7 +113,7 @@ export const PoolGame = () => {
                     </h3>
                   </div>
                 </div>
-                <Link to={"/point_rummy_game"} className="w-full mb-2 my-3">
+                <div className="w-full mb-2 my-3">
                   <button
                     className="w-full bg-red-500 px-4 py-2 rounded-sm text-gray-200 tracking-wide hover:bg-red-600 transition-all duration-300
                   focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-50"
@@ -114,13 +123,13 @@ export const PoolGame = () => {
                   >
                     START GAME
                   </button>
-                </Link >
-              </div>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
       </div>
-      <PoolRulesSection/>
+      <PoolRulesSection />
     </>
   );
 };

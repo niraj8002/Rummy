@@ -1,6 +1,6 @@
 import React from "react";
-import rummySideImg from "../../../assets/rummy/rummy.png";
-import "./rummy.css";
+import rummySideImg from "../../../.././assets/rummy/rummy.png";
+// import "../../MainRummy/rummy.css";
 import {
   FaArrowRight,
   FaChess,
@@ -8,9 +8,9 @@ import {
   FaListAlt,
   FaPlayCircle,
 } from "react-icons/fa";
-import TotalGame from "../../../HomeComponets/TotalGame/totalgame";
+import TotalGame from "../../../../HomeComponets/TotalGame/totalgame";
 
-const RummyRulesSection = () => {
+const StraightBallRuleRulesSection = () => {
   return (
     <>
       <section className="bg-gradient-to-b from-[#0B050C] to-[#1a0a1a] text-white px-4 sm:px-6 py-12 md:py-20 overflow-hidden relative">
@@ -25,7 +25,7 @@ const RummyRulesSection = () => {
         <div className="max-w-6xl mx-auto relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff6b6b] to-[#5e0d0d]">
-              Rummy Game Rules
+              Winning Strategies Deal Rummy Game ?
             </span>
           </h2>
 
@@ -42,12 +42,12 @@ const RummyRulesSection = () => {
                       <span className="text-[#5e0d0d] group-hover:text-[#ff6b6b] transition-colors">
                         Step 1.
                       </span>
-                      Card Distribution
+                      The Break
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                      Each player is dealt 13 cards. One card is placed face-up
-                      to begin the open deck, and the rest form the closed pile.
-                      The dealer is chosen randomly.
+                      The player must drive a ball to a rail or pocket a ball.
+                      If not, it’s a foul, and the opponent may choose to accept
+                      or re-break.
                     </p>
                   </div>
                 </div>
@@ -63,12 +63,11 @@ const RummyRulesSection = () => {
                       <span className="text-[#5e0d0d] group-hover:text-[#ff6b6b] transition-colors">
                         Step 2.
                       </span>
-                      Objective of the Game
+                      Scoring
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                      Create valid sequences and/or sets. A winning hand must
-                      contain at least two sequences, with one being a pure
-                      sequence (no jokers used).
+                      Each legally pocketed ball earns 1 point. Players continue
+                      shooting until they miss, foul, or reach the target score.
                     </p>
                   </div>
                 </div>
@@ -84,13 +83,12 @@ const RummyRulesSection = () => {
                       <span className="text-[#5e0d0d] group-hover:text-[#ff6b6b] transition-colors">
                         Step 3.
                       </span>
-                      Gameplay Rules
+                      Rack Setup
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                      Pick a card from the open or closed deck and discard one
-                      to the open pile. Use jokers to complete sets and
-                      sequences. You may also use opponents' discards if it
-                      benefits your hand.
+                      After 14 balls are pocketed, they are re-racked, leaving
+                      the 15th ball in position. The next shot (break shot)
+                      continues the run.
                     </p>
                   </div>
                 </div>
@@ -106,13 +104,14 @@ const RummyRulesSection = () => {
                       <span className="text-[#5e0d0d] group-hover:text-[#ff6b6b] transition-colors">
                         Step 4.
                       </span>
-                      Winning the Game
+                      Declaring and Scoring
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                      Once your hand is complete, discard the final card and
-                      declare. The first valid declaration wins. Points are
-                      calculated based on ungrouped cards held by the other
-                      players.
+                      Once a player arranges their hand into valid sequences and
+                      sets, they discard one card and declare. Points are then
+                      calculated based on ungrouped cards of the losing players.
+                      After all deals are played, the player with the most chips
+                      wins the game.
                     </p>
                   </div>
                 </div>
@@ -142,4 +141,4 @@ const RummyRulesSection = () => {
   );
 };
 
-export default RummyRulesSection;
+export default StraightBallRuleRulesSection;

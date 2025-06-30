@@ -1,17 +1,29 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 import { FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import bgcimg from "../../assets/bannerimg/contactus.png";
 
 export default function ContactUs() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    trigger,
+  } = useForm({ mode: "onChange" });
+
+  const onSubmit = async (data) => {
+    const valid = await trigger();
+    if (!valid) return;
+    console.log("Form submitted:", data);
+    // You can replace this with API call
+  };
+
   return (
     <div
-      className="bg-[#0B050C] text-white py-10 px-4 tracking-wider  lg:h-[100vh]"
-      style={{
-        background: "linear-gradient(to bottom, #11050B, #11050B)",
-      }}
+      className="bg-[#0B050C] text-white py-10 px-4 tracking-wider lg:h-[100vh]"
+      style={{ background: "linear-gradient(to bottom, #11050B, #11050B)" }}
     >
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-start p-6">
-        {/* Left Info Panel */}
         <div>
           <h2 className="text-4xl font-semibold mb-4">Get up</h2>
           <p className="mb-6 text-gray-300">
@@ -68,7 +80,7 @@ export default function ContactUs() {
             <p className="text-gray-300">Sunday: Closed</p>
           </div>
         </div>
-        {/* Right Contact Form with background image */}
+
         <div
           className="relative rounded border border-gray-700 backdrop-blur-sm shadow-md overflow-hidden"
           style={{
@@ -78,7 +90,10 @@ export default function ContactUs() {
           }}
         >
           <div className="absolute inset-0 bg-black/70 bg-opacity-60 z-0"></div>
-          <form className="relative z-10 space-y-5 p-6">
+          <form
+            className="relative z-10 space-y-5 p-6"
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <div>
               <label className="block text-sm font-medium mb-1 text-gray-100">
                 Full Name
@@ -86,9 +101,27 @@ export default function ContactUs() {
               <input
                 type="text"
                 placeholder="Enter Your Name"
-                className="w-full px-4 py-2 border rounded-md -md  bg-transparent text-red-200 placeholder:text-gray-400 focus:outline-none focus:ring focus:border-red-400"
+                {...register("name", {
+                  required: "Full name is required",
+                  pattern: {
+                    value: /^[A-Za-z ]+$/,
+                    message: "Only letters and spaces allowed",
+                  },
+                })}
+                onInput={(e) => {
+                  e.target.value = e.target.value.replace(/[^A-Za-z ]/g, "");
+                }}
+                onKeyUp={() => trigger("name")}
+                className="w-full px-4 py-2 border rounded-md bg-transparent text-red-200 placeholder:text-gray-400 focus:outline-none focus:ring focus:border-red-400"
               />
+
+              {errors.name && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.name.message}
+                </p>
+              )}
             </div>
+
             <div>
               <label className="block text-sm font-medium mb-1 text-gray-100">
                 Email Address
@@ -96,19 +129,61 @@ export default function ContactUs() {
               <input
                 type="email"
                 placeholder="example@example.com"
-                className="w-full px-4 py-2 border rounded-md  bg-transparent text-red-200 placeholder:text-gray-400 focus:outline-none focus:ring focus:border-red-400"
+                {...register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /^\S+@\S+\.\S+$/,
+                    message: "Invalid email address",
+                  },
+                })}
+                onKeyUp={() => trigger("email")}
+                className="w-full px-4 py-2 border rounded-md bg-transparent text-red-200 placeholder:text-gray-400 focus:outline-none focus:ring focus:border-red-400"
               />
+              {errors.email && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.email.message}
+                </p>
+              )}
             </div>
+
             <div>
               <label className="block text-sm font-medium mb-1 text-gray-100">
                 Phone Number
               </label>
               <input
                 type="tel"
-                placeholder="+91-9876543201"
-                className="w-full px-4 py-2 border rounded-md  bg-transparent text-red-200 placeholder:text-gray-400 focus:outline-none focus:ring focus:border-red-400"
+                placeholder="+91-9876543210"
+                maxLength={10}
+                inputMode="numeric"
+                onInput={(e) => {
+                  e.target.value = e.target.value.replace(/\D/g, "");
+                  if (
+                    e.target.value.length === 1 &&
+                    !/^[6-9]$/.test(e.target.value)
+                  ) {
+                    e.target.value = "";
+                  }
+                  if (e.target.value.length > 10) {
+                    e.target.value = e.target.value.slice(0, 10);
+                  }
+                }}
+                {...register("phone", {
+                  required: "Phone number is required & starting with 6-9",
+                  pattern: {
+                    value: /^[6-9]\d{9}$/,
+                    message: "Enter valid 10-digit number starting with 6-9",
+                  },
+                })}
+                onKeyUp={() => trigger("phone")}
+                className="w-full px-4 py-2 border rounded-md bg-transparent text-red-200 placeholder:text-gray-400 focus:outline-none focus:ring focus:border-red-400"
               />
+              {errors.phone && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.phone.message}
+                </p>
+              )}
             </div>
+
             <div>
               <label className="block text-sm font-medium mb-1 text-gray-100">
                 Message
@@ -116,12 +191,22 @@ export default function ContactUs() {
               <textarea
                 rows="4"
                 placeholder="How can we help you?"
-                className="w-full px-4 py-2 border rounded-md  bg-transparent text-white placeholder:text-gray-400 focus:outline-none focus:ring focus:border-red-400"
+                {...register("message", {
+                  required: "Message is required",
+                })}
+                onKeyUp={() => trigger("message")}
+                className="w-full px-4 py-2 border rounded-md bg-transparent text-white placeholder:text-gray-400 focus:outline-none focus:ring focus:border-red-400"
               ></textarea>
+              {errors.message && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.message.message}
+                </p>
+              )}
             </div>
+
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-red-500 to-pink-500 hover:opacity-90 text-white py-2 rounded-md  transition"
+              className="w-full bg-gradient-to-r from-red-500 to-pink-500 hover:opacity-90 text-white py-2 rounded-md transition"
             >
               Send Message
             </button>
