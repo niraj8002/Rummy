@@ -52,7 +52,7 @@ const BlogPostsGrid = () => {
   return (
     <>
       <div>
-        <h2 className="text-3xl md:text-4xl font-bold  pb-2 text-red-400 drop-shadow-[0_0_5px_#a855f7] md:drop-shadow-[0_0_10px_#a855f7] flex items-center gap-2 justify-cente my-15 p-5 ">
+        <h2 className="text-3xl md:text-4xl font-bold  pb-2 text-red-400 drop-shadow-[0_0_5px_#a855f7] md:drop-shadow-[0_0_10px_#a855f7] flex items-center gap-2 justify-cente my-9 p-5 ">
           <FaRegNewspaper /> Latest blog
         </h2>
 

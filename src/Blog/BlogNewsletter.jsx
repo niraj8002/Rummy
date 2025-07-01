@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const BlogNewsletter = () => {
   return (
@@ -32,6 +33,17 @@ const BlogNewsletter = () => {
               We respect your privacy. Unsubscribe at any time.
             </p>
           </div>
+        </div>
+        <div className="bg-gradient-to-r from-red-950 to-red-800 p-10 rounded-lg text-center mt-8 ">
+          <h3 className="font-bold text-lg mb-2 text-gray-100">
+            Play Rummy Now!
+          </h3>
+          <p className="text-sm mb-3 text-gray-400">
+            Join thousands of players and win real cash prizes
+          </p>
+          <Link to={"/download_apk"} className="bg-purple-600 text-white px-4 py-2 rounded-md text-sm font-bold hover:text-yellow-500 hover:bg-red-900 transition-all mt-3 cursor-pointer hover:tracking-wider duration-500">
+            Download App
+          </Link >
         </div>
       </div>
     </div>

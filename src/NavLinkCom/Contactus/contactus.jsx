@@ -18,9 +18,7 @@ export default function ContactUs() {
   const onSubmit = async (data) => {
     const valid = await trigger();
     if (!valid) return;
-
     setLoading(true);
-
     const payload = {
       name: data.name,
       email: data.email,
@@ -29,8 +27,6 @@ export default function ContactUs() {
       service: "N/A",
       website_id: 6,
     };
-    console.log(payload);
-
     try {
       const response = await fetch(
         "https://cms.sevenunique.com/apis/contact-query/set-contact-details.php",
@@ -43,10 +39,8 @@ export default function ContactUs() {
           body: JSON.stringify(payload),
         }
       );
-
       const result = await response.json();
       console.log(result);
-
       if (result.status) {
         toast.success("team will contact you soon!");
       }
