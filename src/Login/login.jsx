@@ -259,7 +259,7 @@ const LoginPage = () => {
             bonuses!
           </p>
           <Link
-            to="/download"
+            to="/download_apk"
             className="btn-secondary w-full bg-[#2596e0] px-3 py-3 rounded-md hover:outline-1 outline-amber-50 font-medium"
           >
             Download App

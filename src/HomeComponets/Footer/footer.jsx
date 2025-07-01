@@ -9,11 +9,12 @@ const Footer = () => {
 
   return (
     <footer className="bg-gray-900 text-white pt-12 pb-8 px-4">
-      <div className="container mx-auto px-5">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 text-left">
+          
           {/* FinUnique Zone */}
-          <div className="text-center md:text-left mb-8">
-            <div className="mb-2 ">
+          <div className="text-center sm:text-left">
+            <div className="mb-4 flex justify-center sm:justify-start">
               <img
                 src={logo}
                 alt="logo"
@@ -28,7 +29,7 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div className="text-center md:text-left">
+          <div className="text-center sm:text-left">
             <h3 className="text-lg font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li>
@@ -41,8 +42,8 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/promotions" className="hover:text-red-400">
-                  Promotions
+                <Link to="/our_blog" className="hover:text-red-400">
+                  Blog
                 </Link>
               </li>
               <li>
@@ -64,7 +65,7 @@ const Footer = () => {
           </div>
 
           {/* Support */}
-          <div className="text-center md:text-left">
+          <div className="text-center sm:text-left">
             <h3 className="text-lg font-bold mb-4">Support</h3>
             <ul className="space-y-2 text-sm">
               <li>
@@ -90,8 +91,8 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Us */}
-          <div className="text-center md:text-left">
+          {/* Contact Info */}
+          <div className="text-center sm:text-left">
             <h3 className="text-lg font-bold mb-4">Contact Us</h3>
             <div className="space-y-2 text-sm">
               <p>9341436937</p>
@@ -102,9 +103,9 @@ const Footer = () => {
                 href="https://wa.me/919341436937?text=Hi%20I%20want%20to%20know%20more"
                 target="_blank"
                 rel="noopener noreferrer"
-                className=" mt-2 text-red-400 hover:underline "
+                className="inline-block mt-2 text-red-400 hover:underline"
               >
-                <div className="flex  justify-start gap-2 items-center">
+                <div className="flex justify-center sm:justify-start items-center gap-2">
                   <FaWhatsapp />
                   Contact Support
                 </div>
@@ -113,7 +114,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-6 text-center text-sm">
+        <div className="border-t border-gray-800 mt-10 pt-6 text-center text-sm">
           <p>© 2024 Finunique. All rights reserved. Play responsibly. 18+</p>
         </div>
       </div>

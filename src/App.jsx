@@ -29,6 +29,7 @@ import { StraightBallPool } from "./Games/Pool/PoolChildGame/StraightBall/Straig
 import { Texas } from "./Games/Poker/TexasPoker/texas";
 import { PotPokar } from "./Games/Poker/Pot-limmt/pot";
 import { PLOpokar } from "./Games/Poker/Pot-liimt (PLO)/PLO";
+import BlogPage from "./Blog/BlogPage";
 function App() {
   return (
     <>
@@ -64,6 +65,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/download_apk" element={<DownloadPage />} />
           <Route path="/profile" element={<Profilepage />} />
+          <Route path="/our_blog" element={<BlogPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <Footer />

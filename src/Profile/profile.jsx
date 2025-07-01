@@ -39,9 +39,9 @@ const Profilepage = () => {
                 Ready to continue your winning streak?
               </p>
             </div>
-            <div className="mt-4 md:mt-0 flex space-x-4">
+            <div className="mt-4 md:mt-0 flex space-x-4 ">
               <button
-                className="border border-gray-600 text-gray-300 hover:text-white hover:border-primary-500 px-4 py-2 rounded-lg font-semibold transition-all duration-300"
+                className="border-t border-b  border-gray-600 text-gray-300 hover:text-white hover:border-red-500 px-4 py-2  font-semibold transition-all duration-300 rounded-sm flex justify-center items-center hover:p-4 "
                 onClick={logout}
               >
                 <LogOut className="h-4 w-4 mr-2" />
@@ -221,12 +221,12 @@ const Profilepage = () => {
                   Wallet Balance
                 </h3>
                 <div className="text-center mb-6">
-                  <div className="text-4xl font-bold text-primary-500 mb-2">
+                  <div className="text-4xl font-bold text-primary-500 mb-2 text-gray-300">
                     ₹2,450.00
                   </div>
                   <div className="text-gray-400">Available Balance</div>
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4 text-gray-400">
                   <button className="btn-primary">Add Money</button>
                   <button className="btn-secondary">Withdraw</button>
                 </div>
@@ -333,11 +333,11 @@ const Profilepage = () => {
                       </div>
                       <div className="flex justify-between">
                         <span className="text-gray-400">Win Rate:</span>
-                        <span className="text-primary-500">{game.winRate}</span>
+                        <span className="text-gray-500">{game.winRate}</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-gray-400">Total Earnings:</span>
-                        <span className="text-gold-500">{game.earnings}</span>
+                        <span className="text-gray-400">{game.earnings}</span>
                       </div>
                     </div>
                   </div>
@@ -463,7 +463,9 @@ const Profilepage = () => {
                       className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white"
                     />
                   </div>
-                  <button className="btn-primary w-full">Update Profile</button>
+                  <button className="bg-red-900 px-2 py-2 rounded-md font-medium tracking-wider hover:text-gray-200 w-full transition duration-300 cursor-pointer">
+                    Update Profile
+                  </button>
                 </div>
               </div>
 
@@ -480,7 +482,7 @@ const Profilepage = () => {
                       </div>
                       <div className="text-green-400 text-sm">Verified ✓</div>
                     </div>
-                    <button className="text-primary-400 hover:text-primary-300">
+                    <button className="text-gray-400 hover:text-red-300 cursor-pointer">
                       View
                     </button>
                   </div>
@@ -491,7 +493,7 @@ const Profilepage = () => {
                       </div>
                       <div className="text-gray-400 text-sm">Not enabled</div>
                     </div>
-                    <button className="text-primary-400 hover:text-primary-300">
+                    <button className="text-gray-400 hover:text-red-300 cursor-pointer">
                       Enable
                     </button>
                   </div>
@@ -500,9 +502,9 @@ const Profilepage = () => {
                       <div className="text-white font-medium">
                         Responsible Gaming
                       </div>
-                      <div className="text-gray-400 text-sm">Set limits</div>
+                      <div className="text-red-400 text-sm">Set limits</div>
                     </div>
-                    <button className="text-primary-400 hover:text-primary-300">
+                    <button className="text-gray-400 hover:text-red-300">
                       Manage
                     </button>
                   </div>

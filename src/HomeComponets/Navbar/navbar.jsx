@@ -61,9 +61,10 @@ export default function Navbar() {
             GO
           </a> */}
           <div className="w-20px">
+            <a href="/">
             <img src={logo} alt="rummyLogo" className="w-[130px] cursor-pointer" />
+            </a>
           </div>
-
           {/* Desktop Navigation */}
           <ul className="hidden md:flex space-x-6 lg:space-x-6 flex  justify-center items-center text-center">
             {navLinks.map(({ label, href }, index) => (
