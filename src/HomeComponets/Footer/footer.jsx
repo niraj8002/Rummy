@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ContextData } from "../../Service/context";
 import logo from "../../assets/icon/rummy-logo.png";
+import { FaWhatsapp } from "react-icons/fa";
 
 const Footer = () => {
   const { scrollToTop } = useContext(ContextData);
@@ -97,12 +98,17 @@ const Footer = () => {
               <p>Plot No 97, Dakshinpuri - L Shirkishan-Sanganez,</p>
               <p>Jagatpura, Jaipur, Rajasthan,</p>
               <p>India – 302017</p>
-              <Link
-                to="/contact-support"
-                className="inline-block mt-2 text-red-400 hover:underline"
+              <a
+                href="https://wa.me/919341436937?text=Hi%20I%20want%20to%20know%20more"
+                target="_blank"
+                rel="noopener noreferrer"
+                className=" mt-2 text-red-400 hover:underline "
               >
-                Contact Support
-              </Link>
+                <div className="flex  justify-start gap-2 items-center">
+                  <FaWhatsapp />
+                  Contact Support
+                </div>
+              </a>
             </div>
           </div>
         </div>
