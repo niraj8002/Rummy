@@ -4,6 +4,7 @@ import { SignUpModal } from "../../PopUpModal/signupModal";
 import { CiLogin } from "react-icons/ci";
 import { LuDownload } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
+import logo from "../../assets/icon/rummy-logo.png";
 
 export default function Navbar() {
   const drawerRef = useRef(null);
@@ -51,14 +52,17 @@ export default function Navbar() {
         }}
       >
         <div className="container mx-auto flex justify-between items-center">
-          <a
+          {/* <a
             href="/"
             className="text-white text-xl md:text-2xl font-bold tracking-wider transition duration-300 cursor-pointer"
             style={{ fontFamily: "'Lobster', cursive" }}
           >
             L<span className="transition duration-300 text-red-400">O</span>
             GO
-          </a>
+          </a> */}
+          <div className="w-20px">
+            <img src={logo} alt="rummyLogo" className="w-[130px] cursor-pointer" />
+          </div>
 
           {/* Desktop Navigation */}
           <ul className="hidden md:flex space-x-6 lg:space-x-6 flex  justify-center items-center text-center">

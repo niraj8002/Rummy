@@ -108,7 +108,7 @@ const RegisterPage = () => {
                 letterSpacing: "3px",
               }}
             >
-              7Unique
+              FinUnique
             </span>
           </h1>
           <p className="text-gray-400">

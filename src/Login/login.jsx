@@ -54,7 +54,7 @@ const LoginPage = () => {
                 letterSpacing: "3px",
               }}
             >
-              7Unique zone
+              FinUnique zone
               <LogIn className="h-10 w-10 text-white" />
             </span>
           </h1>

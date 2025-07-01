@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import "./index.css"
 import { AppLayout } from "./AppLayout/applayout";
 import { Route, Routes } from "react-router-dom";
 import { AboutUs } from "./NavLinkCom/Aboutus/aboutus";
