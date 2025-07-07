@@ -15,3 +15,6 @@ body {
 .neon-red {
   text-shadow: 0 0 8px #f87171, 0 0 12px #f87171;
 } */
+button{
+  cursor: pointer;
+}

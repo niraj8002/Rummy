@@ -7,18 +7,22 @@ import Banner from "../Reuseable Com/Banner";
 const BlogPage = () => {
   return (
     <>
+      <Banner
+      button={"join now"}
+        img={bannerimg}
+        heading={
+          <>
+            <span className="text-red-900">Bet Big .</span>
+            <span className="text-gray-300">
+              <br />. Win Big 
+            </span>
+          </>
+        }
+      />
       <div className="relative w-full overflow-hidden bg-gradient-to-r from-[#17040A] to-red-950">
-        {/* Background elements */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-0 w-32 h-32 bg-yellow-400 rounded-full mix-blend-overlay blur-xl"></div>
-          <div className="absolute bottom-0 right-0 w-40 h-40 bg-green-400 rounded-full mix-blend-overlay blur-xl"></div>
-          <div className="absolute top-1/3 right-1/4 w-24 h-24 bg-red-400 rounded-full mix-blend-overlay blur-xl"></div>
-        </div>
-
         {/* Content container */}
-        <div className="relative max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8 lg:py-">
+        {/* <div className="relative max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8 lg:py-">
           <div className="flex flex-col lg:flex-row items-center justify-between">
-            {/* Text content */}
             <div className="text-center lg:text-left mb-10 lg:mb-0 lg:w-1/2">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4">
                 <span className="block">Bet Big,</span>
@@ -38,7 +42,6 @@ const BlogPage = () => {
               </div>
             </div>
 
-            {/* Image/Graphic */}
             <div className="lg:w-1/2  justify-center hidden lg:flex">
               <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96">
                 <div className="absolute top-40 left-1/2 transform -translate-x-1/2">
@@ -69,7 +72,7 @@ const BlogPage = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Floating elements for desktop */}
         <div className="hidden lg:block">

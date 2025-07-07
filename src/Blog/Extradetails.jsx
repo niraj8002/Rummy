@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import DOMPurify from "dompurify";
+import blogImg from "../assets/bannerimg/blogbanner.jpg";
 
 // ✅ MOVE IT OUTSIDE
 const cleanContent = (html) => {
@@ -11,13 +12,13 @@ const cleanContent = (html) => {
 
 const BlogPostDetail = () => {
   const { slug } = useParams();
-  const navigate = useNavigate();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [relatedPosts, setRelatedPosts] = useState([]);
   const [categoryname, setCategoryName] = useState([]);
 
   useEffect(() => {
+    setLoading(true);
     const fetchBlogPost = async () => {
       try {
         const [postRes, relatedRes, categoryapi] = await Promise.all([
@@ -51,7 +52,6 @@ const BlogPostDetail = () => {
               },
             }
           ),
-         
         ]);
 
         const postJson = await postRes.json();
@@ -145,7 +145,7 @@ const BlogPostDetail = () => {
 
   return (
     <div
-      className=" min-h-screen"
+      className=" min-h-screen "
       style={{
         background: "linear-gradient(to bottom, #0B050C, #340408)",
         boxShadow: "0 0 10px #221624",
@@ -153,19 +153,21 @@ const BlogPostDetail = () => {
     >
       {/* Hero Section */}
       <div
-        className="relative bg-gradient-to-rpy-16"
+        className="relative bg-black/2 0 opacity-30 py-16"
         style={{
-          background: "linear-gradient(to bottom, #0B050C, #340408)",
+          backgroundImage: `url(${blogImg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
           boxShadow: "0 0 10px #221624",
-          minHeight: "400px",
         }}
       >
-        <div className="absolute inset-0 bg-black opacity-40"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="absolute inset-0"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
           <div className="max-w-3xl mx-auto text-center">
             <button
               onClick={() => window.history.back()}
-              className="mb-6 inline-flex items-center px-4 py-2 bg-gray-900 bg-opacity-50 text-white rounded-lg hover:bg-opacity-70 transition-all mt-5 "
+              className="mb-6 inline-flex items-center px-4 py-2 bg-gray-900 bg-opacity-50 text-white rounded-lg hover:bg-opacity-70 transition-all mt-5 cursor-pointer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -181,7 +183,7 @@ const BlogPostDetail = () => {
               </svg>
               Back to Blog
             </button>
-            <h3 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h3 className="text-4xl md:text-5xl font-bold text-gray-100 mb-4 italic">
               {post.title}
             </h3>
             <div className="flex items-center justify-center space-x-4 text-sm text-gray-300">

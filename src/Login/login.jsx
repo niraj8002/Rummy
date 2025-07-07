@@ -13,25 +13,31 @@ const LoginPage = () => {
       window.history.back();
     }
   }, [token]);
+
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [loginMode, setLoginMode] = useState("password");
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     trigger,
+    watch,
   } = useForm({ mode: "onChange" });
+
+  const data = watch();
 
   const onSubmit = async (data) => {
     setLoading(true);
     const toastId = toast.loading("Logging in...");
 
     try {
-      const payload = {
-        emailOrMobile: data.identifier,
-        password: data.password,
-      };
+      const payload =
+        loginMode === "password"
+          ? { emailOrMobile: data.identifier, password: data.password }
+          : { emailOrMobile: data.identifier, otp: data.otp };
+
       const res = await api.post("/auth/login", payload);
 
       if (res.status === 200) {
@@ -101,69 +107,120 @@ const LoginPage = () => {
                   })}
                   onKeyUp={() => trigger("identifier")}
                   placeholder="Enter your email/number"
-                  className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white placeholder-gray-400 focus:border-primary-500 focus:ring-1 focus:ring-primary-500"
+                  className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white placeholder-gray-400"
                 />
                 {errors.identifier && (
                   <p className="text-red-500 text-xs mt-1">
                     {errors.identifier.message}
                   </p>
                 )}
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Password
-                </label>
-                <div className="relative">
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Enter your password"
-                    {...register("password", {
-                      required: "Password is required",
-                      minLength: {
-                        value: 6,
-                        message: "Minimum 6 characters",
-                      },
-                    })}
-                    onKeyUp={() => trigger("password")}
-                    className="w-full px-4 py-3 pr-12 bg-dark-700 border border-dark-600 rounded-lg text-white placeholder-gray-400 focus:border-primary-500 focus:ring-1 focus:ring-primary-500"
-                  />
+                {loginMode === "otp" && (
                   <button
                     type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
-                    aria-label="Toggle Password Visibility"
+                    onClick={async () => {
+                      try {
+                        const res = await api.post("/auth/send-otp", {
+                          mobile: data.identifier,
+                          forLogin: true,
+                        });
+                        toast.success(res.data.message);
+                      } catch (err) {
+                        toast.error(
+                          err?.response?.data?.message || "Failed to send OTP"
+                        );
+                      }
+                    }}
+                    className="text-sm text-blue-400 hover:text-blue-300 mt-2"
                   >
-                    {showPassword ? (
-                      <EyeOff className="h-5 w-5" />
-                    ) : (
-                      <Eye className="h-5 w-5" />
-                    )}
+                    Send OTP
                   </button>
-                </div>
-                {errors.password && (
-                  <p className="text-red-500 text-xs mt-1">
-                    {errors.password.message}
-                  </p>
                 )}
               </div>
 
-              <div className="flex items-center justify-between">
-                <label className="flex items-center">
+              {loginMode === "password" ? (
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    Password
+                  </label>
+                  <div className="relative">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Enter your password"
+                      {...register("password", {
+                        required: "Password is required",
+                        minLength: {
+                          value: 6,
+                          message: "Minimum 6 characters",
+                        },
+                      })}
+                      onKeyUp={() => trigger("password")}
+                      className="w-full px-4 py-3 pr-12 bg-dark-700 border border-dark-600 rounded-lg text-white"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
+                      aria-label="Toggle Password Visibility"
+                    >
+                      {showPassword ? <EyeOff /> : <Eye />}
+                    </button>
+                  </div>
+                  {errors.password && (
+                    <p className="text-red-500 text-xs mt-1">
+                      {errors.password.message}
+                    </p>
+                  )}
+                </div>
+              ) : (
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    OTP
+                  </label>
                   <input
-                    type="checkbox"
-                    className="w-4 h-4 text-primary-500 bg-dark-700 border-dark-600 rounded focus:ring-primary-500"
+                    type="text"
+                    maxLength={6}
+                    {...register("otp", {
+                      required: "OTP is required",
+                      pattern: {
+                        value: /^\d{6}$/,
+                        message: "Enter valid 6-digit OTP",
+                      },
+                    })}
+                    onKeyUp={() => trigger("otp")}
+                    placeholder="Enter 6-digit OTP"
+                    className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white"
                   />
-                  <span className="ml-2 text-sm text-gray-300">
-                    Remember me
-                  </span>
-                </label>
-                <a
-                  href="#"
-                  className="text-sm text-gray-400 hover:text-primary-300"
+                  {errors.otp && (
+                    <p className="text-red-500 text-xs mt-1">
+                      {errors.otp.message}
+                    </p>
+                  )}
+                </div>
+              )}
+
+              <div className="flex justify-center gap-4 mt-2">
+                <button
+                  type="button"
+                  className={`px-3 py-1 rounded ${
+                    loginMode === "password"
+                      ? "bg-red-700 text-white"
+                      : "bg-gray-700 text-gray-300"
+                  }`}
+                  onClick={() => setLoginMode("password")}
                 >
-                  Forgot password?
-                </a>
+                  Password Login
+                </button>
+                <button
+                  type="button"
+                  className={`px-3 py-1 rounded ${
+                    loginMode === "otp"
+                      ? "bg-red-700 text-white"
+                      : "bg-gray-700 text-gray-300"
+                  }`}
+                  onClick={() => setLoginMode("otp")}
+                >
+                  OTP Login
+                </button>
               </div>
 
               <button
@@ -191,19 +248,6 @@ const LoginPage = () => {
               </button>
             </form>
 
-            <div className="mt-6 bg-dark-700 p-4 rounded-lg border border-gray-500 flex items-start space-x-3">
-              <Shield className="h-5 w-5 text-green-500 mt-0.5" />
-              <div>
-                <h4 className="text-sm font-semibold text-white">
-                  Secure Login
-                </h4>
-                <p className="text-xs text-gray-400 mt-1">
-                  Your login is protected with 256-bit SSL encryption and
-                  two-factor authentication.
-                </p>
-              </div>
-            </div>
-
             <div className="mt-6 text-center">
               <p className="text-gray-400 text-sm">
                 Don’t have an account?{" "}
@@ -215,22 +259,6 @@ const LoginPage = () => {
                 </Link>
               </p>
             </div>
-          </div>
-
-          <div className="card-gaming p-6 text-center bg-dark-800 rounded-lg">
-            <h3 className="text-lg font-bold text-white mb-2">
-              Get the Mobile App
-            </h3>
-            <p className="text-gray-400 text-sm mb-4">
-              Download our app for the best gaming experience and exclusive
-              mobile bonuses!
-            </p>
-            <Link
-              to="/download_apk"
-              className="btn-secondary w-full bg-[#2596e0] px-3 py-3 rounded-md hover:outline-1 outline-amber-50 font-medium"
-            >
-              Download App
-            </Link>
           </div>
         </div>
       </div>

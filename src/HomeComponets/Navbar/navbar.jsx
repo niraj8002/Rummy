@@ -38,6 +38,7 @@ export default function Navbar() {
     { label: "Home", href: "/", onclick: null },
     { label: "About", href: "/aboutus", onclick: null },
     { label: "Contact us", href: "/contactus", onclick: null },
+    { label: "Blog", href: "/our_blog", onclick: null },
   ];
   return (
     <>
@@ -81,18 +82,6 @@ export default function Navbar() {
                 </a>
               </li>
             ))}
-            <li>
-              <a
-                href="/download_apk"
-                className={` transition duration-300 tracking-wider font-[400] py-2 px-2  rounded-md flex  justify-center items-center text-center gap-1 bg-blue-500 hover:bg-red-500`}
-                style={{
-                  color: "#00f7ff",
-                  textShadow: "0 0 5px #00f7ff, 0 0 10px #00f7ff",
-                }}
-              >
-                <LuDownload size={18} /> Download
-              </a>
-            </li>
             {!token && (
               <li>
                 <a
@@ -106,13 +95,27 @@ export default function Navbar() {
             )}
             <li>
               <a
-                href="/profile"
-                className={` transition duration-300 tracking-wider font-[400] py-2 px-2  rounded-md flex  justify-center items-center text-center  gap-1 bg-red-800    hover:text-red-500 text-gray-100`}
+                href="/download_apk"
+                className={` transition duration-300 tracking-wider font-[400] py-2 px-2  rounded-md flex  justify-center items-center text-center gap-1 bg-blue-500 hover:bg-red-500`}
+                style={{
+                  color: "#00f7ff",
+                  textShadow: "0 0 5px #00f7ff, 0 0 10px #00f7ff",
+                }}
               >
-                <CgProfile size={18} />
-                Profile
+                <LuDownload size={18} /> Download
               </a>
             </li>
+            {token && (
+              <li>
+                <a
+                  href="/profile"
+                  className={` transition duration-300 tracking-wider font-[400] py-2 px-2  rounded-md flex  justify-center items-center text-center  gap-1 bg-red-800    hover:text-red-500 text-gray-100`}
+                >
+                  <CgProfile size={18} />
+                  Profile
+                </a>
+              </li>
+            )}
           </ul>
 
           {/* Mobile Menu Toggle Button */}

@@ -86,11 +86,11 @@ const BlogPostsGrid = () => {
           ))}
         </div>
 
-        <div className="mt-8 flex justify-center">
+        {/* <div className="mt-8 flex justify-center">
           <button className="bg-purple-600 hover:bg-purple-700 hover:text-yellow-400 text-white font-bold py-2 px-6 rounded-md transition">
             Load More Articles
           </button>
-        </div>
+        </div> */}
       </div>
     </>
   );
