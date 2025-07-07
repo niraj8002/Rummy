@@ -1,17 +1,18 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { SignModal } from "../../PopUpModal/signModal";
 import { SignUpModal } from "../../PopUpModal/signupModal";
 import { CiLogin } from "react-icons/ci";
 import { LuDownload } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
 import logo from "../../assets/icon/rummy-logo.png";
+import { ContextData } from "../../Service/context";
 
 export default function Navbar() {
   const drawerRef = useRef(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenSignUP, setIsOpenSignUP] = useState(false);
+  const { token } = useContext(ContextData);
 
   const openModal = () => {
     setIsOpen(true);
@@ -37,8 +38,6 @@ export default function Navbar() {
     { label: "Home", href: "/", onclick: null },
     { label: "About", href: "/aboutus", onclick: null },
     { label: "Contact us", href: "/contactus", onclick: null },
-    // { label: "Sign In", href: "#contact", onclick: openModal },
-    // { label: "Sign Up", href: "#contact", onclick: openSignUPModal },
   ];
   return (
     <>
@@ -62,7 +61,11 @@ export default function Navbar() {
           </a> */}
           <div className="w-20px">
             <a href="/">
-            <img src={logo} alt="rummyLogo" className="w-[130px] cursor-pointer" />
+              <img
+                src={logo}
+                alt="rummyLogo"
+                className="w-[130px] cursor-pointer"
+              />
             </a>
           </div>
           {/* Desktop Navigation */}
@@ -86,26 +89,25 @@ export default function Navbar() {
                   color: "#00f7ff",
                   textShadow: "0 0 5px #00f7ff, 0 0 10px #00f7ff",
                 }}
-                // onClick={""}
               >
                 <LuDownload size={18} /> Download
               </a>
             </li>
-            <li>
-              <a
-                href="/login"
-                className={`text-white hover:text-red-500 transition duration-300 tracking-wider font-[400]  flex  justify-center items-center text-center gap-1`}
-                // onClick={""}
-              >
-                <CiLogin size={22} />
-                Login
-              </a>
-            </li>
+            {!token && (
+              <li>
+                <a
+                  href="/login"
+                  className={`text-white hover:text-red-500 transition duration-300 tracking-wider font-[400]  flex  justify-center items-center text-center gap-1`}
+                >
+                  <CiLogin size={22} />
+                  Login
+                </a>
+              </li>
+            )}
             <li>
               <a
                 href="/profile"
                 className={` transition duration-300 tracking-wider font-[400] py-2 px-2  rounded-md flex  justify-center items-center text-center  gap-1 bg-red-800    hover:text-red-500 text-gray-100`}
-                // onClick={""}
               >
                 <CgProfile size={18} />
                 Profile

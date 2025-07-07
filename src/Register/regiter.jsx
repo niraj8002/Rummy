@@ -1,15 +1,34 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { UserPlus, Shield, Eye, EyeOff, Check } from "lucide-react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
+import api from "../Service/axios";
+import { ContextData } from "../Service/context";
 
+// const payload = {
+//       firstName: data.firstName,
+//       lastName: data.lastName,
+//       mobile: data.mobile,
+//       email: data.email,
+//       password: data.password,
+//       referralCode: data.referralCode || "",
+//       termsAccepted: data.termsAccepted,
+//       is18Confirmed: data.is18Confirmed,
+//     };
 const RegisterPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [tempUserData, setTempUserData] = useState(null);
+  const { token } = useContext(ContextData);
+  useEffect(() => {
+    if (token) {
+      window.history.back();
+    }
+  }, [token]);
 
   const {
     register,
@@ -33,34 +52,21 @@ const RegisterPage = () => {
   const onSubmit = async (data) => {
     const valid = await trigger();
     if (!valid) return;
-
     setLoading(true);
 
     try {
-      const payload = {
-        firstName: data.firstName,
-        lastName: data.lastName,
-        mobile: data.mobile,
-        email: data.email,
-        password: data.password,
-        referralCode: data.referralCode || "",
-      };
-      // await axios.post("/user/sign", payload);
-      toast.success("OTP sent to your mobile!");
-      setTimeout(() => {
+      const res = await api.post("/auth/send-otp", { mobile: data.mobile });
+
+      if (res?.data?.success) {
+        toast.success(res?.data?.message);
+        setTempUserData(data);
         setStep(2);
-      }, 4000);
-    } catch (err) {
-      console.error("API Error", err);
-      if (err?.response?.data?.errors) {
-        const fieldErrors = err.response.data.errors;
-        Object.keys(fieldErrors).forEach((key) => {
-          setError(key, { type: "manual", message: fieldErrors[key] });
-        });
-        toast.error("Please fix the highlighted fields.");
-      } else {
-        toast.error("Something went wrong. Please try again.");
       }
+      setTempUserData(data);
+      setStep(2);
+    } catch (err) {
+      console.error("OTP Send Error", err);
+      toast.error(err.response.data?.message);
     } finally {
       setLoading(false);
     }
@@ -69,23 +75,52 @@ const RegisterPage = () => {
   const onVerifyOtp = async (otpData) => {
     const valid = await triggerOtp();
     if (!valid) return;
-
     setLoading(true);
-    const toastId = toast.loading("Verifying OTP...", {
-      position: "top-right",
-    });
     try {
-      // await axios.post("/user/verify-otp", { otp: otpData.otp });
-      toast.success("OTP verified successfully", { id: toastId });
+      const verifyotp = await api.post("/auth/verify-otp", {
+        mobile: tempUserData.mobile,
+        otp: otpData.otp,
+      });
+
+      if (verifyotp?.data?.success) {
+        const res = await api.post("/auth/register", tempUserData);
+        console.log(res);
+        if (res?.data?.status) {
+          toast.success("Account created successfully!");
+          const leadsend = await fetch(
+            "https://cms.sevenunique.com/apis/leads/set-leads.php",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer jibhfiugh84t3324fefei#*fef",
+              },
+              body: JSON.stringify({
+                website_id: 6,
+                name: `${tempUserData.firstName} ${tempUserData.lastName}`,
+                mobile_number: tempUserData.mobile,
+                email: tempUserData.email,
+                notes: "Lead from FinUnique",
+              }),
+            }
+          );
+          setLoading(false);
+        }
+      }
       reset();
-      setStep(1);
+      setTempUserData(null);
+      setTimeout(() => {
+        window.location.href = "/login";
+      }, 2000);
     } catch (err) {
       console.error("OTP Verification Error", err);
+      toast.error("OTP Verification Error");
+      setLoading(false);
       if (err?.response?.data?.message) {
         setError("otp", { type: "manual", message: err.response.data.message });
-        toast.error(err.response.data.message, { id: toastId });
+        toast.error(err?.response?.data?.message);
       } else {
-        toast.error("OTP verification failed", { id: toastId });
+        toast.error("OTP verification failed");
       }
     } finally {
       setLoading(false);
@@ -338,7 +373,7 @@ const RegisterPage = () => {
                 <label className="flex items-start space-x-3">
                   <input
                     type="checkbox"
-                    {...register("terms", { required: true })}
+                    {...register("termsAccepted", { required: true })}
                     className="w-4 h-4 text-primary-500 bg-dark-700 border-dark-600 rounded mt-1 cursor-pointer"
                   />
                   <span className="text-sm text-gray-300">
@@ -358,13 +393,13 @@ const RegisterPage = () => {
                     </Link>
                   </span>
                 </label>
-                {errors.terms && (
+                {errors.termsAccepted && (
                   <p className="text-red-500 text-xs">Required</p>
                 )}
                 <label className="flex items-start space-x-3">
                   <input
                     type="checkbox"
-                    {...register("age", { required: true })}
+                    {...register("is18Confirmed", { required: true })}
                     className="w-4 h-4 text-primary-500 bg-dark-700 border-dark-600 rounded mt-1 cursor-pointer"
                   />
                   <span className="text-sm text-gray-300">
@@ -378,7 +413,9 @@ const RegisterPage = () => {
                     guidelines
                   </span>
                 </label>
-                {errors.age && <p className="text-red-500 text-xs">Required</p>}
+                {errors.is18Confirmed && (
+                  <p className="text-red-500 text-xs">Required</p>
+                )}
               </div>
               <button
                 type="submit"

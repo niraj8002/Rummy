@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   User,
   Wallet,
@@ -10,9 +10,12 @@ import {
   Download,
   LogOut,
 } from "lucide-react";
+import api from "../Service/axios";
 
 const Profilepage = () => {
   const [activeTab, setActiveTab] = useState("overview");
+  const [user, setuser] = useState(null);
+  const [editMode, setEditMode] = useState(false);
 
   const tabs = [
     { id: "overview", label: "Overview", icon: User },
@@ -21,8 +24,55 @@ const Profilepage = () => {
     { id: "history", label: "History", icon: History },
     { id: "settings", label: "Settings", icon: Settings },
   ];
+  const [formData, setFormData] = useState({
+    firstName: user?.user?.firstName || "",
+    lastName: user?.user?.lastName || "",
+    email: user?.user?.email || "",
+    mobile: user?.user?.mobile || "",
+  });
+
+  useEffect(() => {
+    const getprofile = async () => {
+      const res = await api.get("/user/getprofile");
+      setuser(res.data);
+    };
+    getprofile();
+  }, []);
+
+  const handleChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSave = async () => {
+    const payload = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      mobile: formData.mobile,
+    };
+    const res = await api.put("/user/update", payload);
+    console.log(res);
+
+    console.log("Payload to update:", payload);
+    setEditMode(false);
+  };
+
+  const handleCancel = () => {
+    // Reset form values to original user values
+    setFormData({
+      firstName: user?.user?.firstName || "",
+      lastName: user?.user?.lastName || "",
+      email: user?.user?.email || "",
+      mobile: user?.user?.mobile || "",
+    });
+    setEditMode(false);
+  };
   const logout = () => {
     window.location.href = "/login";
+    localStorage.removeItem("token");
   };
 
   return (
@@ -433,43 +483,114 @@ const Profilepage = () => {
                   Profile Settings
                 </h3>
                 <div className="space-y-4">
+                  {/* First Name */}
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
                       Full Name
                     </label>
-                    <input
-                      type="text"
-                      value="Niraj"
-                      className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white"
-                    />
+                    {editMode ? (
+                      <input
+                        type="text"
+                        name="firstName"
+                        value={formData.firstName}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white"
+                      />
+                    ) : (
+                      <div className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white">
+                        {user?.user?.firstName}
+                      </div>
+                    )}
                   </div>
+
+                  {/* Last Name */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      Last Name
+                    </label>
+                    {editMode ? (
+                      <input
+                        type="text"
+                        name="lastName"
+                        value={formData.lastName}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white"
+                      />
+                    ) : (
+                      <div className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white">
+                        {user?.user?.lastName}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Email */}
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
                       Email
                     </label>
-                    <input
-                      type="email"
-                      value="Niraj@gamil.com"
-                      className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white"
-                    />
+                    {editMode ? (
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white"
+                      />
+                    ) : (
+                      <div className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white">
+                        {user?.user?.email}
+                      </div>
+                    )}
                   </div>
+
+                  {/* Mobile */}
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
                       Mobile
                     </label>
-                    <input
-                      type="tel"
-                      value="+91 8003767732"
-                      className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white"
-                    />
+                    {editMode ? (
+                      <input
+                        type="text"
+                        name="mobile"
+                        value={formData.mobile}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white"
+                      />
+                    ) : (
+                      <div className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white">
+                        {user?.user?.mobile}
+                      </div>
+                    )}
                   </div>
-                  <button className="bg-red-900 px-2 py-2 rounded-md font-medium tracking-wider hover:text-gray-200 w-full transition duration-300 cursor-pointer">
-                    Update Profile
-                  </button>
+
+                  {/* Action Buttons */}
+                  {editMode ? (
+                    <div className="flex gap-4">
+                      <button
+                        onClick={handleSave}
+                        className="bg-green-700 px-4 py-2 rounded-md font-medium w-full hover:bg-green-800 transition"
+                      >
+                        Save
+                      </button>
+                      <button
+                        onClick={handleCancel}
+                        className="bg-gray-700 px-4 py-2 rounded-md font-medium w-full hover:bg-gray-800 transition"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() => setEditMode(true)}
+                      className="bg-red-900 px-2 py-2 rounded-md font-medium tracking-wider hover:text-gray-200 w-full transition duration-300 cursor-pointer"
+                    >
+                      Update Profile
+                    </button>
+                  )}
                 </div>
               </div>
 
-              {/* Account Settings */}
+              {/* Account Settings – no change */}
               <div className="card-gaming p-6">
                 <h3 className="text-xl font-bold text-white mb-4">
                   Account Settings

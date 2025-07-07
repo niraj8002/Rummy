@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import DOMPurify from "dompurify";
 
 // ✅ MOVE IT OUTSIDE
@@ -15,11 +15,12 @@ const BlogPostDetail = () => {
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [relatedPosts, setRelatedPosts] = useState([]);
+  const [categoryname, setCategoryName] = useState([]);
 
   useEffect(() => {
     const fetchBlogPost = async () => {
       try {
-        const [postRes, relatedRes] = await Promise.all([
+        const [postRes, relatedRes, categoryapi] = await Promise.all([
           fetch(
             `https://cms.sevenunique.com/apis/blogs/get-blogs.php?status=2&slug=${slug}&website_id=6`,
             {
@@ -40,24 +41,33 @@ const BlogPostDetail = () => {
               },
             }
           ),
+          fetch(
+            `https://cms.sevenunique.com/apis/category/get_category_by_id.php?category_id=6 `,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer jibhfiugh84t3324fefei#*fef",
+              },
+            }
+          ),
+         
         ]);
 
         const postJson = await postRes.json();
         const relatedJson = await relatedRes.json();
-        console.log(postJson);
-        console.log(relatedJson);
+        const categoryapijson = await categoryapi.json();
+        // console.log(postJson);
+        // console.log(relatedJson);
+        // console.log(categoryapijson);
 
         if (postJson.status === "success" && postJson.data.length > 0) {
           const rawPost = postJson.data[0];
-          rawPost.content = cleanContent(rawPost.content); 
+          rawPost.content = cleanContent(rawPost.content);
           setPost(rawPost);
         }
-
-        if (relatedJson.status === "success") {
-          setRelatedPosts(
-            relatedJson.data.filter((p) => p.slug !== slug).slice(0, 3)
-          );
-        }
+        setCategoryName(categoryapijson);
+        setRelatedPosts(relatedJson);
       } catch (err) {
         console.error("Failed to fetch blog post:", err);
       } finally {
@@ -186,6 +196,8 @@ const BlogPostDetail = () => {
               <span>
                 {Math.ceil(post.content.split(" ").length / 200)} min read
               </span>
+              <span>•</span>
+              <span>{categoryname.data.name}</span>
             </div>
           </div>
         </div>
@@ -228,41 +240,42 @@ const BlogPostDetail = () => {
         </div>
 
         {/* Related Posts */}
-        {relatedPosts.length > 0 && (
-          <div className="mt-16">
-            <h2 className="text-2xl font-bold text-white mb-6">
-              More Betting Insights
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {relatedPosts.map((relatedPost) => (
-                <div
-                  key={relatedPost.id}
-                  className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer"
-                  onClick={() => navigate(`/blog/${relatedPost.slug}`)}
-                >
-                  {relatedPost.image && (
-                    <img
-                      src={relatedPost.image}
-                      alt={relatedPost.title}
-                      className="w-full h-40 object-cover"
-                    />
-                  )}
-                  <div className="p-4">
-                    <h3 className="font-bold text-white mb-2 line-clamp-2">
-                      {relatedPost.title}
-                    </h3>
-                    <p className="text-gray-400 text-sm mb-3">
-                      {new Date(relatedPost.created_at).toLocaleDateString()}
-                    </p>
-                    <button className="text-yellow-400 text-sm font-medium hover:text-yellow-300 transition-colors">
-                      Read Article →
-                    </button>
-                  </div>
+        {/* {relatedPosts.length > 0 && ( */}
+        <div className="mt-16">
+          <h2 className="text-2xl font-bold text-white mb-6">
+            More Betting Insights
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {relatedPosts?.data?.map((relatedPost) => (
+              <Link
+                to={`/blog/post/${relatedPost?.slug}`}
+                key={relatedPost.id}
+                className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer"
+                // onClick={() => navigate()}
+              >
+                {relatedPost.image && (
+                  <img
+                    src={relatedPost?.image}
+                    alt={relatedPost?.title}
+                    className="w-full h-40 object-cover"
+                  />
+                )}
+                <div className="p-4">
+                  <h3 className="font-bold text-white mb-2 line-clamp-2">
+                    {relatedPost.title}
+                  </h3>
+                  <p className="text-gray-400 text-sm mb-3">
+                    {new Date(relatedPost.created_at).toLocaleDateString()}
+                  </p>
+                  <button className="text-yellow-400 text-sm font-medium hover:text-yellow-300 transition-colors">
+                    Read Article →
+                  </button>
                 </div>
-              ))}
-            </div>
+              </Link>
+            ))}
           </div>
-        )}
+        </div>
+        {/* )} */}
       </div>
     </div>
   );

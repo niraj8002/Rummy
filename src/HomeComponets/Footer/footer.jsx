@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ContextData } from "../../Service/context";
 import logo from "../../assets/icon/rummy-logo.png";
@@ -7,11 +7,41 @@ import { FaWhatsapp } from "react-icons/fa";
 const Footer = () => {
   const { scrollToTop } = useContext(ContextData);
 
+  const [contactDetails, setContactDetails] = useState(null);
+
+  useEffect(() => {
+    const fetchContactDetails = async () => {
+      try {
+        const response = await fetch(
+          "https://cms.sevenunique.com/apis/contact/get-contact-details.php?website_id=6",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer jibhfiugh84t3324fefei#*fef",
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch contact details");
+        }
+
+        const data = await response.json();
+        setContactDetails(data?.data);
+        // console.log("Contact details:", data?.data);
+      } catch (error) {
+        console.error("Error fetching contact details:", error);
+      }
+    };
+
+    fetchContactDetails();
+  }, []);
+
   return (
     <footer className="bg-gray-900 text-white pt-12 pb-8 px-4">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 text-left">
-          
           {/* FinUnique Zone */}
           <div className="text-center sm:text-left">
             <div className="mb-4 flex justify-center sm:justify-start">
@@ -95,10 +125,12 @@ const Footer = () => {
           <div className="text-center sm:text-left">
             <h3 className="text-lg font-bold mb-4">Contact Us</h3>
             <div className="space-y-2 text-sm">
-              <p>9341436937</p>
-              <p>Plot No 97, Dakshinpuri - L Shirkishan-Sanganez,</p>
+              <p>{contactDetails?.phone || 9341436937} </p>
+              <p>{contactDetails?.address}</p>
+              <p>{contactDetails?.email}</p>
+              {/* <p> Plot No 97, Dakshinpuri - L Shirkishan-Sanganez,</p>
               <p>Jagatpura, Jaipur, Rajasthan,</p>
-              <p>India – 302017</p>
+              <p>India – 302017</p> */}
               <a
                 href="https://wa.me/919341436937?text=Hi%20I%20want%20to%20know%20more"
                 target="_blank"

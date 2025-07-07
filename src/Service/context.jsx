@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 export const ContextData = createContext();
 
 export const ContextProvider = ({ children }) => {
+  const token = localStorage.getItem("token");
   const partname = useLocation();
   const scrollToTop = () => {
     window.scrollTo({
@@ -11,13 +12,13 @@ export const ContextProvider = ({ children }) => {
       behavior: "smooth",
     });
   };
-  
+
   useEffect(() => {
     scrollToTop();
   }, [partname]);
 
   return (
-    <ContextData.Provider value={{ scrollToTop }}>
+    <ContextData.Provider value={{ scrollToTop, token }}>
       {children}
     </ContextData.Provider>
   );
