@@ -191,6 +191,32 @@ export default function Navbar() {
                     {label}
                   </a>
                 ))}
+                {!token && (
+                  <a
+                    href="/login"
+                    className={`text-white hover:text-red-500 transition duration-300 tracking-wider font-[400]  flex  justify-center items-center text-center gap-1`}
+                  >
+                    <CiLogin size={22} />
+                    Login
+                  </a>
+                )}
+                <a
+                  href="/profile"
+                  className={` transition duration-300 tracking-wider font-[400] py-2 px-2  rounded-md flex  justify-center items-center text-center  gap-1 bg-red-800    hover:text-red-500 text-gray-100`}
+                >
+                  <CgProfile size={18} />
+                  Profile
+                </a>
+                <a
+                  href="/download_apk"
+                  className={` transition duration-300 tracking-wider font-[400] py-2 px-2  rounded-md flex  justify-center items-center text-center gap-1 bg-blue-500 hover:bg-red-500`}
+                  style={{
+                    color: "#00f7ff",
+                    textShadow: "0 0 5px #00f7ff, 0 0 10px #00f7ff",
+                  }}
+                >
+                  <LuDownload size={18} /> Download
+                </a>
               </div>
             </div>
           )}

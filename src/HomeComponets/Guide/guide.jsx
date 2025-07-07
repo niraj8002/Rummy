@@ -1,5 +1,6 @@
 import React from "react";
 import { CiUser } from "react-icons/ci";
+import { Link } from "react-router-dom";
 export default function GuideSection() {
   const features = [
     {
@@ -35,7 +36,7 @@ export default function GuideSection() {
             your game!
           </h2>
           <button className="bg-red-500 hover:bg-red-600 text-gray-200 font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">
-            Download App
+            <Link to={"/download_apk"}>Download App</Link>
           </button>
           <p className="mt-6 text-4xl">Play on Any Device</p>
         </div>
