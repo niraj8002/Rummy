@@ -106,7 +106,11 @@ const LoginPage = () => {
                     },
                   })}
                   onKeyUp={() => trigger("identifier")}
-                  placeholder="Enter your email/number"
+                  placeholder={
+                    loginMode == "otp"
+                      ? "Enter your mobile number"
+                      : "Enter your email"
+                  }
                   className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white placeholder-gray-400"
                 />
                 {errors.identifier && (
@@ -130,7 +134,8 @@ const LoginPage = () => {
                         );
                       }
                     }}
-                    className="text-sm text-blue-400 hover:text-blue-300 mt-2"
+                    className={`text-sm text-blue-400 hover:text-blue-300 mt-2
+                      ${errors.identifier && "hidden"}`}
                   >
                     Send OTP
                   </button>
@@ -208,7 +213,7 @@ const LoginPage = () => {
                   }`}
                   onClick={() => setLoginMode("password")}
                 >
-                  Password Login
+                  Login with Password 
                 </button>
                 <button
                   type="button"
@@ -219,7 +224,7 @@ const LoginPage = () => {
                   }`}
                   onClick={() => setLoginMode("otp")}
                 >
-                  OTP Login
+                  Login with OTP 
                 </button>
               </div>
 

@@ -8,33 +8,41 @@ const Footer = () => {
   const { scrollToTop } = useContext(ContextData);
 
   const [contactDetails, setContactDetails] = useState(null);
+  const [socailDetails, setSocailDetails] = useState([]);
 
   useEffect(() => {
     const fetchContactDetails = async () => {
       try {
-        const response = await fetch(
-          "https://cms.sevenunique.com/apis/contact/get-contact-details.php?website_id=6",
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer jibhfiugh84t3324fefei#*fef",
-            },
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch contact details");
-        }
-
-        const data = await response.json();
-        setContactDetails(data?.data);
-        // console.log("Contact details:", data?.data);
+        const [contactDtails, socialLink] = await Promise.all([
+          fetch(
+            "https://cms.sevenunique.com/apis/contact/get-contact-details.php?website_id=6",
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer jibhfiugh84t3324fefei#*fef",
+              },
+            }
+          ),
+          fetch(
+            "https://cms.sevenunique.com/apis/social-media/get-social-accounts.php?website_id=6 ",
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer jibhfiugh84t3324fefei#*fef",
+              },
+            }
+          ),
+        ]);
+        const contactjson = await contactDtails.json();
+        const socialjson = await socialLink.json();
+        setContactDetails(contactjson?.data);
+        setSocailDetails(socialjson?.data);
       } catch (error) {
         console.error("Error fetching contact details:", error);
       }
     };
-
     fetchContactDetails();
   }, []);
 
@@ -125,29 +133,53 @@ const Footer = () => {
           <div className="text-center sm:text-left">
             <h3 className="text-lg font-bold mb-4">Contact Us</h3>
             <div className="space-y-2 text-sm">
-              <p>{contactDetails?.phone || 9341436937} </p>
-              <p>{contactDetails?.address}</p>
-              <p>{contactDetails?.email}</p>
-              {/* <p> Plot No 97, Dakshinpuri - L Shirkishan-Sanganez,</p>
-              <p>Jagatpura, Jaipur, Rajasthan,</p>
-              <p>India – 302017</p> */}
-              <a
-                href="https://wa.me/919341436937?text=Hi%20I%20want%20to%20know%20more"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block mt-2 text-red-400 hover:underline"
-              >
-                <div className="flex justify-center sm:justify-start items-center gap-2">
-                  <FaWhatsapp />
-                  Contact Support
-                </div>
-              </a>
+              <div>
+                <p>{contactDetails?.phone || "9341436937"}</p>
+                <p>{contactDetails?.address}</p>
+                <p>
+                  {(contactDetails?.email || "").split(",").map((email, i) => (
+                    <span key={i}>
+                      {email.trim()}
+                      <br />
+                    </span>
+                  ))}
+                </p>
+              </div>
+
+              {/* Social Icons */}
+              <div className="flex items-center justify-center sm:justify-start gap-4 mt-2">
+                {socailDetails?.map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.account_link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block"
+                    dangerouslySetInnerHTML={{ __html: social.icon_class }}
+                  />
+                ))}
+              </div>
+
+              {/* WhatsApp Support */}
+              <div>
+                <a
+                  href="https://wa.me/919341436937?text=Hi%20I%20want%20to%20know%20more"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block mt-2 text-red-400 hover:underline"
+                >
+                  <div className="flex justify-center sm:justify-start items-center gap-2">
+                    <FaWhatsapp />
+                    Contact Support
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
         <div className="border-t border-gray-800 mt-10 pt-6 text-center text-sm">
-          <p>© 2024 Finunique. All rights reserved. Play responsibly. 18+</p>
+          <p>© 2024 Finunique small private limited. All rights reserved. Play responsibly. 18+</p>
         </div>
       </div>
     </footer>
