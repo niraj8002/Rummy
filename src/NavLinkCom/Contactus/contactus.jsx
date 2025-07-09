@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
@@ -8,6 +8,8 @@ import { DownloadCTA } from "../../DownloadAPK/DownloadCTA";
 
 export default function ContactUs() {
   const [loading, setLoading] = useState(false);
+  const [contactDetails, setContactDetails] = useState(null);
+
   const {
     register,
     handleSubmit,
@@ -15,6 +17,29 @@ export default function ContactUs() {
     trigger,
   } = useForm({ mode: "onChange" });
 
+  useEffect(() => {
+    const fetchContactDetails = async () => {
+      try {
+        const [contactDtails] = await Promise.all([
+          fetch(
+            "https://cms.sevenunique.com/apis/contact/get-contact-details.php?website_id=6",
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer jibhfiugh84t3324fefei#*fef",
+              },
+            }
+          ),
+        ]);
+        const contactjson = await contactDtails.json();
+        setContactDetails(contactjson?.data);
+      } catch (error) {
+        console.error("Error fetching contact details:", error);
+      }
+    };
+    fetchContactDetails();
+  }, []);
   const onSubmit = async (data) => {
     const valid = await trigger();
     if (!valid) return;
@@ -40,7 +65,7 @@ export default function ContactUs() {
         }
       );
       const result = await response.json();
-      console.log(result);
+      // console.log(result);
       if (result.status) {
         toast.success("team will contact you soon!");
       }
@@ -71,20 +96,24 @@ export default function ContactUs() {
                   <FaEnvelope className="text-red-500" />
                 </div>
                 <div>
-                  <p className="font-semibold">Email Us</p>
-                  <a
-                    href="mailto:support@7unique.in"
-                    className="text-sm text-gray-300 hover:underline"
-                  >
-                    support@7unique.in
-                  </a>
-                  <br />
-                  <a
-                    href="mailto:info@7unique.in"
-                    className="text-sm text-gray-300 hover:underline"
-                  >
-                    info@7unique.in
-                  </a>
+                  {contactDetails?.email ? (
+                    <>
+                      <p className="font-semibold">Email Us</p>
+                      {contactDetails?.email &&
+                        contactDetails?.email.split(",").map((email, index) => (
+                          <div key={index}>
+                            <a
+                              href={`mailto:${email.trim()}`}
+                              className="text-sm text-gray-300 hover:underline"
+                            >
+                              {email.trim()}
+                            </a>
+                          </div>
+                        ))}
+                    </>
+                  ) : (
+                    <p className="text-sm text-gray-300">Loading...</p>
+                  )}
                 </div>
               </div>
             </div>
@@ -95,13 +124,16 @@ export default function ContactUs() {
                   <FaMapMarkerAlt className="text-red-500 " />
                 </div>
                 <div>
-                  <p className="font-semibold">Visit Us</p>
-                  <p className="text-sm text-gray-300">
-                    Plot No 97, Dakshinpuri – I, Shrikishan, Sanganer,
-                    Jagatpura,
-                    <br />
-                    Jaipur Rajasthan, India, 302017
-                  </p>
+                  {contactDetails?.address ? (
+                    <>
+                      <p className="font-semibold">Visit Us</p>
+                      <p className="text-sm text-gray-300">
+                        {contactDetails.address}
+                      </p>
+                    </>
+                  ) : (
+                    <p className="text-sm text-gray-300">Loading...</p>
+                  )}
                 </div>
               </div>
             </div>

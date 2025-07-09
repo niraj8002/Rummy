@@ -64,7 +64,7 @@ const BlogPostsGrid = () => {
         );
 
         const data = await res.json();
-        console.log(data.data);
+        // console.log(data.data);
         setAllblog(data.data);
       } catch (error) {
         console.log("Error fetching blogs:", error);

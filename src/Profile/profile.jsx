@@ -79,7 +79,7 @@ const Profilepage = () => {
 
       const res = await api.put("/user/update", payload);
       toast.success("Profile updated successfully");
-      console.log("Update response:", res.data);
+      // console.log("Update response:", res.data);
       setEditMode(false);
     } catch (err) {
       console.error("Error updating profile:", err);

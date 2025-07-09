@@ -136,14 +136,15 @@ const Footer = () => {
               <div>
                 <p>{contactDetails?.phone || "9341436937"}</p>
                 <p>{contactDetails?.address}</p>
-                <p>
-                  {(contactDetails?.email || "").split(",").map((email, i) => (
-                    <span key={i}>
-                      {email.trim()}
-                      <br />
-                    </span>
-                  ))}
-                </p>
+                {(contactDetails?.email || "").split(",").map((email, i) => (
+                  <a
+                    key={i}
+                    href={`mailto:${email.trim()}`}
+                    className="text-sm text-gray-300 hover:underline block"
+                  >
+                    {email.trim()}
+                  </a>
+                ))}
               </div>
 
               {/* Social Icons */}
@@ -179,7 +180,10 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-800 mt-10 pt-6 text-center text-sm">
-          <p>© 2024 Finunique small private limited. All rights reserved. Play responsibly. 18+</p>
+          <p>
+            © 2024 Finunique small private limited. All rights reserved. Play
+            responsibly. 18+
+          </p>
         </div>
       </div>
     </footer>

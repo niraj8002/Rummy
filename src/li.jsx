@@ -17,7 +17,7 @@ const TrafficLight = () => {
       const next = gen.next();
       if (!next.done) {
         setcount(next.value);
-        console.log(next);
+        // console.log(next);
       } else {
         clearInterval(interval);
       }

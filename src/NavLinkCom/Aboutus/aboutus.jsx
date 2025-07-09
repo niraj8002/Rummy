@@ -17,7 +17,7 @@ export const AboutUs = () => {
         );
         const json = await res.json();
         const normalizeUrl = (url) => url.replace(/\/+$/, "");
-        console.log(normalizeUrl);
+        // console.log(normalizeUrl);
         
         const fullUrl = normalizeUrl(
           window.location.origin + window.location.pathname
@@ -28,7 +28,7 @@ export const AboutUs = () => {
           (item) => normalizeUrl(item.page_slug) === fullUrl
         );
         setSeo(match);
-        console.log(match);
+        // console.log(match);
         
       } catch (err) {
         console.error("SEO Fetch Error:", err);

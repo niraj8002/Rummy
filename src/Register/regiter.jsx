@@ -84,11 +84,11 @@ const RegisterPage = () => {
         mobile: tempUserData.mobile,
         otp: otpData.otp,
       });
-      console.log(verifyotp);
+      // console.log(verifyotp);
 
       if (verifyotp?.data?.success) {
         const res = await api.post("/auth/register", tempUserData);
-        console.log(res);
+        // console.log(res);
         if (res?.data?.status) {
           toast.success("Account created successfully!");
           const leadsend = await fetch(
