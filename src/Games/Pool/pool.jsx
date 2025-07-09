@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import Banner from "../../Reuseable Com/Banner";
 import bannerimg from "../../assets/pool/p1.png";
 import poolCard from "../../assets/pool/poolcard.png";
 import PoolRulesSection from "./poolRule";
 import { Link } from "react-router-dom";
+import { ContextData } from "../../Service/context";
+import SEO from "../../Reuseable Com/SeoHelment";
 
 export const PoolGame = () => {
+    const { seo } = useContext(ContextData);
+  
   const Card = [
     {
       img: poolCard,
@@ -25,6 +29,18 @@ export const PoolGame = () => {
   ];
   return (
     <>
+     <SEO
+        meta_title={seo?.meta_title}
+        meta_description={seo?.meta_description}
+        meta_keywords={seo?.meta_keywords}
+        og_title={seo?.og_title}
+        og_description={seo?.og_description}
+        og_type={seo?.og_type}
+        og_url={seo?.og_url}
+        og_image={seo?.og_image}
+        og_site_name={seo?.og_site_name}
+        canonical_tag={seo?.canonical_tag}
+      />
       <Banner
         img={bannerimg}
         heading="Pool"

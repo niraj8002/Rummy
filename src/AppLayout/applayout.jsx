@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../HomeComponets/Navbar/navbar";
 import NeonBanner from "../HomeComponets/HeroSection/Hero";
 import TournamentsSection from "../HomeComponets/TournamentSection/tournament";
@@ -6,34 +6,11 @@ import GuideSection from "../HomeComponets/Guide/guide";
 import Footer from "../HomeComponets/Footer/footer";
 import { DownloadCTA } from "../DownloadAPK/DownloadCTA";
 import SEO from "../Reuseable Com/SeoHelment";
+import { ContextData } from "../Service/context";
 
 export const AppLayout = () => {
-  const [seo, setSeo] = useState({});
+  const { seo } = useContext(ContextData);
 
-  useEffect(() => {
-    const fetchSeo = async () => {
-      try {
-        const res = await fetch(
-          "https://cms.sevenunique.com/apis/SEO/get-seo-content.php?website_id=6"
-        );
-        const json = await res.json();
-        const normalizeUrl = (url) => url.replace(/\/+$/, "");
-        const fullUrl = normalizeUrl(
-          window.location.origin + window.location.pathname
-        );
-        // const fullUrl = "https://rummy-eight.vercel.app";
-        const match = json?.data?.find(
-          (item) => normalizeUrl(item.page_slug) === fullUrl
-        );
-        setSeo(match);
-        // console.log("Matched SEO:", match);
-      } catch (err) {
-        console.error("SEO Fetch Error:", err);
-      }
-    };
-
-    fetchSeo();
-  }, []);
   return (
     <>
       <SEO

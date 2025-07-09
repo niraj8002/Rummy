@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import bgcimg from "../../assets/bannerimg/contactus.png";
 import { DownloadCTA } from "../../DownloadAPK/DownloadCTA";
+import { ContextData } from "../../Service/context";
+import SEO from "../../Reuseable Com/SeoHelment";
 
 export default function ContactUs() {
   const [loading, setLoading] = useState(false);
   const [contactDetails, setContactDetails] = useState(null);
+  const { seo } = useContext(ContextData);
 
   const {
     register,
@@ -78,6 +81,18 @@ export default function ContactUs() {
 
   return (
     <>
+      <SEO
+        meta_title={seo?.meta_title}
+        meta_description={seo?.meta_description}
+        meta_keywords={seo?.meta_keywords}
+        og_title={seo?.og_title}
+        og_description={seo?.og_description}
+        og_type={seo?.og_type}
+        og_url={seo?.og_url}
+        og_image={seo?.og_image}
+        og_site_name={seo?.og_site_name}
+        canonical_tag={seo?.canonical_tag}
+      />
       <div
         className="bg-[#0B050C] text-white py-10 px-4 tracking-wider lg:h-[90vh]"
         style={{ background: "linear-gradient(to bottom, #11050B, #11050B)" }}
