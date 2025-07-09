@@ -122,6 +122,12 @@ const LoginPage = () => {
                   <button
                     type="button"
                     onClick={async () => {
+                      const valid = await trigger("identifier");
+                      if (!valid) {
+                        toast.error("Please enter a valid mobile number");
+                        return;
+                      }
+
                       try {
                         const res = await api.post("/auth/send-otp", {
                           mobile: data.identifier,
@@ -134,8 +140,9 @@ const LoginPage = () => {
                         );
                       }
                     }}
-                    className={`text-sm text-blue-400 hover:text-blue-300 mt-2
-                      ${errors.identifier && "hidden"}`}
+                    className={`text-sm text-blue-400 hover:text-blue-300 mt-2 ${
+                      errors.identifier && "hidden"
+                    }`}
                   >
                     Send OTP
                   </button>
@@ -191,6 +198,9 @@ const LoginPage = () => {
                         message: "Enter valid 6-digit OTP",
                       },
                     })}
+                    onInput={(e) => {
+                      e.target.value = e.target.value.replace(/\D/g, "");
+                    }}
                     onKeyUp={() => trigger("otp")}
                     placeholder="Enter 6-digit OTP"
                     className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white"
@@ -213,7 +223,7 @@ const LoginPage = () => {
                   }`}
                   onClick={() => setLoginMode("password")}
                 >
-                  Login with Password 
+                  Login with Password
                 </button>
                 <button
                   type="button"
@@ -224,7 +234,7 @@ const LoginPage = () => {
                   }`}
                   onClick={() => setLoginMode("otp")}
                 >
-                  Login with OTP 
+                  Login with OTP
                 </button>
               </div>
 

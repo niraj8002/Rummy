@@ -55,15 +55,18 @@ const RegisterPage = () => {
     setLoading(true);
 
     try {
-      const res = await api.post("/auth/send-otp", { mobile: data.mobile });
+      const res = await api.post("/auth/send-otp", {
+        mobile: data.mobile,
+        email: data.email,
+        forLogin: false,
+      });
 
       if (res?.data?.success) {
         toast.success(res?.data?.message);
         setTempUserData(data);
         setStep(2);
       }
-      setTempUserData(data);
-      setStep(2);
+      
     } catch (err) {
       console.error("OTP Send Error", err);
       toast.error(err.response.data?.message);
@@ -81,6 +84,7 @@ const RegisterPage = () => {
         mobile: tempUserData.mobile,
         otp: otpData.otp,
       });
+      console.log(verifyotp);
 
       if (verifyotp?.data?.success) {
         const res = await api.post("/auth/register", tempUserData);
@@ -100,7 +104,7 @@ const RegisterPage = () => {
                 name: `${tempUserData.firstName} ${tempUserData.lastName}`,
                 mobile_number: tempUserData.mobile,
                 email: tempUserData.email,
-                notes: "Lead from FinUnique",
+                notes: "Lead from FinUnique small private limited",
               }),
             }
           );
