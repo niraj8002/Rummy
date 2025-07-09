@@ -27,7 +27,6 @@ export const ContextProvider = ({ children }) => {
         console.error("SEO Fetch Error:", err);
       }
     };
-
     fetchSeo();
   }, [partname]);
 

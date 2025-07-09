@@ -3,7 +3,6 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import DOMPurify from "dompurify";
 import blogImg from "../assets/bannerimg/blogbanner.jpg";
 
-// ✅ MOVE IT OUTSIDE
 const cleanContent = (html) => {
   return DOMPurify.sanitize(html, {
     FORBID_ATTR: ["style"], // removes inline styles
@@ -16,8 +15,10 @@ const BlogPostDetail = () => {
   const [loading, setLoading] = useState(true);
   const [relatedPosts, setRelatedPosts] = useState([]);
   const [categoryname, setCategoryName] = useState([]);
+  console.log(slug);
 
   useEffect(() => {
+    setPost(null);
     setLoading(true);
     const fetchBlogPost = async () => {
       try {
@@ -62,10 +63,15 @@ const BlogPostDetail = () => {
         // console.log(categoryapijson);
 
         if (postJson.status === "success" && postJson.data.length > 0) {
-          const rawPost = postJson.data[0];
-          rawPost.content = cleanContent(rawPost.content);
-          setPost(rawPost);
+          const matchedPost = postJson.data.find((p) => p.slug === slug);
+          if (matchedPost) {
+            matchedPost.content = cleanContent(matchedPost.content);
+            setPost(matchedPost);
+          } else {
+            setPost(null);
+          }
         }
+
         setCategoryName(categoryapijson);
         setRelatedPosts(relatedJson);
       } catch (err) {
@@ -153,7 +159,7 @@ const BlogPostDetail = () => {
     >
       {/* Hero Section */}
       <div
-        className="relative bg-black/2 0 opacity-30 py-16"
+        className="relative bg-black/2 0 opacity-70 py-16"
         style={{
           backgroundImage: `url(${blogImg})`,
           backgroundSize: "cover",
@@ -249,31 +255,30 @@ const BlogPostDetail = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {relatedPosts?.data?.map((relatedPost) => (
-              <Link
-                to={`/blog/post/${relatedPost?.slug}`}
-                key={relatedPost.id}
-                className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer"
-                // onClick={() => navigate()}
-              >
-                {relatedPost.image && (
-                  <img
-                    src={relatedPost?.image}
-                    alt={relatedPost?.title}
-                    className="w-full h-40 object-cover"
-                  />
-                )}
-                <div className="p-4">
-                  <h3 className="font-bold text-white mb-2 line-clamp-2">
-                    {relatedPost.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm mb-3">
-                    {new Date(relatedPost.created_at).toLocaleDateString()}
-                  </p>
-                  <button className="text-yellow-400 text-sm font-medium hover:text-yellow-300 transition-colors">
-                    Read Article →
-                  </button>
-                </div>
-              </Link>
+              <div key={relatedPost.id}>
+                <Link to={`/blog/post/${relatedPost?.slug}`}>
+                  <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer">
+                    {relatedPost.image && (
+                      <img
+                        src={relatedPost?.image}
+                        alt={relatedPost?.title}
+                        className="w-full h-40 object-cover"
+                      />
+                    )}
+                    <div className="p-4">
+                      <h3 className="font-bold text-white mb-2 line-clamp-2">
+                        {relatedPost.title}
+                      </h3>
+                      <p className="text-gray-400 text-sm mb-3">
+                        {new Date(relatedPost.created_at).toLocaleDateString()}
+                      </p>
+                      <button className="text-yellow-400 text-sm font-medium hover:text-yellow-300 transition-colors">
+                        Read Article →
+                      </button>
+                    </div>
+                  </div>
+                </Link>
+              </div>
             ))}
           </div>
         </div>
