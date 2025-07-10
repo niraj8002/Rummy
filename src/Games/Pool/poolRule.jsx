@@ -9,6 +9,7 @@ import {
 import poolCardsImg from "../../assets/pool/poolcard.png";
 import { FaArrowRight } from "react-icons/fa6";
 import TotalGame from "../../HomeComponets/TotalGame/totalgame";
+import { Link } from "react-router-dom";
 
 const rules = [
   {
@@ -88,9 +89,11 @@ const PoolRulesSection = () => {
 
           {/* CTA Button */}
           <div className="text-start mt-10">
-            <button className="mt-6 flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#5e0d0d] to-[#ff6b6b] text-white rounded-lg font-medium hover:shadow-lg hover:shadow-[#5e0d0d]/50 transition-all duration-300 mx-auto lg:mx-0">
-              Play Now <FaArrowRight />
-            </button>
+            <Link to={"/download_apk"}>
+              <button className="mt-6 flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#5e0d0d] to-[#ff6b6b] text-white rounded-lg font-medium hover:shadow-lg hover:shadow-[#5e0d0d]/50 transition-all duration-300 mx-auto lg:mx-0">
+                Play Now <FaArrowRight />
+              </button>
+            </Link>
           </div>
         </div>
       </section>

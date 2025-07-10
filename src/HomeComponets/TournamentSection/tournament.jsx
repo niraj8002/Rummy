@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaGift } from "react-icons/fa6";
 import { RiCoupon3Fill } from "react-icons/ri";
 import bounas from "../../assets/home/bounas.png";
 import coupan from "../../assets/home/coupan.png";
+import { Link } from "react-router-dom";
+import { ContextData } from "../../Service/context";
 
 export default function TournamentsSection() {
+  const { token } = useContext(ContextData);
   return (
     <div className="bg-gradient-to-r from-black via-[#1b0d13] to-black text-white py-10 px-4 md:px-16">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-6">
@@ -29,9 +32,7 @@ export default function TournamentsSection() {
             </div>
             <div className="border border-gray-600 rounded-lg p-4 w-40 text-center hover:shadow-lg transition">
               <div>
-                <img src={coupan} alt="coupan"
-                
-                />
+                <img src={coupan} alt="coupan" />
               </div>
               <h3 className="font-medium">
                 Referral
@@ -61,9 +62,12 @@ export default function TournamentsSection() {
           </div>
           <div className="border-t border-gray-700 pt-4 text-center flex justify-between items-center">
             <p className="text-sm text-gray-400 mb-2">Entry Fees</p>
-            <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
-              JOIN NOW
-            </button>
+            <Link
+              to={token ? "/game_rummy" : "/login"}
+              className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+            >
+              {token ? "JOIN NOW" : "REGISTER"}
+            </Link>
           </div>
         </div>
       </div>

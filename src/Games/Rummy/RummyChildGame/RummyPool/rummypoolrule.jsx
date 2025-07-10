@@ -9,6 +9,7 @@ import {
   FaPlayCircle,
 } from "react-icons/fa";
 import TotalGame from "../../../../HomeComponets/TotalGame/totalgame";
+import { Link } from "react-router-dom";
 
 const PoolRummyRulesSection = () => {
   return (
@@ -45,8 +46,10 @@ const PoolRummyRulesSection = () => {
                       Card Distribution
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                    At the beginning of each game, every player is dealt 13 cards. One card is placed face-up to begin the open deck, while the remaining cards form the closed deck. A dealer is chosen at random.
-
+                      At the beginning of each game, every player is dealt 13
+                      cards. One card is placed face-up to begin the open deck,
+                      while the remaining cards form the closed deck. A dealer
+                      is chosen at random.
                     </p>
                   </div>
                 </div>
@@ -62,11 +65,13 @@ const PoolRummyRulesSection = () => {
                       <span className="text-[#5e0d0d] group-hover:text-[#ff6b6b] transition-colors">
                         Step 2.
                       </span>
-                     Game Objective
+                      Game Objective
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                      The main goal is to form valid sequences and sets using all 13 cards. A valid hand must contain at least two sequences, including one pure sequence (formed without a joker).
-
+                      The main goal is to form valid sequences and sets using
+                      all 13 cards. A valid hand must contain at least two
+                      sequences, including one pure sequence (formed without a
+                      joker).
                     </p>
                   </div>
                 </div>
@@ -82,12 +87,14 @@ const PoolRummyRulesSection = () => {
                       <span className="text-[#5e0d0d] group-hover:text-[#ff6b6b] transition-colors">
                         Step 3.
                       </span>
-                     Gameplay Mechanics
-
+                      Gameplay Mechanics
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                     Players take turns picking a card from the open or closed deck and discarding one. Jokers can substitute for any card in a set or an impure sequence. Observing opponents’ moves can help guide your strategy and improve your chances.
-
+                      Players take turns picking a card from the open or closed
+                      deck and discarding one. Jokers can substitute for any
+                      card in a set or an impure sequence. Observing opponents’
+                      moves can help guide your strategy and improve your
+                      chances.
                     </p>
                   </div>
                 </div>
@@ -103,19 +110,23 @@ const PoolRummyRulesSection = () => {
                       <span className="text-[#5e0d0d] group-hover:text-[#ff6b6b] transition-colors">
                         Step 4.
                       </span>
-                     Eliminations and Victor
+                      Eliminations and Victor
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                      After each valid declaration, points are calculated based on opponents’ unmatched cards. Players accumulate points across rounds. Anyone who crosses the pre-set point limit (usually 101 or 201) is eliminated. The last player remaining is declared the winner of the Pool Rummy match.
-
+                      After each valid declaration, points are calculated based
+                      on opponents’ unmatched cards. Players accumulate points
+                      across rounds. Anyone who crosses the pre-set point limit
+                      (usually 101 or 201) is eliminated. The last player
+                      remaining is declared the winner of the Pool Rummy match.
                     </p>
                   </div>
                 </div>
               </div>
-
-              <button className="mt-6 flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#5e0d0d] to-[#ff6b6b] text-white rounded-lg font-medium hover:shadow-lg hover:shadow-[#5e0d0d]/50 transition-all duration-300 mx-auto lg:mx-0">
-                Play Now <FaArrowRight />
-              </button>
+              <Link to={"/download_apk"}>
+                <button className="mt-6 flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#5e0d0d] to-[#ff6b6b] text-white rounded-lg font-medium hover:shadow-lg hover:shadow-[#5e0d0d]/50 transition-all duration-300 mx-auto lg:mx-0">
+                  Play Now <FaArrowRight />
+                </button>
+              </Link>
             </div>
 
             {/* Image on Right Side */}

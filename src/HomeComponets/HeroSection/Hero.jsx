@@ -53,9 +53,11 @@ export default function NeonBanner() {
       </h2>
 
       {/* CTA Button */}
-      <button className="mt-6 px-6 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded shadow-md transition duration-300">
-        PLAY NOW
-      </button>
+      <a href="https://www.indusappstore.com/apps/strategy/finunique/com.digitalcrew.finunique?page=details&id=com.digitalcrew.finunique">
+        <button className="mt-6 px-6 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded shadow-md transition duration-300">
+          PLAY NOW
+        </button>
+      </a>
 
       {/* Disclaimer */}
       <p className="mt-4 text-sm text-gray-400">18+ Only | Play Responsibly</p>

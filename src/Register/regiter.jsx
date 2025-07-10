@@ -45,6 +45,19 @@ const RegisterPage = () => {
     const valid = await trigger();
     if (!valid) return;
     setLoading(true);
+    const toastId = toast.loading("Sending OTP...", {
+      id: "send-otp",
+      duration: 1000, 
+      position: "top-center",
+      style: {
+        background: "#1E293B",
+        color: "#fff",
+        fontWeight: "bold",
+        border: "1px solid #FF10F0",
+        padding: "12px 16px",
+      },
+      icon: "📲",
+    });
 
     try {
       const res = await api.post("/auth/send-otp", {
@@ -54,13 +67,21 @@ const RegisterPage = () => {
       });
 
       if (res?.data?.success) {
-        toast.success(res?.data?.message);
+        toast.success(res?.data?.message || "OTP sent successfully", {
+          id: toastId,
+        });
         setTempUserData(data);
         setStep(2);
+      } else {
+        toast.dismiss(toastId);
       }
     } catch (err) {
       console.error("OTP Send Error", err);
-      toast.error(err.response.data?.message);
+      if (toast.isActive(toastId)) {
+        toast.error(err.response?.data?.message || "Failed to send OTP", {
+          id: toastId,
+        });
+      }
     } finally {
       setLoading(false);
     }
@@ -70,18 +91,18 @@ const RegisterPage = () => {
     const valid = await triggerOtp();
     if (!valid) return;
     setLoading(true);
+    const toastId = toast.loading("Verifying OTP...");
+
     try {
       const verifyotp = await api.post("/auth/verify-otp", {
         mobile: tempUserData.mobile,
         otp: otpData.otp,
       });
-      // console.log(verifyotp);
 
       if (verifyotp?.data?.success) {
         const res = await api.post("/auth/register", tempUserData);
-        // console.log(res);
         if (res?.data?.status) {
-          toast.success("Account created successfully!");
+          toast.success("Account created successfully!", { id: toastId });
           const leadsend = await fetch(
             "https://cms.sevenunique.com/apis/leads/set-leads.php",
             {
@@ -99,7 +120,6 @@ const RegisterPage = () => {
               }),
             }
           );
-          setLoading(false);
         }
       }
       reset();
@@ -109,13 +129,13 @@ const RegisterPage = () => {
       }, 2000);
     } catch (err) {
       console.error("OTP Verification Error", err);
-      toast.error("OTP Verification Error");
-      setLoading(false);
+      if (toast.isActive(toastId)) {
+        toast.error(err?.response?.data?.message || "OTP verification failed", {
+          id: toastId,
+        });
+      }
       if (err?.response?.data?.message) {
         setError("otp", { type: "manual", message: err.response.data.message });
-        toast.error(err?.response?.data?.message);
-      } else {
-        toast.error("OTP verification failed");
       }
     } finally {
       setLoading(false);
@@ -136,8 +156,8 @@ const RegisterPage = () => {
         og_site_name={seo?.og_site_name}
         canonical_tag={seo?.canonical_tag}
       />
+      <Toaster />
       <div className="min-h-screen py-3 bg-[#17040A]">
-        <Toaster />
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 flex justify-center gap-2">
@@ -165,7 +185,7 @@ const RegisterPage = () => {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                      First Name *
+                      First Name <span className="text-red-700">*</span>
                     </label>
                     <input
                       type="text"
@@ -194,7 +214,7 @@ const RegisterPage = () => {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Last Name *
+                      Last Name <span className="text-red-700">*</span>
                     </label>
                     <input
                       type="text"
@@ -225,7 +245,7 @@ const RegisterPage = () => {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Mobile Number *
+                      Mobile Number <span className="text-red-700">*</span>
                     </label>
                     <div className="flex">
                       <span className="inline-flex items-center px-1 rounded-l-lg border border-r-0 border-dark-600 bg-dark-700 text-gray-400 text-sm">
@@ -295,7 +315,7 @@ const RegisterPage = () => {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Password *
+                      Password <span className="text-red-700">*</span>
                     </label>
                     <div className="relative">
                       <input
@@ -331,7 +351,7 @@ const RegisterPage = () => {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Confirm Password *
+                      Confirm Password <span className="text-red-700">*</span>
                     </label>
                     <div className="relative">
                       <input

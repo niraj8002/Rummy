@@ -1,7 +1,10 @@
 import { Download } from "lucide-react";
 import React from "react";
+import { useContext } from "react";
+import { ContextData } from "../Service/context";
 
 export const DownloadCTA = () => {
+  const { downLoadApk } = useContext(ContextData);
   return (
     <>
       <section className="text-center ">
@@ -16,15 +19,18 @@ export const DownloadCTA = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center font-medium tracking-wider">
             <a
-              href="https://play.google.com/store"
+              href="https://www.indusappstore.com/apps/strategy/finunique/com.digitalcrew.finunique?page=details&id=com.digitalcrew.finunique"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary text-lg px-8 py-4 hover:outline-1 outline-gray-100 rounded-md bg-[#ff1028]"
             >
               <Download className="inline-block h-6 w-6 mr-2" />
-              Download from Play Store
+              Download from Indus App Store
             </a>
-            <button className="btn-secondary text-lg px-8 py-4 bg-blue-400 hover:outline-1 outline-gray-100 rounded-md">
+            <button
+              className="btn-secondary text-lg px-8 py-4 bg-blue-400 hover:outline-1 outline-gray-100 rounded-md"
+              onClick={downLoadApk}
+            >
               <Download className="inline-block h-6 w-6 mr-2" />
               Download APK
             </button>

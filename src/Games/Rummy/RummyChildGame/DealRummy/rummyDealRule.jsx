@@ -9,6 +9,7 @@ import {
   FaPlayCircle,
 } from "react-icons/fa";
 import TotalGame from "../../../../HomeComponets/TotalGame/totalgame";
+import { Link } from "react-router-dom";
 
 const DealRummyRulesSection = () => {
   return (
@@ -45,7 +46,11 @@ const DealRummyRulesSection = () => {
                       Card Distribution
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                     Each player is dealt 13 cards from a standard deck. One card is placed face-up to start the discard pile (open deck), and the rest form the closed deck. The number of deals is fixed beforehand, and players begin with equal chips.
+                      Each player is dealt 13 cards from a standard deck. One
+                      card is placed face-up to start the discard pile (open
+                      deck), and the rest form the closed deck. The number of
+                      deals is fixed beforehand, and players begin with equal
+                      chips.
                     </p>
                   </div>
                 </div>
@@ -62,11 +67,12 @@ const DealRummyRulesSection = () => {
                         Step 2.
                       </span>
                       Game Objective
-
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                    The goal is to arrange all 13 cards into valid combinations — sequences and/or sets. Each player must create at least two sequences, with one being a pure sequence (no joker involved), to make a valid declaration.
-
+                      The goal is to arrange all 13 cards into valid
+                      combinations — sequences and/or sets. Each player must
+                      create at least two sequences, with one being a pure
+                      sequence (no joker involved), to make a valid declaration.
                     </p>
                   </div>
                 </div>
@@ -83,11 +89,12 @@ const DealRummyRulesSection = () => {
                         Step 3.
                       </span>
                       Gameplay Mechanics
-
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                    Players take turns drawing and discarding cards. Jokers can be used to complete sets and impure sequences. The objective during each deal is to finish before your opponents while minimizing points in your hand.
-
+                      Players take turns drawing and discarding cards. Jokers
+                      can be used to complete sets and impure sequences. The
+                      objective during each deal is to finish before your
+                      opponents while minimizing points in your hand.
                     </p>
                   </div>
                 </div>
@@ -103,20 +110,23 @@ const DealRummyRulesSection = () => {
                       <span className="text-[#5e0d0d] group-hover:text-[#ff6b6b] transition-colors">
                         Step 4.
                       </span>
-                     Declaring and Scoring
-
+                      Declaring and Scoring
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                    Once a player arranges their hand into valid sequences and sets, they discard one card and declare. Points are then calculated based on ungrouped cards of the losing players. After all deals are played, the player with the most chips wins the game.
-
+                      Once a player arranges their hand into valid sequences and
+                      sets, they discard one card and declare. Points are then
+                      calculated based on ungrouped cards of the losing players.
+                      After all deals are played, the player with the most chips
+                      wins the game.
                     </p>
                   </div>
                 </div>
               </div>
-
-              <button className="mt-6 flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#5e0d0d] to-[#ff6b6b] text-white rounded-lg font-medium hover:shadow-lg hover:shadow-[#5e0d0d]/50 transition-all duration-300 mx-auto lg:mx-0">
-                Play Now <FaArrowRight />
-              </button>
+              <Link to={"/download_apk"}>
+                <button className="mt-6 flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#5e0d0d] to-[#ff6b6b] text-white rounded-lg font-medium hover:shadow-lg hover:shadow-[#5e0d0d]/50 transition-all duration-300 mx-auto lg:mx-0">
+                  Play Now <FaArrowRight />
+                </button>
+              </Link>
             </div>
 
             {/* Image on Right Side */}

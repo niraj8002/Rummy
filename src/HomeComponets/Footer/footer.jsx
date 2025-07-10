@@ -93,11 +93,11 @@ const Footer = () => {
                   Blog
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/game_rummy" className="hover:text-red-400">
                   How to Play
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link to="/download_apk" className="hover:text-red-400">
                   Download App
@@ -144,11 +144,13 @@ const Footer = () => {
             <div className="space-y-2 text-sm">
               <div className="flex flex-col gap-2">
                 <p className="flex gap-1.5 items-start">
-                  <FaPhone className="mt-0.5 "  size={15}/>{" "}
-                  {contactDetails?.phone || "9341436937"}
+                  <FaPhone className="mt-0.5 " size={15} />{" "}
+                  {contactDetails?.phone || "0141-4511098"}
                 </p>
                 <p className="flex gap-1.5 items-center justify-start">
-                  <FaBuilding className="mt-0" size={20} /> {contactDetails?.address}
+                  <FaBuilding className="mt-0" size={20} />{" "}
+                  {contactDetails?.address ||
+                    "Plot No 97, Dakshinpuri - I, Shrikishan, Sanganer, Jagatpura, Jaipur Rajasthan, India, 302017"}
                 </p>
                 {(contactDetails?.email || "").split(",").map((email, i) => (
                   <a
@@ -156,7 +158,8 @@ const Footer = () => {
                     href={`mailto:${email.trim()}`}
                     className="text-sm text-gray-300 hover:underline flex gap-1.5 items-center justify-start"
                   >
-                    <MdEmail className="mt-0.5 "  size={15}/> {email.trim()}
+                    <MdEmail className="mt-0.5 " size={15} />{" "}
+                    {email.trim() || "support@finuniques.in"}
                   </a>
                 ))}
               </div>

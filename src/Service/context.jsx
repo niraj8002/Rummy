@@ -48,9 +48,18 @@ export const ContextProvider = ({ children }) => {
   useEffect(() => {
     scrollToTop();
   }, [partname]);
+  
+  const downLoadApk = () => {
+    const link = document.createElement("a");
+    link.href = "/finUnique-rummy.apk";
+    link.download = "finUnique-rummy.apk";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
-    <ContextData.Provider value={{ scrollToTop, token, seo }}>
+    <ContextData.Provider value={{ scrollToTop, token, seo, downLoadApk }}>
       {children}
     </ContextData.Provider>
   );

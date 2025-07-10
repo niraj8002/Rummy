@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { LogIn, Shield, Eye, EyeOff } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { toast, Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import api from "../Service/axios";
 import { ContextData } from "../Service/context";
 
@@ -17,6 +17,7 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [loginMode, setLoginMode] = useState("password");
+  const [sendingOtp, setSendingOtp] = useState(false);
 
   const {
     register,
@@ -30,20 +31,18 @@ const LoginPage = () => {
 
   const onSubmit = async (data) => {
     setLoading(true);
-    const toastId = toast.loading("Logging in...");
+    // const toastId = toast.loading("Logging in...");
 
     try {
       const payload =
         loginMode === "password"
-          ? { emailOrMobile: data.identifier, password: data.password }
-          : { emailOrMobile: data.identifier, otp: data.otp };
+          ? { emailOrMobile: data.email, password: data.password }
+          : { emailOrMobile: data.mobile, otp: data.otp };
 
       const res = await api.post("/auth/login", payload);
 
       if (res.status === 200) {
-        toast.success(res?.data?.message || "Login successful", {
-          id: toastId,
-        });
+        toast.success(res?.data?.message || "Login successful");
         localStorage.setItem("token", res.data.token);
         setTimeout(() => {
           window.location.href = "/";
@@ -51,11 +50,31 @@ const LoginPage = () => {
       }
     } catch (err) {
       console.error("Login error", err);
-      toast.error(err?.response?.data?.message || "Login failed", {
-        id: toastId,
-      });
+
+      const message = err?.response?.data?.message || "Login failed";
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleSendOtp = async () => {
+    const valid = await trigger("mobile");
+    if (!valid) return;
+
+    setSendingOtp(true);
+    const toastId = toast.loading("Sending OTP...");
+    try {
+      const res = await api.post("/auth/send-otp", {
+        mobile: watch("mobile"),
+        forLogin: true,
+      });
+      toast.success(res.data.message);
+    } catch (err) {
+      if (toast.isActive(toastId)) {
+        toast.error(err?.response?.data?.message || "Failed to send OTP");
+      }
+    } finally {
+      setSendingOtp(false);
     }
   };
 
@@ -63,8 +82,8 @@ const LoginPage = () => {
     <>
       <Toaster />
       <div className="min-h-screen bg-[#17040A] py-6 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
-        <div className="w-full max-w-md space-y-10 ">
-          <div className="text-center ">
+        <div className="w-full max-w-md space-y-10">
+          <div className="text-center">
             <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">
               Welcome Back to{" "}
               <span
@@ -89,63 +108,80 @@ const LoginPage = () => {
             <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Enter email/mobile number
+                  {loginMode === "password"
+                    ? "Enter your email"
+                    : "Enter your mobile number"}
                 </label>
-                <input
-                  type="text"
-                  {...register("identifier", {
-                    required: "Email or mobile number is required",
-                    validate: (value) => {
-                      const isMobile = /^[6-9]\d{9}$/.test(value);
-                      const isEmail = /^\S+@\S+\.\S+$/.test(value);
-                      return (
-                        isMobile ||
-                        isEmail ||
-                        "Enter valid mobile (start 6-9) or email"
-                      );
-                    },
-                  })}
-                  onKeyUp={() => trigger("identifier")}
-                  placeholder={
-                    loginMode == "otp"
-                      ? "Enter your mobile number"
-                      : "Enter your email"
-                  }
-                  className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white placeholder-gray-400"
-                />
-                {errors.identifier && (
-                  <p className="text-red-500 text-xs mt-1">
-                    {errors.identifier.message}
-                  </p>
-                )}
-                {loginMode === "otp" && (
-                  <button
-                    type="button"
-                    onClick={async () => {
-                      const valid = await trigger("identifier");
-                      if (!valid) {
-                        toast.error("Please enter a valid mobile number");
-                        return;
-                      }
 
-                      try {
-                        const res = await api.post("/auth/send-otp", {
-                          mobile: data.identifier,
-                          forLogin: true,
-                        });
-                        toast.success(res.data.message);
-                      } catch (err) {
-                        toast.error(
-                          err?.response?.data?.message || "Failed to send OTP"
-                        );
-                      }
-                    }}
-                    className={`text-sm text-blue-400 hover:text-blue-300 mt-2 ${
-                      errors.identifier && "hidden"
-                    }`}
-                  >
-                    Send OTP
-                  </button>
+                {loginMode === "password" ? (
+                  <>
+                    <input
+                      type="text"
+                      {...register("email", {
+                        required: "Email is required",
+                        pattern: {
+                          value: /^\S+@\S+\.\S+$/,
+                          message: "Enter a valid email",
+                        },
+                      })}
+                      onKeyUp={() => trigger("email")}
+                      placeholder="Enter your email"
+                      className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white placeholder-gray-400"
+                    />
+                    {errors.email && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.email.message}
+                      </p>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <input
+                      type="text"
+                      inputMode="numeric"
+                      maxLength={10}
+                      {...register("mobile", {
+                        required: "Mobile number is required",
+                        validate: (value) => {
+                          if (!/^[6-9]/.test(value))
+                            return "Must start with 6-9";
+                          if (value.length !== 10)
+                            return "Mobile number must be exactly 10 digits";
+                          return true;
+                        },
+                      })}
+                      onInput={(e) => {
+                        e.target.value = e.target.value
+                          .replace(/[^0-9]/g, "")
+                          .slice(0, 10);
+                      }}
+                      onKeyUp={() => trigger("mobile")}
+                      placeholder="Enter your mobile number"
+                      className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white placeholder-gray-400"
+                    />
+                    {errors.mobile && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.mobile.message}
+                      </p>
+                    )}
+
+                    <button
+                      type="button"
+                      disabled={sendingOtp}
+                      onClick={handleSendOtp}
+                      className={`text-sm mt-2 flex items-center gap-2 ${
+                        sendingOtp
+                          ? "text-gray-400"
+                          : "text-blue-400 hover:text-blue-300"
+                      } ${errors.mobile && "hidden"}`}
+                    >
+                      {sendingOtp ? (
+                        <span className="loader w-4 h-4 border-2 border-t-white border-b-white border-l-transparent border-r-transparent rounded-full animate-spin"></span>
+                      ) : (
+                        "Send OTP"
+                      )}
+                    </button>
+                  </>
                 )}
               </div>
 
@@ -265,7 +301,7 @@ const LoginPage = () => {
 
             <div className="mt-6 text-center">
               <p className="text-gray-400 text-sm">
-                Don’t have an account?{" "}
+                Don't have an account?{" "}
                 <Link
                   to="/register"
                   className="text-primary-400 hover:text-primary-300 font-semibold"

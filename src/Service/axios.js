@@ -2,7 +2,8 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://data.finuniques.in/api",
+  // baseURL: "http://localhost:5000/api",
   headers: {
     "Content-Type": "application/json",
   },
@@ -11,7 +12,7 @@ const api = axios.create({
 // Request Interceptor - add token
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token"); 
+    const token = localStorage.getItem("token");
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`;
     }

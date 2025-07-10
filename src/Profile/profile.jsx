@@ -110,7 +110,10 @@ const Profilepage = () => {
             <div className="flex flex-col md:flex-row md:items-center md:justify-between">
               <div>
                 <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
-                  Welcome back, <span className="text-primary-500">Niraj!</span>
+                  Welcome back,{" "}
+                  <span className="text-primary-500">
+                    {user?.user.firstName|| "user"}!
+                  </span>
                 </h1>
                 <p className="text-gray-400">
                   Ready to continue your winning streak?

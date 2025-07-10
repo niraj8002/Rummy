@@ -10,6 +10,7 @@ import {
   FaPlayCircle,
 } from "react-icons/fa";
 import TotalGame from "../../../../HomeComponets/TotalGame/totalgame";
+import { Link } from "react-router-dom";
 
 const NineBallRuleRulesSection = () => {
   return (
@@ -123,10 +124,11 @@ const NineBallRuleRulesSection = () => {
                   </div>
                 </div>
               </div>
-
-              <button className="mt-6 flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#5e0d0d] to-[#ff6b6b] text-white rounded-lg font-medium hover:shadow-lg hover:shadow-[#5e0d0d]/50 transition-all duration-300 mx-auto lg:mx-0">
-                Play Now <FaArrowRight />
-              </button>
+              <Link to={"/download_apk"}>
+                <button className="mt-6 flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#5e0d0d] to-[#ff6b6b] text-white rounded-lg font-medium hover:shadow-lg hover:shadow-[#5e0d0d]/50 transition-all duration-300 mx-auto lg:mx-0">
+                  Play Now <FaArrowRight />
+                </button>
+              </Link>
             </div>
 
             {/* Image on Right Side */}

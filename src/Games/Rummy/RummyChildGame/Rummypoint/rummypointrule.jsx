@@ -9,6 +9,7 @@ import {
   FaPlayCircle,
 } from "react-icons/fa";
 import TotalGame from "../../../../HomeComponets/TotalGame/totalgame";
+import { Link } from "react-router-dom";
 
 const PointRummyRulesSection = () => {
   return (
@@ -64,7 +65,7 @@ const PointRummyRulesSection = () => {
                       <span className="text-[#5e0d0d] group-hover:text-[#ff6b6b] transition-colors">
                         Step 2.
                       </span>
-                       Game Objective
+                      Game Objective
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
                       The aim is to arrange all 13 cards into valid combinations
@@ -86,11 +87,14 @@ const PointRummyRulesSection = () => {
                       <span className="text-[#5e0d0d] group-hover:text-[#ff6b6b] transition-colors">
                         Step 3.
                       </span>
-                     Gameplay Mechanics
+                      Gameplay Mechanics
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                    Players take turns drawing a card from either the open or closed deck and discarding one card to the open pile. Jokers can be used as substitutes to form sets and impure sequences. Strategic use of opponents’ discarded cards can give you a winning edge.
-
+                      Players take turns drawing a card from either the open or
+                      closed deck and discarding one card to the open pile.
+                      Jokers can be used as substitutes to form sets and impure
+                      sequences. Strategic use of opponents’ discarded cards can
+                      give you a winning edge.
                     </p>
                   </div>
                 </div>
@@ -107,19 +111,22 @@ const PointRummyRulesSection = () => {
                         Step 4.
                       </span>
                       Declaring and Winning
-
                     </h3>
                     <p className="text-gray-300 text-[14px] leading-relaxed">
-                     When a player forms valid combinations, they discard one card and declare. If the declaration is valid, they win the round. Points are calculated based on the unmatched cards of the losing players. The fewer the points, the better your chances of long-term success.
-
+                      When a player forms valid combinations, they discard one
+                      card and declare. If the declaration is valid, they win
+                      the round. Points are calculated based on the unmatched
+                      cards of the losing players. The fewer the points, the
+                      better your chances of long-term success.
                     </p>
                   </div>
                 </div>
               </div>
-
-              <button className="mt-6 flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#5e0d0d] to-[#ff6b6b] text-white rounded-lg font-medium hover:shadow-lg hover:shadow-[#5e0d0d]/50 transition-all duration-300 mx-auto lg:mx-0">
-                Play Now <FaArrowRight />
-              </button>
+              <Link to={"/download_apk"}>
+                <button className="mt-6 flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#5e0d0d] to-[#ff6b6b] text-white rounded-lg font-medium hover:shadow-lg hover:shadow-[#5e0d0d]/50 transition-all duration-300 mx-auto lg:mx-0">
+                  Play Now <FaArrowRight />
+                </button>
+              </Link>
             </div>
 
             {/* Image on Right Side */}

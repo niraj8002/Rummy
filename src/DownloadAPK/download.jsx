@@ -10,17 +10,15 @@ import {
 import { DownloadCTA } from "./DownloadCTA";
 import SEO from "../Reuseable Com/SeoHelment";
 import { ContextData } from "../Service/context";
+import first from "../assets/gameSS/secondd.jpg";
+import second from "../assets/gameSS/first.jpeg";
+import third from "../assets/gameSS/third.jpeg";
+import four from "../assets/gameSS/four.jpg"
 
 const DownloadPage = () => {
-  const { seo } = useContext(ContextData);
-  const downLoadApk = () => {
-    const link = document.createElement("a");
-    link.href = "/finUnique-rummy.apk";
-    link.download = "finUnique-rummy.apk";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  const { seo, downLoadApk } = useContext(ContextData);
+  const screenshots = [four,first, second, third,]; // Add more if needed
+
   return (
     <>
       <SEO
@@ -74,7 +72,7 @@ const DownloadPage = () => {
 
                 <div className="space-y-4">
                   <a
-                    href=""
+                    href="https://www.indusappstore.com/apps/strategy/finunique/com.digitalcrew.finunique?page=details&id=com.digitalcrew.finunique"
                     target="_blank"
                     rel="noopener noreferrer"
                     className=" bg-[#ff1028] flex items-center justify-center space-x-4 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-bold py-4 px-8 rounded-xl shadow-2xl transition-all duration-300 transform hover:scale-105 animate-glow"
@@ -107,7 +105,7 @@ const DownloadPage = () => {
 
                 <div className="bg-gold-500/10 border border-gray-300 rounded-lg p-4">
                   <div className="flex items-center space-x-3">
-                    <Star className="h-6 w-6 text-gold-500" />
+                    <Star className="h-6 w-6 text-yellow-500" />
                     <div>
                       <div className="text-white font-semibold">
                         Get ₹50 Bonus
@@ -237,16 +235,17 @@ const DownloadPage = () => {
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {[1, 2, 3, 4].map((screenshot) => (
+              {screenshots.map((screenshot, index) => (
                 <div
-                  key={screenshot}
-                  className="outline-1 outline-gray-400 rounded-md bg-gray-100/20 card-gaming p-4 hover:transform hover:scale-105 transition-all duration-300"
+                  key={index}
+                  className=" outline-1 outline-gray-400 hover:outline-gray-200 rounded-md bg-gray-100/20 card-gaming  hover:transform hover:scale-105 transition-all duration-300"
                 >
-                  <div className="bg-gradient-to-br from-dark-700 to-dark-600 aspect-[9/16] rounded-lg flex items-center justify-center">
-                    <div className="text-center text-gray-400">
-                      <Smartphone className="h-12 w-12 mx-auto mb-2" />
-                      <div className="text-sm">Screenshot {screenshot}</div>
-                    </div>
+                  <div className="bg-gradient-to-br from-dark-700 to-dark-600 aspect-[9/17] rounded-lg overflow-hidden">
+                    <img
+                      src={screenshot}
+                      alt={`App screenshot ${index + 1}`}
+                      className="w-full h-full object- "
+                    />
                   </div>
                 </div>
               ))}
