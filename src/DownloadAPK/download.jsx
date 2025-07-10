@@ -13,6 +13,14 @@ import { ContextData } from "../Service/context";
 
 const DownloadPage = () => {
   const { seo } = useContext(ContextData);
+  const downLoadApk = () => {
+    const link = document.createElement("a");
+    link.href = "/finUnique-rummy.apk";
+    link.download = "finUnique-rummy.apk";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   return (
     <>
       <SEO
@@ -66,7 +74,7 @@ const DownloadPage = () => {
 
                 <div className="space-y-4">
                   <a
-                    href="https://play.google.com/store"
+                    href=""
                     target="_blank"
                     rel="noopener noreferrer"
                     className=" bg-[#ff1028] flex items-center justify-center space-x-4 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-bold py-4 px-8 rounded-xl shadow-2xl transition-all duration-300 transform hover:scale-105 animate-glow"
@@ -74,7 +82,7 @@ const DownloadPage = () => {
                     <Download className="h-8 w-8" />
                     <div className="text-left ">
                       <div className="text-sm opacity-90">Download from</div>
-                      <div className="text-xl">Google Play Store</div>
+                      <div className="text-xl">Indus App Store</div>
                     </div>
                   </a>
 
@@ -87,8 +95,12 @@ const DownloadPage = () => {
                   <button className="bg-[#ff1028] w-full flex items-center justify-center space-x-4 bg-gradient-to-r from-neon-500 to-neon-600 hover:from-neon-600 hover:to-neon-700 text-white font-bold py-4 px-8 rounded-xl shadow-2xl transition-all duration-300 transform hover:scale-105">
                     <Download className="h-8 w-8" />
                     <div className="text-left">
-                      <div className="text-sm opacity-90">Direct Download</div>
-                      <div className="text-xl">APK File</div>
+                      <button onClick={downLoadApk}>
+                        <div className="text-sm opacity-90">
+                          Direct Download
+                        </div>
+                        <div className="text-xl">APK File</div>
+                      </button>
                     </div>
                   </button>
                 </div>

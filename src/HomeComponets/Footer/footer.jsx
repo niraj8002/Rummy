@@ -2,7 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ContextData } from "../../Service/context";
 import logo from "../../assets/icon/rummy-logo.png";
-import { FaWhatsapp } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaTwitter,
+  FaYoutube,
+  FaWhatsapp,
+} from "react-icons/fa";
+import { FaBuilding, FaPhone } from "react-icons/fa6";
+import { MdEmail } from "react-icons/md";
+import { IoLocationSharp } from "react-icons/io5";
 
 const Footer = () => {
   const { scrollToTop } = useContext(ContextData);
@@ -133,16 +142,21 @@ const Footer = () => {
           <div className="text-center sm:text-left">
             <h3 className="text-lg font-bold mb-4">Contact Us</h3>
             <div className="space-y-2 text-sm">
-              <div>
-                <p>{contactDetails?.phone || "9341436937"}</p>
-                <p>{contactDetails?.address}</p>
+              <div className="flex flex-col gap-2">
+                <p className="flex gap-1.5 items-start">
+                  <FaPhone className="mt-0.5 "  size={15}/>{" "}
+                  {contactDetails?.phone || "9341436937"}
+                </p>
+                <p className="flex gap-1.5 items-center justify-start">
+                  <FaBuilding className="mt-0" size={20} /> {contactDetails?.address}
+                </p>
                 {(contactDetails?.email || "").split(",").map((email, i) => (
                   <a
                     key={i}
                     href={`mailto:${email.trim()}`}
-                    className="text-sm text-gray-300 hover:underline block"
+                    className="text-sm text-gray-300 hover:underline flex gap-1.5 items-center justify-start"
                   >
-                    {email.trim()}
+                    <MdEmail className="mt-0.5 "  size={15}/> {email.trim()}
                   </a>
                 ))}
               </div>
