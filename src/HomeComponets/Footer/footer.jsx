@@ -58,9 +58,9 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white pt-12 pb-8 px-4">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 text-left">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-left">
           {/* FinUnique Zone */}
-          <div className="text-center sm:text-left">
+          <div className="sm:col-span-2 lg:col-span-1">
             <div className="mb-4 flex justify-center sm:justify-start">
               <img
                 src={logo}
@@ -68,7 +68,7 @@ const Footer = () => {
                 className="w-[140px] bg-black text-cyan-400 px-6 py-2 rounded-md shadow-[0_0_12px_#00ffff] hover:shadow-[0_0_20px_#00ffff] transition"
               />
             </div>
-            <p className="text-sm">
+            <p className="text-sm text-center sm:text-left">
               India's premier real-money gaming platform featuring Rummy, Poker,
               and Pool. Play responsibly and win big with our secure gaming
               environment.
@@ -76,10 +76,12 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div className="text-center sm:text-left">
-            <h3 className="text-lg font-bold mb-4">Quick Links</h3>
+          <div>
+            <h3 className="text-lg font-bold mb-4 text-center sm:text-left">
+              Quick Links
+            </h3>
             <ul className="space-y-2 text-sm">
-              <li>
+              <li className="text-center sm:text-left">
                 <Link
                   to=""
                   onClick={scrollToTop}
@@ -88,22 +90,17 @@ const Footer = () => {
                   Games
                 </Link>
               </li>
-              <li>
+              <li className="text-center sm:text-left">
                 <Link to="/our_blog" className="hover:text-red-400">
                   Blog
                 </Link>
               </li>
-              {/* <li>
-                <Link to="/game_rummy" className="hover:text-red-400">
-                  How to Play
-                </Link>
-              </li> */}
-              <li>
+              <li className="text-center sm:text-left">
                 <Link to="/download_apk" className="hover:text-red-400">
                   Download App
                 </Link>
               </li>
-              <li>
+              <li className="text-center sm:text-left">
                 <Link to="/download_apk" className="hover:text-red-400">
                   Refer & Earn
                 </Link>
@@ -112,25 +109,27 @@ const Footer = () => {
           </div>
 
           {/* Support */}
-          <div className="text-center sm:text-left">
-            <h3 className="text-lg font-bold mb-4">Support</h3>
+          <div>
+            <h3 className="text-lg font-bold mb-4 text-center sm:text-left">
+              Support
+            </h3>
             <ul className="space-y-2 text-sm">
-              <li>
+              <li className="text-center sm:text-left">
                 <Link to="/contactus" className="hover:text-red-400">
                   Contact Us
                 </Link>
               </li>
-              <li>
+              <li className="text-center sm:text-left">
                 <Link to="/terms_and_conditions" className="hover:text-red-400">
                   Terms & Conditions
                 </Link>
               </li>
-              <li>
+              <li className="text-center sm:text-left">
                 <Link to="/privacy_policy" className="hover:text-red-400">
                   Privacy Policy
                 </Link>
               </li>
-              <li>
+              <li className="text-center sm:text-left">
                 <Link to="/return_cancellation" className="hover:text-red-400">
                   Return & Cancellation
                 </Link>
@@ -139,33 +138,37 @@ const Footer = () => {
           </div>
 
           {/* Contact Info */}
-          <div className="text-center sm:text-left">
-            <h3 className="text-lg font-bold mb-4">Contact Us</h3>
+          <div className="sm:col-span-2 lg:col-span-1">
+            <h3 className="text-lg font-bold mb-4 text-center sm:text-left">
+              Contact Us
+            </h3>
             <div className="space-y-2 text-sm">
               <div className="flex flex-col gap-2">
-                <p className="flex gap-1.5 items-start">
-                  <FaPhone className="mt-0.5 " size={15} />{" "}
+                <p className="flex gap-1.5 items-center justify-center sm:justify-start">
+                  <FaPhone className="mt-0.5" size={15} />
                   {contactDetails?.phone || "0141-4511098"}
                 </p>
-                <p className="flex gap-1.5 items-center justify-start">
-                  <FaBuilding className="mt-0" size={20} />{" "}
-                  {contactDetails?.address ||
-                    "Plot No 97, Dakshinpuri - I, Shrikishan, Sanganer, Jagatpura, Jaipur Rajasthan, India, 302017"}
+                <p className="flex gap-1.5 items-center sm:items-start justify-center sm:justify-start">
+                  <FaBuilding className="mt-1" size={25} />
+                  <span className="text-left">
+                    {contactDetails?.address ||
+                      "Plot No 97, Dakshinpuri - I, Shrikishan, Sanganer, Jagatpura, Jaipur Rajasthan, India, 302017"}
+                  </span>
                 </p>
                 {(contactDetails?.email || "").split(",").map((email, i) => (
                   <a
                     key={i}
                     href={`mailto:${email.trim()}`}
-                    className="text-sm text-gray-300 hover:underline flex gap-1.5 items-center justify-start"
+                    className="text-sm text-gray-300 hover:underline flex gap-1.5 items-center justify-center sm:justify-start"
                   >
-                    <MdEmail className="mt-0.5 " size={15} />{" "}
+                    <MdEmail className="mt-0.5" size={15} />
                     {email.trim() || "support@finuniques.in"}
                   </a>
                 ))}
               </div>
 
               {/* Social Icons */}
-              <div className="flex items-center justify-center sm:justify-start gap-4 mt-2">
+              <div className="flex items-center justify-center sm:justify-start gap-4 mt-4">
                 {socailDetails?.map((social, index) => (
                   <a
                     key={index}
@@ -179,12 +182,12 @@ const Footer = () => {
               </div>
 
               {/* WhatsApp Support */}
-              <div>
+              <div className="mt-3">
                 <a
                   href="https://wa.me/919341436937?text=Hi%20I%20want%20to%20know%20more"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block mt-2 text-red-400 hover:underline"
+                  className="inline-block text-red-400 hover:underline"
                 >
                   <div className="flex justify-center sm:justify-start items-center gap-2">
                     <FaWhatsapp />

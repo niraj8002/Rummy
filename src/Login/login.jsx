@@ -50,7 +50,6 @@ const LoginPage = () => {
       }
     } catch (err) {
       console.error("Login error", err);
-
       const message = err?.response?.data?.message || "Login failed";
     } finally {
       setLoading(false);
