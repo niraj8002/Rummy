@@ -15,14 +15,14 @@ const BlogPostDetail = () => {
   const [loading, setLoading] = useState(true);
   const [relatedPosts, setRelatedPosts] = useState([]);
   const [categoryname, setCategoryName] = useState([]);
-  console.log(slug);
 
   useEffect(() => {
     setPost(null);
     setLoading(true);
+
     const fetchBlogPost = async () => {
       try {
-        const [postRes, relatedRes, categoryapi] = await Promise.all([
+        const [postRes, relatedRes] = await Promise.all([
           fetch(
             `https://cms.sevenunique.com/apis/blogs/get-blogs.php?status=2&slug=${slug}&website_id=6`,
             {
@@ -43,36 +43,19 @@ const BlogPostDetail = () => {
               },
             }
           ),
-          fetch(
-            `https://cms.sevenunique.com/apis/category/get_category_by_id.php?category_id=6 `,
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: "Bearer jibhfiugh84t3324fefei#*fef",
-              },
-            }
-          ),
         ]);
 
         const postJson = await postRes.json();
         const relatedJson = await relatedRes.json();
-        const categoryapijson = await categoryapi.json();
-        // console.log(postJson);
-        // console.log(relatedJson);
-        // console.log(categoryapijson);
 
         if (postJson.status === "success" && postJson.data.length > 0) {
           const matchedPost = postJson.data.find((p) => p.slug === slug);
           if (matchedPost) {
             matchedPost.content = cleanContent(matchedPost.content);
             setPost(matchedPost);
-          } else {
-            setPost(null);
           }
         }
 
-        setCategoryName(categoryapijson);
         setRelatedPosts(relatedJson);
       } catch (err) {
         console.error("Failed to fetch blog post:", err);
@@ -83,6 +66,31 @@ const BlogPostDetail = () => {
 
     fetchBlogPost();
   }, [slug]);
+
+  useEffect(() => {
+    const fetchCategory = async () => {
+      if (!post?.category_id) return;
+
+      try {
+        const res = await fetch(
+          `https://cms.sevenunique.com/apis/category/get_category_by_id.php?category_id=${post.category_id}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer jibhfiugh84t3324fefei#*fef",
+            },
+          }
+        );
+        const data = await res.json();
+        setCategoryName(data);
+      } catch (err) {
+        console.error("Failed to fetch category:", err);
+      }
+    };
+
+    fetchCategory();
+  }, [post?.category_id]);
 
   if (loading) {
     return (
@@ -205,7 +213,7 @@ const BlogPostDetail = () => {
                 {Math.ceil(post.content.split(" ").length / 200)} min read
               </span>
               <span>•</span>
-              <span>{categoryname.data.name}</span>
+              <span>{categoryname?.data?.name}</span>
             </div>
           </div>
         </div>
